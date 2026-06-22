@@ -119,6 +119,24 @@
   .device iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; pointer-events:none; }
   .device .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:90px; height:16px; background:#000; border-radius:10px; z-index:5; }
 
+  /* Yavaş bağlantılarda davetiye yüklenirken "donmuş" hissi vermesin diye küçük bir yükleniyor göstergesi */
+  .device .loading-spin{
+    position:absolute; inset:0; z-index:6;
+    display:flex; align-items:center; justify-content:center;
+    background:#fff;
+  }
+  .device .loading-spin::after{
+    content:''; width:34px; height:34px; border-radius:50%;
+    border:3px solid rgba(198,167,125,0.25); border-top-color:var(--gold);
+    animation:spin 0.8s linear infinite;
+  }
+  .device.is-loaded .loading-spin{ display:none; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  /* Önden yükleme havuzu: bir sonraki davetiyeyi görünmeden indirir, geçişte "donma" hissini azaltır */
+  #preloadPool{ position:fixed; left:-9999px; top:0; width:390px; height:844px; opacity:0.01; pointer-events:none; }
+  #preloadPool iframe{ width:390px; height:844px; border:0; }
+
   .label-wrap{
     position:absolute; bottom:7%; left:0; right:0;
     display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; z-index:10;
@@ -171,6 +189,7 @@
   <button id="startBtn">▶ Reels'i Oynat (sesli anlatımla)</button>
 </div>
 <audio id="bgm" src="../davetiye websiteleri/wedding/music.mp3" loop preload="auto"></audio>
+<div id="preloadPool"></div>
 <div id="viewport">
   <div id="canvas">
     <div id="canvas-bg"></div>
@@ -281,7 +300,7 @@ function buildSlideEl(s){
       <div class="device-wrap">
         <div class="device">
           <div class="notch"></div>
-          <div class="screen"><iframe src="${s.src}"></iframe></div>
+          <div class="screen"><div class="loading-spin"></div></div>
         </div>
       </div>
       <div class="label-wrap">
@@ -290,6 +309,35 @@ function buildSlideEl(s){
       </div>`;
   }
   return el;
+}
+
+// ===== Önden yükleme havuzu =====
+// Mevcut sahne gösterilirken bir sonraki davetiyeyi görünmeden indirir, böylece
+// sıra geldiğinde ağır görsel/ses/video dosyaları tarayıcı önbelleğinden hızlıca gelir.
+const preloadPool = document.getElementById('preloadPool');
+const preloaded = {};
+function preloadSlide(i){
+  const s = slides[i];
+  if(!s || s.type !== 'invite' || preloaded[i]) return;
+  const ifr = document.createElement('iframe');
+  ifr.dataset.loaded = '0';
+  ifr.addEventListener('load', () => { ifr.dataset.loaded = '1'; }, { once:true });
+  ifr.src = s.src;
+  preloadPool.appendChild(ifr);
+  preloaded[i] = ifr;
+}
+function getOrCreateIframe(i){
+  const s = slides[i];
+  if(preloaded[i]){
+    const ifr = preloaded[i];
+    delete preloaded[i];
+    return ifr;
+  }
+  const ifr = document.createElement('iframe');
+  ifr.dataset.loaded = '0';
+  ifr.addEventListener('load', () => { ifr.dataset.loaded = '1'; }, { once:true });
+  ifr.src = s.src;
+  return ifr;
 }
 
 // ===== Çift dilli sesli anlatım (Web Speech API) — OBS "Masaüstü Ses" kaynağı bunu otomatik kaydeder.
@@ -345,13 +393,25 @@ function goTo(i){
 
   actionTimers.forEach(clearTimeout);
   actionTimers = [];
-  if(s.type === 'invite' && s.seq){
-    const iframe = el.querySelector('iframe');
-    s.seq.forEach(step => {
-      actionTimers.push(setTimeout(() => {
-        try{ iframe.contentWindow.postMessage('visora:' + step.msg, '*'); }catch(err){}
-      }, step.at));
-    });
+  if(s.type === 'invite'){
+    const device = el.querySelector('.device');
+    const screen = el.querySelector('.screen');
+    const iframe = getOrCreateIframe(i);
+    if(iframe.dataset.loaded === '1'){
+      device.classList.add('is-loaded');
+    } else {
+      iframe.addEventListener('load', () => device.classList.add('is-loaded'), { once:true });
+    }
+    screen.appendChild(iframe);
+    preloadSlide((i + 1) % slides.length); // bir sonraki davetiyeyi şimdiden indirmeye başla
+
+    if(s.seq){
+      s.seq.forEach(step => {
+        actionTimers.push(setTimeout(() => {
+          try{ iframe.contentWindow.postMessage('visora:' + step.msg, '*'); }catch(err){}
+        }, step.at));
+      });
+    }
   }
 
   const dur = durationFor(s);
