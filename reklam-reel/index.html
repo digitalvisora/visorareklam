@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VISORA — Reels Reklam Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --gold:#C6A77D; --gold-hover:#D7B98F; --bg:#0b0b0d; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ width:100%; height:100%; background:var(--bg); font-family:'Inter',sans-serif; }
+  body{ display:flex; align-items:center; justify-content:center; overflow:hidden; }
+
+  /* ===== 1080x1920 sabit "Reels" tuvali, ekrana sığdırmak için scale edilir ===== */
+  #viewport{ width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  #canvas{
+    width:1080px; height:1920px;
+    position:relative;
+    background:var(--bg);
+    overflow:hidden;
+    transform-origin:center center;
+    flex-shrink:0;
+  }
+
+  /* ===== VISORA atmosferi: bulanık gece-davet fotoğrafı, tüm sahnelerin arkasında ===== */
+  #canvas-bg{
+    position:absolute; inset:-60px; z-index:-2;
+    background-image:url('../img/karanlikmod-gece.png');
+    background-size:cover; background-position:center;
+    filter:blur(26px) brightness(0.66) saturate(1.2);
+    transform:scale(1.08);
+  }
+  #canvas-bg-overlay{
+    position:absolute; inset:0; z-index:-1;
+    background: radial-gradient(ellipse at center, rgba(11,11,13,0.20) 0%, rgba(11,11,13,0.78) 68%, rgba(11,11,13,0.95) 100%);
+  }
+
+  #canvas::before{
+    content:''; position:absolute; inset:0; z-index:50; pointer-events:none;
+    background: radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,0.6) 100%);
+  }
+  .grain{
+    position:absolute; inset:0; z-index:51; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .slide{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; z-index:1;
+    transition:opacity 1.1s ease;
+  }
+  .slide.active{ opacity:1; z-index:2; }
+  .slide.intro, .slide.outro{ flex-direction:column; gap:28px; }
+
+  .intro-video{
+    position:absolute; inset:0; z-index:0;
+    width:100%; height:100%; object-fit:cover;
+  }
+  .intro-video-shade{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(to bottom, rgba(11,11,13,0.25) 0%, rgba(11,11,13,0.55) 55%, rgba(11,11,13,0.92) 100%);
+  }
+  .slide.intro .logo-img{ position:relative; z-index:2; }
+
+  .logo-img{
+    width:420px;
+    opacity:0;
+    filter:drop-shadow(0 0 40px rgba(198,167,125,0.25));
+    animation:fadeUp 1.3s ease forwards;
+  }
+  .cta-btn{
+    margin-top:6px;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    background:transparent;
+    font-family:'Inter',sans-serif;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-size:20px;
+    padding:18px 46px;
+    border-radius:2px;
+    opacity:0;
+    animation:fadeUp 1.2s ease 0.9s forwards;
+  }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(22px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* ===== Telefon çerçevesi =====
+     .device intrinsic boyutu GERÇEK bir mobil viewport (390x844) ile aynıdır —
+     davetiyeler bu genişlikte "masaüstü kart" değil "mobil" stiline geçer
+     (ürünün kendi canlı önizlemesinin yaptığı gibi). Görsel büyütme sadece
+     .device-wrap üzerindeki transform:scale ile yapılır; bu, iframe'in
+     layout genişliğini DEĞİŞTİRMEZ, sadece boyanmış sonucu büyütür. */
+  .device-wrap{
+    position:relative;
+    transform:scale(1.86);
+    transform-origin:center center;
+    animation:kenburns 7s ease-in-out forwards;
+  }
+  .device{
+    position:relative;
+    width:390px; height:844px;
+    border-radius:46px;
+    background:#000;
+    padding:14px;
+    box-shadow:0 0 0 3px rgba(198,167,125,0.4), 0 60px 140px rgba(0,0,0,0.7);
+  }
+  @keyframes kenburns{
+    from{ transform:scale(1.94) translateY(8px); }
+    to{ transform:scale(1.86) translateY(-6px); }
+  }
+  .device .screen{ width:100%; height:100%; border-radius:34px; overflow:hidden; background:#fff; position:relative; }
+  .device iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; pointer-events:none; }
+  .device .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:90px; height:16px; background:#000; border-radius:10px; z-index:5; }
+
+  .label-wrap{
+    position:absolute; bottom:7%; left:0; right:0;
+    display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; z-index:10;
+  }
+  .label-title{
+    font-family:'Playfair Display', serif; font-style:italic; font-weight:500;
+    font-size:46px; color:#fff; opacity:0; animation:fadeUp 0.9s ease 0.4s forwards;
+  }
+  .label-tag{
+    font-size:18px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold);
+    opacity:0; animation:fadeUp 0.9s ease 0.6s forwards;
+  }
+  .swipe-hint{
+    position:absolute; top:6%; left:0; right:0; text-align:center;
+    font-size:16px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.55);
+    opacity:0; animation:fadeUp 0.9s ease 1.6s forwards;
+  }
+
+  #progress-wrap{ position:absolute; bottom:0; left:0; right:0; height:6px; background:rgba(255,255,255,0.08); z-index:60; }
+  #progress-bar{ height:100%; width:0%; background:var(--gold); }
+
+  #skipHint{
+    position:fixed; top:18px; right:24px; z-index:200;
+    color:rgba(255,255,255,0.5); font-size:13px; letter-spacing:0.1em;
+  }
+
+  #startGate{
+    position:fixed; inset:0; z-index:300;
+    background:rgba(0,0,0,0.92);
+    display:flex; align-items:center; justify-content:center;
+  }
+  #startBtn{
+    border:1px solid var(--gold);
+    color:var(--gold);
+    background:transparent;
+    font-family:'Inter',sans-serif;
+    letter-spacing:0.1em;
+    font-size:16px;
+    padding:18px 32px;
+    border-radius:2px;
+    cursor:pointer;
+  }
+  #startBtn:hover{ background:rgba(198,167,125,0.1); }
+</style>
+</head>
+<body>
+
+<div id="skipHint">SPACE = duraklat / devam</div>
+<div id="startGate">
+  <button id="startBtn">▶ Reels'i Oynat (sesli anlatımla)</button>
+</div>
+<audio id="bgm" src="../davetiye websiteleri/wedding/music.mp3" loop preload="auto"></audio>
+<div id="viewport">
+  <div id="canvas">
+    <div id="canvas-bg"></div>
+    <div id="canvas-bg-overlay"></div>
+    <div class="grain"></div>
+    <div id="progress-wrap"><div id="progress-bar"></div></div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+function fitCanvas(){
+  const s = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
+  canvas.style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', fitCanvas);
+fitCanvas();
+
+// Her sahne için tip, kaynak, etiket, anlatım metni ve oynatma sırası (timeline).
+// autoscroll  -> o anki sekmede en alta kadar kaydırır (yavaş, izlenebilir hızda)
+// switch-tab  -> bir sonraki sekmeye geçer (geçişte otomatik en üste döner)
+// tap-spin    -> Slot Machine'de tarih çekme animasyonunu tetikler
+// swipe-flow  -> Cinematic karşılaştırma çizgisini sağa-sola kaydırır
+const SCROLL_SEQ      = [{ at:1600, msg:'autoscroll' }];
+const TAB_SWITCH_SEQ  = [
+  { at:1400, msg:'autoscroll'  },   // 1. sekmede yavaşça en alta in
+  { at:5200, msg:'switch-tab'  },   // 2. sekmeye geç (üste döner)
+  { at:6400, msg:'autoscroll'  },   // 2. sekmede de en alta in
+];
+const TAP_SPIN_SEQ = [
+  { at:1500, msg:'tap-spin'   },    // tarih çekme animasyonunu başlat
+  { at:6200, msg:'autoscroll' },    // animasyon bitince sayfanın devamını göster
+];
+const SWIPE_FLOW_SEQ = [
+  { at:1300, msg:'swipe-flow' },    // karşılaştırma çizgisini sağa-sola kaydır
+  { at:6200, msg:'autoscroll' },    // sonra sayfanın devamını göster
+];
+
+// narration: sadece Türkçe, açıklayıcı cümleler — şablon adları (Wedding, Film Strip vb.)
+// görsel etikette (label-title) zaten yazıyor, sesli anlatımda tekrar okunmuyor.
+const slides = [
+  { type:'intro', narration:[
+    { l:'tr', t:'İşte VİSORA.' },
+    { l:'tr', t:'Premium dijital davetiye deneyimi.' },
+  ]},
+  { type:'invite', src:'../davetiye websiteleri/wedding/index.html',                      title:'Wedding',             tag:'Klasik Zarafet',        seq:SCROLL_SEQ,
+    narration:[
+      { l:'tr', t:'Klasik zarafetin dijital hali, parmaklarınızın ucunda.' },
+    ]},
+  { type:'invite', src:'../davetiye websiteleri/timeless-garden/index.html',              title:'Timeless Garden',     tag:'Botanik Romantizm',     seq:SCROLL_SEQ,
+    narration:[
+      { l:'tr', t:'Botanik dokunuşlarla anlatılan, romantik bir hikaye.' },
+    ]},
+  { type:'invite', src:'../davetiye websiteleri/film-strip/index.html',                   title:'Film Strip',          tag:'Sinematik Anı',         seq:SCROLL_SEQ,
+    narration:[
+      { l:'tr', t:'Anılarınızı bir sinema şeridi gibi sergileyin.' },
+    ]},
+  { type:'invite', src:'../davetiye websiteleri/bride-groom party/index.html',            title:'Bride & Groom Party', tag:'İki Sekme · Tek Davet', seq:TAB_SWITCH_SEQ, slideMs:9500,
+    narration:[
+      { l:'tr', t:'İki ayrı parti, tek davetiyede buluşuyor.' },
+    ]},
+  { type:'invite', src:'../davetiye websiteleri/cinematic-comparison-wedding/index.html', title:'Cinematic Flow',      tag:'Sağa Sola Kaydır',      seq:SWIPE_FLOW_SEQ, slideMs:9000,
+    narration:[
+      { l:'tr', t:'Kaydırarak keşfedin, sinematik bir karşılaştırma deneyimi.' },
+    ]},
+  { type:'invite', src:'../davetiye websiteleri/Slot Machine/index.html',                 title:'Slot Machine',       tag:'Dokun ve Çevir',        seq:TAP_SPIN_SEQ, slideMs:9000,
+    narration:[
+      { l:'tr', t:'Tarihi açıklamak hiç bu kadar eğlenceli olmamıştı.' },
+    ]},
+  { type:'invite', src:'../davetiye websiteleri/DÜĞÜN-KINA WEBSİTE/index.html',           title:'Düğün & Kına',        tag:'İki Sekme · Tek Davet', seq:TAB_SWITCH_SEQ, slideMs:9500,
+    narration:[
+      { l:'tr', t:'Düğün ve kına, aynı davetiyede iki ayrı sekmede.' },
+    ]},
+  { type:'outro', narration:[
+    { l:'tr', t:'Hayalinizdeki davetiyeyi şimdi VİSORA\'da yaratın.' },
+  ]},
+];
+
+const SLIDE_MS = 7800, INTRO_MS = 5500, OUTRO_MS = 4800;
+
+let current = -1, paused = false, timer = null, actionTimers = [];
+const bar = document.getElementById('progress-bar');
+
+function durationFor(s){
+  if(s.type === 'intro') return INTRO_MS;
+  if(s.type === 'outro') return OUTRO_MS;
+  return s.slideMs || SLIDE_MS;
+}
+
+function buildSlideEl(s){
+  const el = document.createElement('div');
+  el.className = 'slide ' + s.type;
+
+  if(s.type === 'intro'){
+    el.innerHTML = `
+      <video class="intro-video" src="../img/reklam/reklam.mp4" autoplay muted loop playsinline></video>
+      <div class="intro-video-shade"></div>
+      <img class="logo-img" src="../img/visora logo.png" alt="VISORA">`;
+  } else if(s.type === 'outro'){
+    el.innerHTML = `
+      <img class="logo-img" src="../img/visora logo.png" alt="VISORA">
+      <button class="cta-btn">visora.com</button>`;
+  } else {
+    let hint = 'Davetiyeyi Kaydırın';
+    if(s.seq === TAB_SWITCH_SEQ)  hint = 'Sekme Değişimini İzleyin';
+    if(s.seq === TAP_SPIN_SEQ)    hint = 'Dokunun, Tarih Çekiliyor';
+    if(s.seq === SWIPE_FLOW_SEQ) hint = 'Sağa Sola Kaydırın';
+    el.innerHTML = `
+      <div class="swipe-hint">${hint}</div>
+      <div class="device-wrap">
+        <div class="device">
+          <div class="notch"></div>
+          <div class="screen"><iframe src="${s.src}"></iframe></div>
+        </div>
+      </div>
+      <div class="label-wrap">
+        <div class="label-title">${s.title}</div>
+        <div class="label-tag">${s.tag}</div>
+      </div>`;
+  }
+  return el;
+}
+
+// ===== Çift dilli sesli anlatım (Web Speech API) — OBS "Masaüstü Ses" kaynağı bunu otomatik kaydeder.
+// Her segment kendi dilinin native sesiyle okunur (tr parçaları Türkçe ses, en parçaları İngilizce ses).
+// Genç/enerjik bir kadın tonu için kadın seslere öncelik + hafif yüksek pitch/rate kullanılır.
+// NOT: Ses kalitesi tamamen Windows'a/tarayıcıya yüklü seslere bağlı. Chrome'daki yerel sesler
+// robotik kalabilir — Microsoft Edge'de "Online (Natural)" nöral sesler (örn. "Emel") çok daha
+// canlı çıkar, en iyi sonuç için reel'i Edge'de açmanız önerilir.
+let trVoice = null, enVoice = null;
+const FEMALE_HINTS = ['female','kadın','emel','filiz','yelda','zira','hazel','samantha','susan','aria','jenny','natural','online'];
+function pickVoice(prefix){
+  const voices = speechSynthesis.getVoices();
+  const pool = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith(prefix));
+  const female = pool.find(v => FEMALE_HINTS.some(h => v.name.toLowerCase().includes(h)));
+  return female || pool[0] || null;
+}
+function loadVoices(){
+  trVoice = pickVoice('tr');
+  enVoice = pickVoice('en');
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function speak(segments){
+  if(!segments || !('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  segments.forEach(seg => {
+    const u = new SpeechSynthesisUtterance(seg.t);
+    if(seg.l === 'en'){
+      u.lang = 'en-US';
+      if(enVoice) u.voice = enVoice;
+      u.rate = 1.04;
+    } else {
+      u.lang = 'tr-TR';
+      if(trVoice) u.voice = trVoice;
+      u.rate = 1.05;
+    }
+    u.pitch = 1.12; // canlı/enerjik, genç ses hissi için hafif yüksek perde
+    speechSynthesis.speak(u);
+  });
+}
+
+function goTo(i){
+  if(i >= slides.length) i = 0;
+  current = i;
+  canvas.querySelectorAll('.slide').forEach(n => n.remove());
+  const s = slides[i];
+  const el = buildSlideEl(s);
+  canvas.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('active'));
+  speak(s.narration);
+
+  actionTimers.forEach(clearTimeout);
+  actionTimers = [];
+  if(s.type === 'invite' && s.seq){
+    const iframe = el.querySelector('iframe');
+    s.seq.forEach(step => {
+      actionTimers.push(setTimeout(() => {
+        try{ iframe.contentWindow.postMessage('visora:' + step.msg, '*'); }catch(err){}
+      }, step.at));
+    });
+  }
+
+  const dur = durationFor(s);
+  runProgress(dur);
+  clearTimeout(timer);
+  timer = setTimeout(() => { if(!paused) goTo(current + 1); }, dur);
+}
+
+function runProgress(dur){
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  requestAnimationFrame(() => {
+    bar.style.transition = `width ${dur}ms linear`;
+    bar.style.width = '100%';
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if(e.code === 'Space'){
+    paused = !paused;
+    if(paused){
+      clearTimeout(timer);
+      actionTimers.forEach(clearTimeout);
+      bar.style.transition = 'none';
+      bgm.pause();
+    } else {
+      goTo(current);
+      bgm.play().catch(()=>{});
+    }
+  }
+});
+
+// Sesli anlatım ve müzik tarayıcılarda kullanıcı etkileşimi olmadan çalışmayabilir —
+// kayda başlamadan önce bu butona tıklayın, ses garanti açılır.
+const bgm = document.getElementById('bgm');
+bgm.volume = 0.16; // narration'ın üstüne binmeyecek kadar kısık arka plan müziği
+document.getElementById('startBtn').addEventListener('click', () => {
+  document.getElementById('startGate').remove();
+  bgm.play().catch(()=>{});
+  goTo(0);
+});
+</script>
+</body>
+</html>

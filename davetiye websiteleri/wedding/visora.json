@@ -1,0 +1,63 @@
+{
+  "id": "wedding-video",
+  "demo": "index.html",
+  "nameTR": "Timeless Romance",
+  "nameEN": "Timeless Romance",
+  "catTR": "Düğün",
+  "catEN": "Wedding",
+  "descTR": "En değerli anılarınızı romantik bir hikâye akışıyla misafirlerinize sunan zamansız bir tasarım.",
+  "descEN": "A timeless design presenting your most cherished memories to your guests in a romantic narrative flow.",
+  "preview": "images/hero.png",
+  "features": ["countdown", "music", "gallery", "video"],
+  "badge": null,
+  "featured": true,
+  "order": 1,
+  "cardStyle": {
+    "bg": "images/hero.png",
+    "theme": "timeless",
+    "invLabel": "DÜĞÜN DAVETİYESİ",
+    "name1Field": "bride-name",
+    "ampText": "&",
+    "name2Field": "groom-name",
+    "dateField": "event-date"
+  },
+  "segments": [
+    {
+      "id": null,
+      "tabLabel": null,
+      "labelTR": "Düğün",
+      "labelEN": "Wedding",
+      "scrollTarget": "hero",
+      "tabKey": null,
+      "timelineFormat": "wedding-video",
+      "timelineItems": [
+        { "time": "16:00", "title": "Konvoy",             "icon": "images/car.png" },
+        { "time": "19:00", "title": "Nikâh & Karşılama",  "icon": "images/arch.png" },
+        { "time": "20:00", "title": "İlk Dans & Kutlama", "icon": "images/couple.png" },
+        { "time": "21:00", "title": "Pasta & Takı",       "icon": "images/cake.png" },
+        { "time": "22:00", "title": "After Party",        "icon": "images/party.png" },
+        { "time": "23:00", "title": "Fotoğraf",           "icon": "images/photo.png" }
+      ],
+      "sectionGroups": [
+        { "id": "couple",   "labelTR": "Çift Bilgileri",  "labelEN": "Couple Details",  "scrollTarget": "hero" },
+        { "id": "datetime", "labelTR": "Tarih & Saat",    "labelEN": "Date & Time",     "scrollTarget": "hero" },
+        { "id": "venue",    "labelTR": "Mekan",           "labelEN": "Venue",           "scrollTarget": "venue" },
+        { "id": "message",  "labelTR": "Davet Metni",     "labelEN": "Invitation Text", "scrollTarget": "message" },
+        { "id": "family",   "labelTR": "Aile İsimleri",   "labelEN": "Family Names",    "scrollTarget": "family" }
+      ],
+      "fieldMap": [
+        { "id": "hero-image",     "section": "couple",   "type": "image",    "labelTR": "Kapak Fotoğrafı",  "labelEN": "Cover Photo",     "placeholder": "",                     "defaultValue": "" },
+        { "id": "bride-name",     "section": "couple",   "type": "text",     "labelTR": "Gelin Adı",        "labelEN": "Bride Name",      "placeholder": "Senem",                "defaultValue": "SENEM" },
+        { "id": "groom-name",     "section": "couple",   "type": "text",     "labelTR": "Damat Adı",        "labelEN": "Groom Name",      "placeholder": "Mehmet",               "defaultValue": "MEHMET" },
+        { "id": "event-date",     "section": "datetime", "type": "text",     "labelTR": "Tarih",            "labelEN": "Date",            "placeholder": "23 AĞUSTOS 2026",      "defaultValue": "23 Ağustos 2026" },
+        { "id": "event-time",     "section": "datetime", "type": "time",     "labelTR": "Saat",             "labelEN": "Time",            "placeholder": "20:00",                "defaultValue": "20:00" },
+        { "id": "venue-name",     "section": "venue",    "type": "text",     "labelTR": "Mekan Adı",        "labelEN": "Venue Name",      "placeholder": "Gloria Meram",         "defaultValue": "GLORIA MERAM" },
+        { "id": "venue-address",  "section": "venue",    "type": "text",     "labelTR": "Adres",            "labelEN": "Address",         "placeholder": "Konya",                "defaultValue": "Lalebahçe, Özgüven Sk. No:1, 42140 Meram/Konya" },
+        { "id": "map-link",       "section": "venue",    "type": "url",      "labelTR": "Harita URL",       "labelEN": "Map URL",         "placeholder": "https://maps.google.com/...", "defaultValue": "" },
+        { "id": "invite-message", "section": "message",  "type": "textarea", "labelTR": "Davet Metni",      "labelEN": "Invitation Text", "placeholder": "Bu mutlu günümüzde...", "defaultValue": "Bu mutlu günümüzde sizleri de aramızda görmekten mutluluk duyarız." },
+        { "id": "bride-family",   "section": "family",   "type": "text",     "labelTR": "Gelin Ailesi",     "labelEN": "Bride Family",    "placeholder": "YILMAZ AİLESİ",        "defaultValue": "YILMAZ AİLESİ" },
+        { "id": "groom-family",   "section": "family",   "type": "text",     "labelTR": "Damat Ailesi",     "labelEN": "Groom Family",    "placeholder": "KARA AİLESİ",          "defaultValue": "KARA AİLESİ" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78 420" width="78" height="420">
+  <!-- Timeless Garden — Botanical border tile. Warm gold/sepia on cream. Repeats on y-axis. -->
+
+  <!-- MAIN VERTICAL STEM -->
+  <path d="M39,0 Q35,52 38,105 Q34,157 39,210 Q35,262 38,315 Q34,367 39,420"
+        stroke="rgba(148,118,52,0.45)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+
+  <!-- ── LARGE OPEN FLOWER  y≈70  (right branch) ── -->
+  <path d="M38,62 Q53,56 64,48"
+        stroke="rgba(148,118,52,0.40)" stroke-width="0.85" fill="none" stroke-linecap="round"/>
+  <path d="M64,48 Q56,37 58,27 Q65,32 64,48Z" fill="rgba(148,118,52,0.24)"/>
+  <path d="M64,48 Q74,40 77,30 Q69,29 64,48Z" fill="rgba(148,118,52,0.20)"/>
+  <path d="M64,48 Q76,52 77,63 Q69,60 64,48Z" fill="rgba(148,118,52,0.24)"/>
+  <path d="M64,48 Q68,61 63,68 Q59,59 64,48Z" fill="rgba(148,118,52,0.20)"/>
+  <path d="M64,48 Q55,58 52,65 Q56,57 64,48Z" fill="rgba(148,118,52,0.24)"/>
+  <path d="M64,48 Q52,44 50,35 Q58,34 64,48Z" fill="rgba(148,118,52,0.20)"/>
+  <circle cx="64" cy="48" r="5.5" fill="rgba(148,118,52,0.38)"/>
+  <circle cx="64" cy="42" r="1.1" fill="rgba(148,118,52,0.58)"/>
+  <circle cx="69" cy="46" r="1.1" fill="rgba(148,118,52,0.58)"/>
+  <circle cx="59" cy="46" r="1.1" fill="rgba(148,118,52,0.58)"/>
+  <circle cx="69" cy="52" r="1.1" fill="rgba(148,118,52,0.58)"/>
+  <circle cx="59" cy="52" r="1.1" fill="rgba(148,118,52,0.58)"/>
+
+  <!-- ── LEAF CLUSTER  y≈130  (left branch) ── -->
+  <path d="M38,122 Q24,116 10,108"
+        stroke="rgba(148,118,52,0.38)" stroke-width="0.85" fill="none" stroke-linecap="round"/>
+  <path d="M10,108 Q-1,97 0,84 Q11,91 10,108Z" fill="rgba(148,118,52,0.26)"/>
+  <path d="M10,108 Q5,98 3,88" stroke="rgba(148,118,52,0.16)" stroke-width="0.45" fill="none"/>
+  <path d="M20,116 Q10,108 9,97 Q17,100 20,116Z" fill="rgba(148,118,52,0.20)"/>
+  <path d="M28,120 Q20,114 20,105 Q26,108 28,120Z" fill="rgba(148,118,52,0.18)"/>
+
+  <!-- ── ELONGATED BUD  y≈185  (right) ── -->
+  <path d="M38,178 Q51,172 61,164"
+        stroke="rgba(148,118,52,0.35)" stroke-width="0.80" fill="none" stroke-linecap="round"/>
+  <path d="M61,164 Q64,151 61,141 Q57,151 61,164Z" fill="rgba(148,118,52,0.28)"/>
+  <path d="M59,158 Q52,148 54,139 Q60,143 59,158Z" fill="rgba(148,118,52,0.20)"/>
+  <path d="M63,158 Q70,148 68,139 Q62,143 63,158Z" fill="rgba(148,118,52,0.20)"/>
+  <path d="M61,164 Q56,168 54,175 Q60,169 61,164Z" fill="rgba(148,118,52,0.26)"/>
+  <path d="M61,164 Q66,168 68,175 Q62,169 61,164Z" fill="rgba(148,118,52,0.26)"/>
+
+  <!-- ── DAISY  y≈248  (left branch) ── -->
+  <path d="M38,240 Q22,233 10,224"
+        stroke="rgba(148,118,52,0.38)" stroke-width="0.85" fill="none" stroke-linecap="round"/>
+  <ellipse cx="10" cy="224" rx="3.5" ry="8" transform="rotate(0   10 224)" fill="rgba(148,118,52,0.20)"/>
+  <ellipse cx="10" cy="224" rx="3.5" ry="8" transform="rotate(45  10 224)" fill="rgba(148,118,52,0.18)"/>
+  <ellipse cx="10" cy="224" rx="3.5" ry="8" transform="rotate(90  10 224)" fill="rgba(148,118,52,0.20)"/>
+  <ellipse cx="10" cy="224" rx="3.5" ry="8" transform="rotate(135 10 224)" fill="rgba(148,118,52,0.18)"/>
+  <ellipse cx="10" cy="224" rx="3.5" ry="8" transform="rotate(180 10 224)" fill="rgba(148,118,52,0.20)"/>
+  <ellipse cx="10" cy="224" rx="3.5" ry="8" transform="rotate(225 10 224)" fill="rgba(148,118,52,0.18)"/>
+  <ellipse cx="10" cy="224" rx="3.5" ry="8" transform="rotate(270 10 224)" fill="rgba(148,118,52,0.20)"/>
+  <ellipse cx="10" cy="224" rx="3.5" ry="8" transform="rotate(315 10 224)" fill="rgba(148,118,52,0.18)"/>
+  <circle  cx="10" cy="224" r="5"   fill="rgba(148,118,52,0.38)"/>
+  <circle  cx="10" cy="224" r="2.2" fill="rgba(148,118,52,0.58)"/>
+
+  <!-- ── BERRY CLUSTER  y≈305  (right branch) ── -->
+  <path d="M38,297 Q53,290 65,282"
+        stroke="rgba(148,118,52,0.35)" stroke-width="0.80" fill="none" stroke-linecap="round"/>
+  <path d="M55,288 Q58,278 56,269" stroke="rgba(148,118,52,0.30)" stroke-width="0.70" fill="none"/>
+  <path d="M60,285 Q65,276 63,267" stroke="rgba(148,118,52,0.30)" stroke-width="0.70" fill="none"/>
+  <path d="M65,282 Q70,272 68,263" stroke="rgba(148,118,52,0.30)" stroke-width="0.70" fill="none"/>
+  <circle cx="56" cy="268" r="3.2" fill="rgba(148,118,52,0.35)"/>
+  <circle cx="63" cy="266" r="2.8" fill="rgba(148,118,52,0.30)"/>
+  <circle cx="68" cy="262" r="3.0" fill="rgba(148,118,52,0.33)"/>
+  <circle cx="55" cy="262" r="1.8" fill="rgba(148,118,52,0.28)"/>
+  <path d="M50,290 Q42,284 42,274 Q49,278 50,290Z" fill="rgba(148,118,52,0.22)"/>
+
+  <!-- ── ROSE-LIKE FLOWER  y≈368  (left branch) ── -->
+  <path d="M38,360 Q22,353 10,342"
+        stroke="rgba(148,118,52,0.38)" stroke-width="0.85" fill="none" stroke-linecap="round"/>
+  <path d="M10,342 Q0,330 2,318 Q12,325 10,342Z"  fill="rgba(148,118,52,0.22)"/>
+  <path d="M10,342 Q-1,336 -2,324 Q7,322 10,342Z"  fill="rgba(148,118,52,0.18)"/>
+  <path d="M10,342 Q-2,348 -2,360 Q7,356 10,342Z"  fill="rgba(148,118,52,0.22)"/>
+  <path d="M10,342 Q6,354 10,364 Q14,355 10,342Z"  fill="rgba(148,118,52,0.18)"/>
+  <path d="M10,342 Q20,348 24,342 Q18,333 10,342Z"  fill="rgba(148,118,52,0.22)"/>
+  <path d="M10,342 Q18,330 22,322 Q14,320 10,342Z"  fill="rgba(148,118,52,0.18)"/>
+  <path d="M10,342 Q5,332 7,323 Q13,327 10,342Z"  fill="rgba(148,118,52,0.30)"/>
+  <path d="M10,342 Q15,332 19,326 Q14,328 10,342Z" fill="rgba(148,118,52,0.28)"/>
+  <path d="M10,342 Q15,348 16,356 Q12,349 10,342Z" fill="rgba(148,118,52,0.28)"/>
+  <circle cx="10" cy="342" r="5.2" fill="rgba(148,118,52,0.40)"/>
+  <circle cx="10" cy="336" r="1.1" fill="rgba(148,118,52,0.60)"/>
+  <circle cx="15" cy="340" r="1.1" fill="rgba(148,118,52,0.60)"/>
+  <circle cx="5"  cy="340" r="1.1" fill="rgba(148,118,52,0.60)"/>
+  <circle cx="14" cy="346" r="1.1" fill="rgba(148,118,52,0.60)"/>
+  <circle cx="6"  cy="346" r="1.1" fill="rgba(148,118,52,0.60)"/>
+
+  <!-- Seamless tile: leaf at bottom -->
+  <path d="M38,405 Q25,400 14,392 Q22,386 36,396 Q38,401 38,405Z" fill="rgba(148,118,52,0.22)"/>
+</svg>

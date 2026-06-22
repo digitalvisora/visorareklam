@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anket — VISORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --active:#ff2f9f; --active2:#ff8bd2; }
+  body.theme-groom{ --active:#2f9bff; --active2:#7fd1ff; }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#070512;color:#fff;font-family:Montserrat,sans-serif;min-height:100%}
+  .wrap{max-width:480px;margin:0 auto;padding:28px 18px 60px}
+  .banner{display:block;width:100%;max-width:280px;margin:0 auto 18px;border-radius:20px;border:1px solid rgba(255,255,255,.18);box-shadow:0 0 24px rgba(255,255,255,.08)}
+  h1{font-family:'Playfair Display',serif;font-size:1.5rem;text-align:center;margin:0 0 6px;color:var(--active2)}
+  .sub{text-align:center;font-size:.85rem;color:rgba(255,255,255,.6);margin:0 0 26px}
+  form{display:grid;gap:18px}
+  .field{display:grid;gap:8px}
+  .field > span{font-size:.86rem;font-weight:700;color:#fff}
+  input[type="text"],textarea{
+    width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.22);
+    background:#0e0a1c;color:#fff;padding:13px 14px;outline:none;font:inherit;font-weight:500;
+  }
+  input[type="text"]:focus,textarea:focus{border-color:var(--active)}
+  textarea{min-height:80px;resize:vertical}
+  input::placeholder,textarea::placeholder{color:rgba(255,255,255,.38)}
+  fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+  .swatch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .swatch-chip{position:relative;display:grid;justify-items:center;gap:6px;padding:10px 4px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);cursor:pointer}
+  .swatch-chip input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+  .swatch-chip i{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.5);display:block}
+  .swatch-chip span{font-size:.66rem;font-weight:600;color:rgba(255,255,255,.75)}
+  .swatch-chip:has(input:checked){border-color:var(--active);box-shadow:0 0 12px var(--active)}
+  .radio-grid{display:grid;gap:8px}
+  .radio-chip{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);cursor:pointer}
+  .radio-chip input{margin:0;accent-color:var(--active);width:17px;height:17px;flex:none}
+  .radio-chip span{font-size:.84rem;color:rgba(255,255,255,.85)}
+  .radio-chip:has(input:checked){border-color:var(--active);background:rgba(255,255,255,.09)}
+  .radio-chip:has(input:checked) span{color:#fff;font-weight:700}
+  button[type="submit"]{
+    min-height:50px;border:0;border-radius:999px;color:#fff;font-weight:800;letter-spacing:.02em;
+    background:linear-gradient(90deg,var(--active),var(--active2));cursor:pointer;font-size:.95rem;
+  }
+  button[type="submit"]:disabled{opacity:.6;cursor:default}
+  .msg{margin:0;text-align:center;font-size:.85rem;font-weight:700;color:#ff7676}
+  .msg.success{color:#7CFFB2}
+  .done{display:none;text-align:center;padding:60px 0}
+  .done.show{display:block}
+  .done h2{font-family:'Playfair Display',serif;color:var(--active2);margin-bottom:8px}
+  .done p{color:rgba(255,255,255,.7);font-size:.9rem}
+  .missing{text-align:center;padding:60px 18px;color:rgba(255,255,255,.7)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div id="missingState" class="missing" style="display:none">Bu anket linki geçersiz görünüyor. Lütfen davetiyenizdeki bağlantıyı tekrar kullanın.</div>
+    <div id="formState" style="display:none">
+      <img class="banner" id="banner" src="" alt="">
+      <h1 id="heading"></h1>
+      <p class="sub" id="subtext">Cevapların doğrudan çifte ulaşacak.</p>
+      <form id="surveyForm" autocomplete="off"></form>
+    </div>
+    <div id="doneState" class="done">
+      <h2>Teşekkürler!</h2>
+      <p>Anketin gönderildi, çifte iletildi.</p>
+    </div>
+  </div>
+
+  <script src="../../js/visora-api.js"></script>
+  <script>
+  (function(){
+    'use strict';
+
+    var QUESTIONS = {
+      bride: {
+        title: 'Gelin Hakkında Anket',
+        banner: 'images/bride-team-neon.png',
+        fields: [
+          { type:'text', name:'respondent', label:'Adın', placeholder:'Adını yaz', required:true },
+          { type:'swatch', name:'color', label:'Gelinin en sevdiği renk nedir?', required:true, options:[
+            ['Pembe','#f48fb1'],['Mor','#c9a6ff'],['Kırmızı','#3a0606'],['Sarı','#fff3b0'],
+            ['Yeşil','#7c8f5a'],['Siyah','#000'],['Beyaz','#fff'],['Turuncu','#f5942b']
+          ]},
+          { type:'text', name:'word', label:'Gelinin en çok kullandığı kelime nedir?', required:true },
+          { type:'radio', name:'laughsAt', label:'Gelin en çok neye güler?', options:[
+            'Komik videolara','Kendi yaptığı espirilere','Beklenmedik Olaylara','Utanç verici anlara','Sinirden'
+          ]},
+          { type:'radio', name:'angryAt', label:'Gelin en çok neye sinir olur?', options:[
+            'Bekletilmeye','Plansızlığa-sorumsuzluğa','Dağınıklığa','Yanlış anlaşılmaya',
+            "DM'den attığı reelsin aynısını görmeden arkadaşının ona göndermesine"
+          ]},
+          { type:'textarea', name:'funnyMoment', label:'Gelinle birlikte yaşadığınız komik an nedir?' },
+          { type:'textarea', name:'embarrassed', label:'Gelinin en utandığı an nedir?' },
+          { type:'radio', name:'genre', label:'Gelinin en sevdiği dizi/film türü nedir?', options:[
+            'Bilim kurgu/fantastik','Romantik komedi','Dram','Korku/gerilim','Aksiyon'
+          ]},
+          { type:'text', name:'oneWord', label:'Gelini tek kelimeyle anlat.', required:true },
+          { type:'radio', name:'mostDoes', label:'Gelinin en çok yaptığı şey nedir?', options:[
+            'Plan yapmak','Ertelemek','Yalnız vakit geçirmek','Anı yaşamak'
+          ]},
+          { type:'radio', name:'friendRole', label:'Gelinin arkadaş ortamında rolü nedir?', required:true, options:[
+            'Eğlence kaynağı','Anne','Sürekli başı belaya giren','Dert ortağı-iyi dinleyici',
+            'Her plana uyum sağlayan','Hiçbir şeyden memnun olmayan','Lider'
+          ]},
+          { type:'radio', name:'activity', label:'Gelinin en sevdiği aktivite nedir?', options:[
+            'Oyun oynamak','Spor yapmak','Kitap okumak','Gezmek-yeni yerler keşfetmek',
+            'Kahve + dedikodu','Dans etmek-karaoke gecesi'
+          ]},
+          { type:'radio', name:'nightOut', label:'Gelin, bir kız gecesinde ne yapmak ister?', options:[
+            'Pijama partisi + bakım gecesi','Karaoke gecesi + dans','Kahve + dedikodu',
+            'Oyunlar + itiraflar','Fotoğraf + video çekimi'
+          ]},
+          { type:'textarea', name:'advice', label:'Evlilik süreci ile ilgili bir deneyim, öneride bulun.', required:true }
+        ]
+      },
+      groom: {
+        title: 'Damat Hakkında Anket',
+        banner: 'images/groom-team-neon.png',
+        fields: [
+          { type:'text', name:'respondent', label:'Adın', placeholder:'Adını yaz', required:true },
+          { type:'swatch', name:'color', label:'Damadın en sevdiği renk nedir?', required:true, options:[
+            ['Pembe','#f48fb1'],['Mor','#c9a6ff'],['Kırmızı','#3a0606'],['Sarı','#fff3b0'],
+            ['Yeşil','#7c8f5a'],['Siyah','#000'],['Beyaz','#fff'],['Turuncu','#f5942b']
+          ]},
+          { type:'text', name:'word', label:'Damadın en çok kullandığı kelime nedir?', required:true },
+          { type:'radio', name:'laughsAt', label:'Damat en çok neye güler?', options:[
+            'Komik videolara','Kendi yaptığı espirilere','Absürt Olaylara','Sinirden'
+          ]},
+          { type:'radio', name:'angryAt', label:'Damat en çok neye sinir olur?', options:[
+            'Bekletilmeye','Sözünün tutulmamasına','Tuttuğu takımın şampiyon olamamasına',
+            'Oyunda kaybetmeye','Boş konuşmaya'
+          ]},
+          { type:'textarea', name:'funnyMoment', label:'Damatla birlikte yaşadığınız komik an nedir?' },
+          { type:'textarea', name:'embarrassed', label:'Damadın en utandığı an nedir?' },
+          { type:'radio', name:'club', label:'Damadın en beğendiği kulüp?', options:[
+            'Real Madrid','FC Barcelona','Manchester City'
+          ]},
+          { type:'text', name:'oneWord', label:'Damadı tek kelimeyle anlat.', required:true },
+          { type:'radio', name:'mostDoes', label:'Damadın en çok yaptığı şey nedir?', options:[
+            'Oyuna dalmak','Son dakika çözmek','Yalnız vakit geçirmek','Anı yaşamak'
+          ]},
+          { type:'radio', name:'friendRole', label:'Damadın arkadaş ortamında rolü nedir?', required:true, options:[
+            'Eğlence kaynağı','Sürekli başı belaya giren','Dert ortağı-iyi dinleyici',
+            'Her plana uyum sağlayan','Hiçbir şeyden memnun olmayan','Lider'
+          ]},
+          { type:'radio', name:'activity', label:'Damadın en sevdiği aktivite nedir?', options:[
+            'Oyun oynamak','Spor yapmak','Araba sürmek','Gezmek-yeni yerler keşfetmek',
+            'Halısaha maçı','Playstation'
+          ]},
+          { type:'radio', name:'nightOut', label:'Damat, bir erkek gecesinde ne yapmak ister?', options:[
+            'Gece sürüşü','Karaoke gecesi + dans','Maç gecesi','Oyunlar + itiraflar','Fotoğraf + video çekimi'
+          ]},
+          { type:'textarea', name:'advice', label:'Evlilik süreci ile ilgili bir deneyim, öneride bulun.', required:true }
+        ]
+      }
+    };
+
+    function el(tag, attrs, html){
+      var e = document.createElement(tag);
+      if (attrs) Object.keys(attrs).forEach(function(k){ e.setAttribute(k, attrs[k]); });
+      if (html != null) e.innerHTML = html;
+      return e;
+    }
+
+    function buildField(f){
+      if (f.type === 'text') {
+        var wrap = el('label', { class:'field' });
+        wrap.appendChild(el('span', null, f.label));
+        wrap.appendChild(el('input', { type:'text', name:f.name, placeholder:f.placeholder||'', required: f.required ? 'required' : null }));
+        if (!f.required) wrap.querySelector('input').removeAttribute('required');
+        return wrap;
+      }
+      if (f.type === 'textarea') {
+        var wrap2 = el('label', { class:'field' });
+        wrap2.appendChild(el('span', null, f.label));
+        var ta = el('textarea', { name:f.name });
+        if (f.required) ta.setAttribute('required','required');
+        wrap2.appendChild(ta);
+        return wrap2;
+      }
+      if (f.type === 'swatch') {
+        var fs = el('fieldset');
+        fs.appendChild(el('span', null, f.label));
+        var grid = el('div', { class:'swatch-grid' });
+        f.options.forEach(function(opt, i){
+          var chip = el('label', { class:'swatch-chip' });
+          var inp = el('input', { type:'radio', name:f.name, value:opt[0] });
+          if (f.required && i === 0) inp.setAttribute('required','required');
+          chip.appendChild(inp);
+          chip.appendChild(el('i', { style:'background:' + opt[1] + (opt[0]==='Beyaz' ? ';border-color:rgba(255,255,255,.9)' : '') }));
+          chip.appendChild(el('span', null, opt[0]));
+          grid.appendChild(chip);
+        });
+        fs.appendChild(grid);
+        return fs;
+      }
+      if (f.type === 'radio') {
+        var fs2 = el('fieldset');
+        fs2.appendChild(el('span', null, f.label));
+        var grid2 = el('div', { class:'radio-grid' });
+        f.options.forEach(function(opt, i){
+          var chip2 = el('label', { class:'radio-chip' });
+          var inp2 = el('input', { type:'radio', name:f.name, value:opt });
+          if (f.required && i === 0) inp2.setAttribute('required','required');
+          chip2.appendChild(inp2);
+          chip2.appendChild(el('span', null, opt));
+          grid2.appendChild(chip2);
+        });
+        fs2.appendChild(grid2);
+        return fs2;
+      }
+    }
+
+    function init(){
+      var params = new URLSearchParams(window.location.search);
+      var side = params.get('side');
+      var instanceId = params.get('instance');
+      var data = QUESTIONS[side];
+
+      if (!data) {
+        document.getElementById('missingState').style.display = '';
+        return;
+      }
+
+      if (side === 'groom') document.body.classList.add('theme-groom');
+
+      document.getElementById('formState').style.display = '';
+      document.getElementById('banner').src = data.banner;
+      document.getElementById('banner').alt = data.title;
+      document.getElementById('heading').textContent = data.title;
+
+      var form = document.getElementById('surveyForm');
+      data.fields.forEach(function(f){ form.appendChild(buildField(f)); });
+
+      var msg = el('p', { class:'msg hidden' });
+      form.appendChild(msg);
+      var submitBtn = el('button', { type:'submit' }, 'Anketi Gönder');
+      form.appendChild(submitBtn);
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        msg.classList.add('hidden');
+
+        var respondent = (form.querySelector('[name="respondent"]') || {}).value || '';
+        respondent = respondent.trim();
+        var answers = {};
+        form.querySelectorAll('input,textarea').forEach(function(field){
+          if (field.name === 'respondent') return;
+          if (field.type === 'radio') {
+            if (field.checked) answers[field.name] = field.value;
+          } else if (field.value) {
+            answers[field.name] = field.value.trim();
+          }
+        });
+
+        if (!instanceId || !window.VISORA_API) {
+          console.log('Survey payload (demo):', { side: side, respondent: respondent, answers: answers });
+          document.getElementById('formState').style.display = 'none';
+          document.getElementById('doneState').classList.add('show');
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Gönderiliyor...';
+        window.VISORA_API.submitSurvey(instanceId, { side: side, respondent: respondent, answers: answers }).then(function(){
+          document.getElementById('formState').style.display = 'none';
+          document.getElementById('doneState').classList.add('show');
+        }).catch(function(err){
+          console.error('Survey gönderim hatası:', err);
+          msg.textContent = 'Gönderilirken hata oldu, tekrar dene.';
+          msg.classList.remove('hidden','success');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Anketi Gönder';
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+</body>
+</html>

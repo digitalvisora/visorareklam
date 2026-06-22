@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elif & Arda Davetiye</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="page-bg"></div>
+  <main class="invite-wrap">
+
+    <section class="hero-card theme-dark-gold" data-visora-section="hero">
+      <div class="slot-hero">
+
+        <img src="images/slot-hero-brown.png" class="slot-bg" alt="Save the date slot machine">
+
+        <div class="hero-names">
+          <div data-visora-field="bride-name">ELİF</div>
+          <span>and</span>
+          <div data-visora-field="groom-name">ARDA</div>
+        </div>
+
+        <button class="slot-handle-hit" id="slotStartBtn" type="button" aria-label="Makineyi çalıştır"></button>
+
+        <div class="slot-overlay" id="slotMachinePanel">
+          <div class="sm-arc sm-arc-top"></div>
+          <div class="sm-arc sm-arc-bottom"></div>
+          <div class="sm-edge sm-edge-left"></div>
+          <div class="sm-edge sm-edge-right"></div>
+          <div class="sm-reels">
+            <div class="sm-reel" id="reel-day"></div>
+            <div class="sm-divider"></div>
+            <div class="sm-reel" id="reel-month"></div>
+            <div class="sm-divider"></div>
+            <div class="sm-reel" id="reel-year"></div>
+          </div>
+        </div>
+
+
+        <div class="hidden-date" data-visora-field="event-date">14 EYLÜL 2026</div>
+      </div>
+    </section>
+
+    <audio id="slotSound" preload="auto">
+      <source src="sounds/slot-spin.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-player">
+      <button id="musicBtn" type="button">
+        <span id="musicIcon">▶</span>
+      </button>
+    </div>
+
+    <audio id="bgMusic" loop>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <section class="count-section">
+      <div class="count-glass">
+        <div class="count-item">
+          <strong id="days">0</strong>
+          <span>GÜN</span>
+        </div>
+        <div class="divider"></div>
+        <div class="count-item">
+          <strong id="hours">0</strong>
+          <span>SAAT</span>
+        </div>
+        <div class="divider"></div>
+        <div class="count-item">
+          <strong id="minutes">0</strong>
+          <span>DAKİKA</span>
+        </div>
+        <div class="divider"></div>
+        <div class="count-item">
+          <strong id="seconds">0</strong>
+          <span>SANİYE</span>
+        </div>
+      </div>
+
+      <button id="calendarBtn" class="calendar-btn" type="button">
+        <span class="calendar-icon">
+          <img src="images/calendar.png" alt="Takvim">
+        </span>
+        <span>TAKVİME EKLE</span>
+      </button>
+    </section>
+
+    <section class="quote-block" data-visora-section="message">
+      <p data-visora-field="invite-message">
+        Bu özel günümüzde sizleri de<br>
+        aramızda görmekten mutluluk duyarız.
+      </p>
+      <div class="line-ornament"></div>
+    </section>
+
+    <section class="family-row" data-visora-section="family">
+      <article class="family-card">
+        <img src="images/bride-icon.png" class="family-img" alt="Gelin ikonu">
+        <div class="family-text">
+          <small>GELİN AİLESİ</small>
+          <strong data-visora-field="bride-family">DEMİR AİLESİ</strong>
+        </div>
+      </article>
+
+      <article class="family-card">
+        <img src="images/groom-icon.png" class="family-img" alt="Damat ikonu">
+        <div class="family-text">
+          <small>DAMAT AİLESİ</small>
+          <strong data-visora-field="groom-family">AKSOY AİLESİ</strong>
+        </div>
+      </article>
+    </section>
+
+    <section class="venue-card" data-visora-section="venue">
+      <div class="venue-bg"></div>
+
+      <div class="venue-overlay">
+        <h2 data-visora-field="venue-name">ÇIRAĞAN PALACE</h2>
+        <p data-visora-field="venue-address">
+          Yıldız, Çırağan Cd. No:32,<br>
+          Beşiktaş / İstanbul
+        </p>
+
+        <a href="https://maps.google.com/?q=Çırağan+Palace+İstanbul" class="venue-btn" target="_blank" rel="noopener">
+          KONUMA GİT
+        </a>
+      </div>
+    </section>
+
+    <section class="timeline-section" data-visora-section="timeline">
+      <div class="timeline-ornament"></div>
+
+      <div class="timeline-list" data-visora-timeline-container data-visora-timeline-format="wedding-video">
+        <div class="timeline-item">
+          <div class="timeline-icon"><img src="images/car.png" alt="Konvoy"></div>
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-line"><span class="timeline-dot"></span></div>
+          <div class="timeline-content"><h3>Konvoy</h3></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><img src="images/arch.png" alt="Nikâh"></div>
+          <div class="timeline-time">19:00</div>
+          <div class="timeline-line"><span class="timeline-dot"></span></div>
+          <div class="timeline-content"><h3>Nikâh & Karşılama</h3></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><img src="images/couple.png" alt="İlk Dans"></div>
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-line"><span class="timeline-dot"></span></div>
+          <div class="timeline-content"><h3>İlk Dans & Kutlama</h3></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><img src="images/cake.png" alt="Pasta"></div>
+          <div class="timeline-time">21:00</div>
+          <div class="timeline-line"><span class="timeline-dot"></span></div>
+          <div class="timeline-content"><h3>Pasta & Takı</h3></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><img src="images/party.png" alt="After Party"></div>
+          <div class="timeline-time">22:00</div>
+          <div class="timeline-line"><span class="timeline-dot"></span></div>
+          <div class="timeline-content"><h3>After Party</h3></div>
+        </div>
+      </div>
+
+      <div class="timeline-ornament bottom"></div>
+    </section>
+
+    <section class="gallery-block" data-visora-section="gallery">
+      <button class="gallery-nav prev" id="prevSlide" type="button">‹</button>
+
+      <div class="gallery-window">
+        <div class="gallery-track" id="galleryTrack" data-visora-gallery-container>
+          <div class="gallery-card" data-visora-gallery-bg style="background-image:url('images/slider1.jpg')"></div>
+          <div class="gallery-card" data-visora-gallery-bg style="background-image:url('images/slider2.jpg')"></div>
+          <div class="gallery-card" data-visora-gallery-bg style="background-image:url('images/slider3.jpg')"></div>
+          <div class="gallery-card" data-visora-gallery-bg style="background-image:url('images/slider4.jpg')"></div>
+          <div class="gallery-card" data-visora-gallery-bg style="background-image:url('images/slider5.jpg')"></div>
+        </div>
+      </div>
+
+      <button class="gallery-nav next" id="nextSlide" type="button">›</button>
+      <div class="dots" id="galleryDots"></div>
+    </section>
+
+    <section class="memories-block" data-visora-section="rsvp">
+      <h2>ANILARINIZI BIRAKIN</h2>
+      <p>Fotoğraf, video, ses ve not gönderin.</p>
+
+      <div class="memory-actions">
+        <label class="memory-btn">
+          <span>FOTOĞRAF</span>
+          <input type="file" id="photoInput" accept="image/*" multiple hidden>
+        </label>
+
+        <label class="memory-btn">
+          <span>VİDEO</span>
+          <input type="file" id="videoInput" accept="video/*" multiple hidden>
+        </label>
+
+        <button class="memory-btn" id="recordBtn" type="button">SESLİ MESAJ</button>
+        <button class="memory-btn" id="noteFocusBtn" type="button">NOT GÖNDER</button>
+      </div>
+
+      <div class="upload-state hidden" id="uploadState">
+        <div id="photoStatus">Fotoğraf: 0</div>
+        <div id="videoStatus">Video: 0</div>
+        <div id="audioState">Ses: Hazır</div>
+      </div>
+
+      <audio id="audioPreview" controls hidden></audio>
+      <div class="preview-grid" id="photoPreview"></div>
+      <div class="preview-list" id="videoPreview"></div>
+
+      <div class="note-card">
+        <input type="text" id="senderName" placeholder="Gönderen adı">
+        <textarea id="noteText" rows="3" placeholder="Notunuz"></textarea>
+      </div>
+
+      <div class="attendance-row">
+        <button class="attend-btn active" data-attendance="Katilacagim" type="button">KATILACAĞIM</button>
+        <button class="attend-btn" data-attendance="Katilamayacagim" type="button">KATILMAYACAĞIM</button>
+      </div>
+
+      <button class="send-btn" type="button">GÖNDER</button>
+    </section>
+
+    <section class="contact-block">
+      <h2>BİZİMLE KOLAYCA İLETİŞİME GEÇİN</h2>
+
+      <div class="contact-clean">
+        <a href="https://wa.me/905372395824" target="_blank" class="contact-item">
+          <img src="images/whatsapp.png" alt="WhatsApp">
+          <span>WhatsApp</span>
+        </a>
+
+        <a href="https://instagram.com/davetiye_visora" target="_blank" class="contact-item">
+          <img src="images/instagram.png" alt="Instagram">
+          <span>@davetiye_visora</span>
+        </a>
+
+        <a href="https://visoraapp.net" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>visoraapp.net</span>
+        </a>
+      </div>
+
+      <p>Sizin tarzınıza göre birlikte tasarlayalım.</p>
+    </section>
+
+  </main>
+
+  <script src="../../js/visora-api.js"></script>
+  <script src="../../js/visora-rsvp.js"></script>
+  <script src="script.js"></script>
+  <script src="../../visora-bridge.js"></script>
+  <style>html{scrollbar-width:none}::-webkit-scrollbar{display:none}</style>
+  <script>
+  if(window.self !== window.top){
+    document.querySelectorAll('audio').forEach(function(a){ a.muted = true; a.pause(); });
+    HTMLMediaElement.prototype.play = function(){ this.muted = true; return Promise.resolve(); };
+  }
+  window.addEventListener('message', function(e){
+    if(e.data === 'visora:autoscroll'){
+      window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+    }
+    if(e.data === 'visora:tap-spin'){
+      var btn = document.getElementById('slotStartBtn') || document.querySelector('.slot-hero');
+      if(btn) btn.click();
+    }
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 280"><defs><filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#glow)"><g stroke="#ff4eb8" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<rect x="52" y="62" width="116" height="116" rx="20" transform="rotate(-10 110 120)"/><rect x="156" y="105" width="116" height="116" rx="20" transform="rotate(12 214 163)"/>
+<circle cx="90" cy="105" r="6" fill="#ff4eb8"/><circle cx="128" cy="140" r="6" fill="#ff4eb8"/><circle cx="112" cy="160" r="6" fill="#ff4eb8"/>
+<circle cx="192" cy="144" r="6" fill="#ff4eb8"/><circle cx="238" cy="150" r="6" fill="#ff4eb8"/><circle cx="196" cy="190" r="6" fill="#ff4eb8"/><circle cx="242" cy="196" r="6" fill="#ff4eb8"/>
+</g></g></svg>

@@ -1,0 +1,58 @@
+{
+  "id": "timeless-garden",
+  "demo": "index.html",
+  "nameTR": "Timeless Vow",
+  "nameEN": "Timeless Vow",
+  "catTR": "Nişan",
+  "catEN": "Engagement",
+  "descTR": "İki kalbin birbirine verdiği sözü zarif ve zamansız detaylarla kutlayan özel bir koleksiyon.",
+  "descEN": "A special collection celebrating the vow between two hearts with elegant and timeless details.",
+  "preview": "images/preview.svg",
+  "features": ["countdown", "music", "gallery", "watermark"],
+  "badge": "YENİ",
+  "featured": true,
+  "order": 4,
+  "cardStyle": {
+    "bg": "images/preview.svg",
+    "theme": "cinematic",
+    "invLabel": "NİŞAN DAVETİYESİ",
+    "name1Field": "bride-name",
+    "ampText": "&",
+    "name2Field": "groom-name",
+    "dateField": "event-date"
+  },
+  "segments": [
+    {
+      "id": null,
+      "tabLabel": null,
+      "labelTR": "Düğün",
+      "labelEN": "Wedding",
+      "scrollTarget": "hero",
+      "tabKey": null,
+      "timelineFormat": "timeless-garden",
+      "timelineItems": [],
+      "sectionGroups": [
+        { "id": "couple",    "labelTR": "Çift Bilgileri", "labelEN": "Couple Details",  "scrollTarget": "hero"    },
+        { "id": "message",   "labelTR": "Davet Metni",    "labelEN": "Invitation Text", "scrollTarget": "hero"    },
+        { "id": "datetime",  "labelTR": "Tarih & Saat",   "labelEN": "Date & Time",     "scrollTarget": "date"    },
+        { "id": "venue",     "labelTR": "Mekan",          "labelEN": "Venue",           "scrollTarget": "venue"   },
+        { "id": "contact",   "labelTR": "İletişim",       "labelEN": "Contact",         "scrollTarget": "contact" }
+      ],
+      "fieldMap": [
+        { "id": "invitation-type",   "section": "couple",   "type": "text",     "labelTR": "Davet Türü",                  "labelEN": "Invitation Type",      "placeholder": "NİŞAN / DÜĞÜN / KINA…", "defaultValue": "NİŞAN DAVETİYESİ"   },
+        { "id": "bride-name",        "section": "couple",   "type": "text",     "labelTR": "Gelin Adı",                   "labelEN": "Bride Name",            "placeholder": "Büşra",            "defaultValue": "BÜŞRA"           },
+        { "id": "groom-name",        "section": "couple",   "type": "text",     "labelTR": "Damat Adı",                   "labelEN": "Groom Name",            "placeholder": "Sinan",            "defaultValue": "SİNAN"           },
+        { "id": "invite-message",    "section": "message",  "type": "textarea", "labelTR": "Davet Metni",                 "labelEN": "Invitation Text",       "placeholder": "Davet mesajı…",    "defaultValue": "Bu güzel anımıza tanıklık etmeniz için sizi aramızda görmekten mutluluk duyarız." },
+        { "id": "event-date",        "section": "datetime", "type": "text",     "labelTR": "Tarih",                       "labelEN": "Date",                  "placeholder": "23 AĞUSTOS 2026",  "defaultValue": "23 AĞUSTOS 2026" },
+        { "id": "event-time",        "section": "datetime", "type": "text",     "labelTR": "Saat",                        "labelEN": "Time",                  "placeholder": "20:00",            "defaultValue": "20:00"           },
+        { "id": "event-date-iso",    "section": "datetime", "type": "text",     "labelTR": "Geri Sayım (YYYY-AA-GG)",     "labelEN": "Countdown (YYYY-MM-DD)","placeholder": "2026-08-23",       "defaultValue": "2026-08-23"      },
+        { "id": "venue-name",        "section": "venue",    "type": "text",     "labelTR": "Mekan Adı",                   "labelEN": "Venue Name",            "placeholder": "Gloria Meram",     "defaultValue": "GLORIA MERAM"    },
+        { "id": "venue-subtitle",    "section": "venue",    "type": "text",     "labelTR": "Mekan Türü",                  "labelEN": "Venue Type",            "placeholder": "DÜĞÜN SALONU",     "defaultValue": "DÜĞÜN SALONU"    },
+        { "id": "venue-address",     "section": "venue",    "type": "text",     "labelTR": "Adres",                       "labelEN": "Address",               "placeholder": "Adres…",           "defaultValue": "Alaeviye Mah. Yeni Meram Cd. No:169\nMeram / KONYA" },
+        { "id": "map-link",          "section": "venue",    "type": "url",      "labelTR": "Harita URL",                  "labelEN": "Map URL",               "placeholder": "https://maps.google.com/...", "defaultValue": "" },
+        { "id": "whatsapp-number",   "section": "contact",  "type": "text",     "labelTR": "WhatsApp Numarası",           "labelEN": "WhatsApp Number",       "placeholder": "905XXXXXXXXX",     "defaultValue": "905372395824"    },
+        { "id": "instagram-handle",  "section": "contact",  "type": "text",     "labelTR": "Instagram Kullanıcı Adı",     "labelEN": "Instagram Handle",      "placeholder": "davetiye_visora",  "defaultValue": "davetiye_visora" }
+      ]
+    }
+  ]
+}

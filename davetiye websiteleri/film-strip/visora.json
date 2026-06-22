@@ -1,0 +1,36 @@
+{
+  "id": "film-strip",
+  "nameTR": "Timeless Cinematic",
+  "nameEN": "Timeless Cinematic",
+  "category": "Düğün",
+  "price": "standard",
+  "badge": "YENİ",
+  "descTR": "Film şeridinden ilham alan tasarımıyla en değerli anlarınızı etkileyici bir şekilde sergiler.",
+  "descEN": "Inspired by film strips, it showcases your most precious moments in a cinematic and striking way.",
+  "demoUrl": "davetiye websiteleri/film-strip/index.html",
+  "thumb": "davetiye websiteleri/film-strip/images/thumb.jpg",
+  "segments": [
+    {
+      "id": "main",
+      "labelTR": "Davetiye",
+      "labelEN": "Invitation",
+      "scrollTarget": "invitation",
+      "fieldMap": [
+        { "id": "bride-name",    "labelTR": "Gelin Adı",     "labelEN": "Bride's Name",   "type": "text",           "placeholder": "Ayşe",            "defaultValue": "Ayşe"           },
+        { "id": "groom-name",    "labelTR": "Damat Adı",     "labelEN": "Groom's Name",   "type": "text",           "placeholder": "Mehmet",          "defaultValue": "Mehmet"         },
+        { "id": "bride-family",  "labelTR": "Gelin Ailesi",  "labelEN": "Bride's Family", "type": "text",           "placeholder": "Yılmaz Ailesi",   "defaultValue": "Yılmaz Ailesi"  },
+        { "id": "groom-family",  "labelTR": "Damat Ailesi",  "labelEN": "Groom's Family", "type": "text",           "placeholder": "Kara Ailesi",     "defaultValue": "Kara Ailesi"    },
+        { "id": "event-date",    "labelTR": "Tarih",         "labelEN": "Date",           "type": "event-date",     "placeholder": "23 HAZİRAN 2026", "defaultValue": "23 HAZİRAN 2026"},
+        { "id": "event-date-iso","labelTR": "ISO Tarih",     "labelEN": "ISO Date",       "type": "event-date-iso", "placeholder": "2026-06-23",      "defaultValue": "2026-06-23"     },
+        { "id": "event-time",    "labelTR": "Saat",          "labelEN": "Time",           "type": "event-time",     "placeholder": "19:00",           "defaultValue": "19:00"          },
+        { "id": "venue",         "labelTR": "Mekan Adı",     "labelEN": "Venue",          "type": "text",           "placeholder": "Four Seasons",    "defaultValue": "Four Seasons Hotel" },
+        { "id": "venue-city",    "labelTR": "Şehir",         "labelEN": "City",           "type": "text",           "placeholder": "İstanbul",        "defaultValue": "İstanbul"       },
+        { "id": "address",       "labelTR": "Adres",         "labelEN": "Address",        "type": "text",           "placeholder": "Tam adres...",    "defaultValue": "Çırağan Cad. No:28, Beşiktaş / İstanbul" },
+        { "id": "map-link",      "labelTR": "Harita Linki",  "labelEN": "Map Link",       "type": "text",           "placeholder": "https://maps...", "defaultValue": ""               },
+        { "id": "invite-message",   "labelTR": "Davet Mesajı",           "labelEN": "Invite Message",   "type": "invite-message", "placeholder": "Davet mesajı...",  "defaultValue": "Bu güzel anımıza tanıklık etmeniz için sizi aramızda görmekten mutluluk duyarız." },
+        { "id": "whatsapp-number",  "labelTR": "WhatsApp Numarası",      "labelEN": "WhatsApp Number",  "type": "text",           "placeholder": "905XXXXXXXXX",     "defaultValue": "905372395824"    },
+        { "id": "instagram-handle", "labelTR": "Instagram Kullanıcı Adı","labelEN": "Instagram Handle", "type": "text",           "placeholder": "davetiye_visora",  "defaultValue": "davetiye_visora" }
+      ]
+    }
+  ]
+}

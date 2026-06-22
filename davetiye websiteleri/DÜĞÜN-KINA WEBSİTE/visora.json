@@ -1,0 +1,84 @@
+{
+  "id": "dugun-kina",
+  "demo": "index.html",
+  "nameTR": "Timeless Duo",
+  "nameEN": "Timeless Duo",
+  "catTR": "Düğün & Kına",
+  "catEN": "Wedding & Henna Night",
+  "descTR": "İki kutlama, tek hikâye; kına ve düğün detaylarını zarif bir deneyimde buluşturan koleksiyon.",
+  "descEN": "Two celebrations, one story — wedding and henna details united in an elegant experience.",
+  "preview": "images/wedding-slide-1.jfif",
+  "features": ["countdown", "music", "gallery", "rsvp", "timeline", "upload"],
+  "badge": "POPÜLER",
+  "featured": true,
+  "order": 2,
+  "cardStyle": {
+    "bg": "images/wedding-slide-1.jfif",
+    "theme": "kina-split",
+    "invLabel": "DÜĞÜN & KINA GECESİ",
+    "name1Field": "bride-name",
+    "ampText": "&",
+    "name2Field": "groom-name",
+    "dateField": "event-date-wedding",
+    "date2Field": "event-date-henna"
+  },
+  "segments": [
+    {
+      "id": "wedding",
+      "tabLabel": "DÜĞÜN",
+      "labelTR": "Düğün",
+      "labelEN": "Wedding",
+      "scrollTarget": "wedding-cover",
+      "tabKey": "wedding",
+      "timelineFormat": "dugun-kina",
+      "timelineItems": [
+        { "time": "16:00", "title": "Konvoy",             "icon": "images/car.png" },
+        { "time": "19:00", "title": "Nikâh & Karşılama",  "icon": "images/arch.png" },
+        { "time": "20:00", "title": "İlk Dans & Kutlama", "icon": "images/couple.png" },
+        { "time": "21:00", "title": "Pasta & Takı",       "icon": "images/cake.png" },
+        { "time": "22:00", "title": "After Party",        "icon": "images/party.png" }
+      ],
+      "sectionGroups": [
+        { "id": "couple",        "labelTR": "Çift Bilgileri",  "labelEN": "Couple Details",  "scrollTarget": "wedding-cover" },
+        { "id": "wedding",       "labelTR": "Düğün Bilgileri", "labelEN": "Wedding Info",    "scrollTarget": "wedding-cover" },
+        { "id": "wedding-venue", "labelTR": "Düğün Mekanı",   "labelEN": "Wedding Venue",   "scrollTarget": "wedding-venue" }
+      ],
+      "fieldMap": [
+        { "id": "bride-name",             "section": "couple",        "type": "text",     "labelTR": "Gelin Adı",            "labelEN": "Bride Name",          "placeholder": "Senem",                   "defaultValue": "SENEM" },
+        { "id": "groom-name",             "section": "couple",        "type": "text",     "labelTR": "Damat Adı",             "labelEN": "Groom Name",          "placeholder": "Mehmet",                  "defaultValue": "MEHMET" },
+        { "id": "event-date-wedding",     "section": "wedding",       "type": "text",     "labelTR": "Düğün Tarihi & Saati", "labelEN": "Wedding Date & Time", "placeholder": "23 AĞUSTOS 2026 · 20.00", "defaultValue": "23 AĞUSTOS 2026 · 20.00" },
+        { "id": "invite-message-wedding", "section": "wedding",       "type": "textarea", "labelTR": "Düğün Davet Metni",    "labelEN": "Wedding Text",        "placeholder": "Bu mutlu günümüzde...",   "defaultValue": "Bu mutlu günümüzde sizleri de aramızda görmekten mutluluk duyarız." },
+        { "id": "venue-name-wedding",     "section": "wedding-venue", "type": "text",     "labelTR": "Düğün Mekanı",         "labelEN": "Wedding Venue",       "placeholder": "Gloria Meram",            "defaultValue": "GLORIA MERAM" },
+        { "id": "venue-address-wedding",  "section": "wedding-venue", "type": "text",     "labelTR": "Adres",                "labelEN": "Address",             "placeholder": "Konya",                   "defaultValue": "Lalebahçe, Özgüven Sk. No:1, 42140 Meram/Konya" },
+        { "id": "map-link",               "section": "wedding-venue", "type": "url",      "labelTR": "Harita URL",           "labelEN": "Map URL",             "placeholder": "https://maps.google.com/...", "defaultValue": "" }
+      ]
+    },
+    {
+      "id": "henna",
+      "tabLabel": "KINA",
+      "labelTR": "Kına",
+      "labelEN": "Henna Night",
+      "scrollTarget": "henna-cover",
+      "tabKey": "henna",
+      "timelineFormat": "dugun-kina-henna",
+      "timelineItems": [
+        { "time": "20:00", "title": "Kına Girişi",    "icon": "images/arch.png" },
+        { "time": "21:00", "title": "Kına Yakılışı",  "icon": "images/kina-yakimi.png" },
+        { "time": "21:30", "title": "Testi Kırılışı", "icon": "images/testi-kirma.png" },
+        { "time": "22:00", "title": "After Party",    "icon": "images/party.png" }
+      ],
+      "sectionGroups": [
+        { "id": "henna",       "labelTR": "Kına Bilgileri", "labelEN": "Henna Info",  "scrollTarget": "henna-cover" },
+        { "id": "henna-venue", "labelTR": "Kına Mekanı",    "labelEN": "Henna Venue", "scrollTarget": "henna-venue" }
+      ],
+      "fieldMap": [
+        { "id": "henna-name",           "section": "henna",       "type": "text",     "labelTR": "Gelin Kına Adı",      "labelEN": "Bride Henna Name",     "placeholder": "Senem'in",                "defaultValue": "Senem'in" },
+        { "id": "event-date-henna",     "section": "henna",       "type": "text",     "labelTR": "Kına Tarihi & Saati", "labelEN": "Henna Date & Time",    "placeholder": "21 AĞUSTOS 2026 · 20.00", "defaultValue": "21 AĞUSTOS 2026 · 20.00" },
+        { "id": "invite-message-henna", "section": "henna",       "type": "textarea", "labelTR": "Kına Davet Metni",    "labelEN": "Henna Invitation Text","placeholder": "Bu özel gecemizde...",    "defaultValue": "Bu özel gecemizde siz değerli dostlarımızı aramızda görmekten mutluluk duyarız." },
+        { "id": "venue-name-henna",     "section": "henna-venue", "type": "text",     "labelTR": "Kına Mekanı",         "labelEN": "Henna Venue",          "placeholder": "Prenses Düğün Salonu",    "defaultValue": "PRENSES DÜĞÜN SALONU" },
+        { "id": "venue-address-henna",  "section": "henna-venue", "type": "text",     "labelTR": "Adres",               "labelEN": "Address",              "placeholder": "Selçuklu / Konya",        "defaultValue": "Selçuklu / Konya" },
+        { "id": "map-link",             "section": "henna-venue", "type": "url",      "labelTR": "Harita URL",          "labelEN": "Map URL",              "placeholder": "https://maps.google.com/...", "defaultValue": "" }
+      ]
+    }
+  ]
+}

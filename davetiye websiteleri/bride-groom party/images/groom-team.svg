@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 280"><defs><filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#glow)"><g stroke="#00a7ff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="70" cy="72" r="22"/><circle cx="130" cy="66" r="24"/><circle cx="200" cy="66" r="24"/><circle cx="260" cy="72" r="22"/>
+<path d="M45 125 C60 102 80 102 95 125 L86 220 H54 Z"/><path d="M100 124 C118 96 142 96 160 124 L150 224 H110 Z"/><path d="M170 124 C188 96 212 96 230 124 L220 224 H180 Z"/><path d="M235 125 C250 102 270 102 285 125 L276 220 H244 Z"/>
+<path d="M95 125 C112 145 128 145 145 125"/><path d="M158 125 C178 148 198 148 218 125"/><path d="M228 125 C246 145 262 145 278 125"/>
+<path d="M58 48 l12 -18 l12 18"/><path d="M250 48 l12 -18 l12 18"/>
+</g></g></svg>

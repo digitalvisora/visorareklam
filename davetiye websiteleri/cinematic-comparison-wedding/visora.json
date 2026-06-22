@@ -1,0 +1,39 @@
+{
+  "id": "cinematic-comparison-wedding",
+  "nameTR": "Timeless Flow",
+  "nameEN": "Timeless Flow",
+  "category": "Düğün",
+  "price": "standard",
+  "badge": "YENİ",
+  "featured": true,
+  "hasComparisonHero": true,
+  "hasFilmStrip": true,
+  "descTR": "Aşk hikâyenizi zarif bir akış ve zamansız detaylarla misafirlerinize sunan özel koleksiyon.",
+  "descEN": "A curated collection presenting your love story to guests with elegant flow and timeless details.",
+  "demoUrl": "davetiye websiteleri/cinematic-comparison-wedding/index.html",
+  "thumb": "davetiye websiteleri/cinematic-comparison-wedding/images/thumb.jpg",
+  "segments": [
+    {
+      "id": "main",
+      "labelTR": "Davetiye",
+      "labelEN": "Invitation",
+      "scrollTarget": "invitation",
+      "timelineFormat": "program",
+      "fieldMap": [
+        { "id": "bride-name",    "labelTR": "Gelin Adı",       "labelEN": "Bride's Name",    "type": "text",           "placeholder": "Toprak"           },
+        { "id": "groom-name",    "labelTR": "Damat Adı",       "labelEN": "Groom's Name",    "type": "text",           "placeholder": "Deniz"            },
+        { "id": "subtitle",      "labelTR": "Alt Başlık",      "labelEN": "Subtitle",        "type": "text",           "placeholder": "Düğün Davetiyesi" },
+        { "id": "event-date",    "labelTR": "Tarih",           "labelEN": "Date",            "type": "event-date"                                        },
+        { "id": "event-date-iso","labelTR": "ISO Tarih",       "labelEN": "ISO Date",        "type": "event-date-iso"                                    },
+        { "id": "event-time",    "labelTR": "Saat",            "labelEN": "Time",            "type": "event-time"                                        },
+        { "id": "bride-family",  "labelTR": "Gelin Ailesi",    "labelEN": "Bride's Family",  "type": "text",           "placeholder": "Yılmaz Ailesi"    },
+        { "id": "groom-family",  "labelTR": "Damat Ailesi",    "labelEN": "Groom's Family",  "type": "text",           "placeholder": "Kara Ailesi"      },
+        { "id": "venue",         "labelTR": "Mekan Adı",       "labelEN": "Venue",           "type": "text",           "placeholder": "Grand Hotel"      },
+        { "id": "venue-city",    "labelTR": "Şehir",           "labelEN": "City",            "type": "text",           "placeholder": "İstanbul"         },
+        { "id": "address",       "labelTR": "Adres",           "labelEN": "Address",         "type": "text",           "placeholder": "Tam adres..."     },
+        { "id": "map-link",      "labelTR": "Harita Linki",    "labelEN": "Map Link",        "type": "text",           "placeholder": "https://maps..."  },
+        { "id": "invite-message","labelTR": "Davet Mesajı",    "labelEN": "Invite Message",  "type": "invite-message"                                    }
+      ]
+    }
+  ]
+}

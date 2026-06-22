@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timeless Garden — Davetiye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Single music toggle -->
+  <button class="tg-music-btn" id="musicBtn" type="button" aria-label="Müziği başlat">
+    <svg id="iconNote" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="8" y1="5.5" x2="15" y2="3.5"/>
+      <line x1="8" y1="5.5" x2="8"  y2="14.5"/>
+      <line x1="15" y1="3.5" x2="15" y2="12.0"/>
+      <ellipse cx="6.8"  cy="14.8" rx="2.2" ry="1.5" transform="rotate(-10 6.8  14.8)" fill="currentColor" stroke="none" opacity="0.85"/>
+      <ellipse cx="13.8" cy="12.2" rx="2.2" ry="1.5" transform="rotate(-10 13.8 12.2)" fill="currentColor" stroke="none" opacity="0.85"/>
+    </svg>
+    <svg id="iconPause" viewBox="0 0 20 20" fill="currentColor" style="display:none">
+      <rect x="4.5" y="4" width="3.5" height="12" rx="1"/>
+      <rect x="12"  y="4" width="3.5" height="12" rx="1"/>
+    </svg>
+  </button>
+  <audio id="bgMusic" loop>
+    <source src="../wedding/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ═══════════════════════════════════════════════════
+       MINIMAL EDITORIAL INVITATION — full cream paper
+  ═══════════════════════════════════════════════════ -->
+  <div class="tg-page">
+
+    <!-- Botanical borders — both sides, img1 multiply on cream -->
+    <div class="tg-border tg-border--l" aria-hidden="true"></div>
+    <div class="tg-border tg-border--r" aria-hidden="true"></div>
+
+    <!-- Centered content column -->
+    <div class="tg-col">
+
+      <!-- ── 1. VENUE ILLUSTRATION ── -->
+      <div class="tg-arch-wrap" data-visora-section="hero">
+        <img src="images/img2.png" alt="" class="tg-arch-img" aria-hidden="true">
+      </div>
+
+      <!-- ── 2. NAMES + TEXT ── -->
+      <section class="tg-names" data-visora-section="hero">
+
+        <h1 class="tg-couple">
+          <span class="tg-bride" data-visora-field="bride-name">BÜŞRA</span>
+          <span class="tg-amp">&amp;</span>
+          <span class="tg-groom" data-visora-field="groom-name">SİNAN</span>
+        </h1>
+
+        <p class="tg-wi" data-visora-field="invitation-type">NİŞAN DAVETİYESİ</p>
+
+        <div class="tg-diam" aria-hidden="true">
+          <svg viewBox="0 0 200 14" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0"   y1="7" x2="84"  y2="7" stroke="rgba(184,154,74,0.46)" stroke-width="0.6"/>
+            <polygon points="100,2 104,7 100,12 96,7" fill="rgba(184,154,74,0.62)"/>
+            <line x1="116" y1="7" x2="200" y2="7" stroke="rgba(184,154,74,0.46)" stroke-width="0.6"/>
+          </svg>
+        </div>
+
+        <p class="tg-msg" data-visora-field="invite-message">
+          Bu güzel anımıza tanıklık etmeniz için<br>sizi aramızda görmekten mutluluk duyarız.
+        </p>
+
+      </section>
+
+      <!-- Gold separator -->
+      <div class="tg-sep" aria-hidden="true">
+        <svg viewBox="0 0 240 12" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0"   y1="6" x2="96"  y2="6" stroke="rgba(184,154,74,0.40)" stroke-width="0.5"/>
+          <circle cx="102" cy="6" r="1.8" fill="rgba(184,154,74,0.52)"/>
+          <circle cx="110" cy="6" r="3.2" fill="rgba(184,154,74,0.26)" stroke="rgba(184,154,74,0.52)" stroke-width="0.5"/>
+          <circle cx="118" cy="6" r="1.8" fill="rgba(184,154,74,0.52)"/>
+          <line x1="124" y1="6" x2="240" y2="6" stroke="rgba(184,154,74,0.40)" stroke-width="0.5"/>
+        </svg>
+      </div>
+
+      <!-- ── 3. DATE & TIME ── -->
+      <section class="tg-date" data-visora-section="date">
+
+        <div class="tg-icon" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="rgba(184,154,74,0.80)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="9" width="34" height="29" rx="2.5"/>
+            <line x1="5" y1="17" x2="39" y2="17"/>
+            <line x1="14" y1="6" x2="14" y2="13"/>
+            <line x1="30" y1="6" x2="30" y2="13"/>
+            <circle cx="14" cy="5.5" r="1.8" fill="rgba(184,154,74,0.38)" stroke="rgba(184,154,74,0.68)" stroke-width="0.9"/>
+            <circle cx="30" cy="5.5" r="1.8" fill="rgba(184,154,74,0.38)" stroke="rgba(184,154,74,0.68)" stroke-width="0.9"/>
+            <circle cx="13" cy="24" r="1.1" fill="rgba(184,154,74,0.55)" stroke="none"/>
+            <circle cx="22" cy="24" r="1.1" fill="rgba(184,154,74,0.55)" stroke="none"/>
+            <circle cx="31" cy="24" r="1.1" fill="rgba(184,154,74,0.55)" stroke="none"/>
+            <circle cx="13" cy="31" r="1.1" fill="rgba(184,154,74,0.55)" stroke="none"/>
+            <circle cx="22" cy="31" r="1.1" fill="rgba(184,154,74,0.55)" stroke="none"/>
+            <path d="M30,29.2 Q30,27.8 31.2,27.8 Q32.6,27.8 32.6,29.2 Q32.6,30.8 30,32.5 Q27.4,30.8 27.4,29.2 Q27.4,27.8 28.8,27.8 Q30,27.8 30,29.2Z" fill="rgba(184,154,74,0.62)" stroke="none"/>
+          </svg>
+        </div>
+
+        <p class="tg-date-val" data-visora-field="event-date">23 AĞUSTOS 2026</p>
+        <p class="tg-time-val">SAAT: <span data-visora-field="event-time">20:00</span></p>
+
+        <span id="countdownTarget" data-visora-field="event-date-iso"
+              style="position:absolute;opacity:0;pointer-events:none;font-size:0">2026-08-23</span>
+
+        <div class="tg-countdown">
+          <div class="tg-cd"><span id="cdDays"    class="tg-cd-n">—</span><span class="tg-cd-l">GÜN</span></div>
+          <span class="tg-cd-sep">·</span>
+          <div class="tg-cd"><span id="cdHours"   class="tg-cd-n">—</span><span class="tg-cd-l">SAAT</span></div>
+          <span class="tg-cd-sep">·</span>
+          <div class="tg-cd"><span id="cdMinutes" class="tg-cd-n">—</span><span class="tg-cd-l">DAKİKA</span></div>
+        </div>
+
+      </section>
+
+      <!-- Gold separator -->
+      <div class="tg-sep" aria-hidden="true">
+        <svg viewBox="0 0 240 12" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0"   y1="6" x2="96"  y2="6" stroke="rgba(184,154,74,0.40)" stroke-width="0.5"/>
+          <circle cx="102" cy="6" r="1.8" fill="rgba(184,154,74,0.52)"/>
+          <circle cx="110" cy="6" r="3.2" fill="rgba(184,154,74,0.26)" stroke="rgba(184,154,74,0.52)" stroke-width="0.5"/>
+          <circle cx="118" cy="6" r="1.8" fill="rgba(184,154,74,0.52)"/>
+          <line x1="124" y1="6" x2="240" y2="6" stroke="rgba(184,154,74,0.40)" stroke-width="0.5"/>
+        </svg>
+      </div>
+
+      <!-- ── 4. VENUE ── -->
+      <section class="tg-venue" data-visora-section="venue">
+
+        <div class="tg-icon" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="rgba(184,154,74,0.80)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 21 L22 7 L40 21"/>
+            <line x1="6" y1="21" x2="38" y2="21" stroke-width="0.9"/>
+            <line x1="11" y1="21" x2="11" y2="39"/>
+            <line x1="18" y1="21" x2="18" y2="39"/>
+            <line x1="26" y1="21" x2="26" y2="39"/>
+            <line x1="33" y1="21" x2="33" y2="39"/>
+            <path d="M19,39 L19,31 Q22,26 25,31 L25,39"/>
+            <line x1="5" y1="39" x2="39" y2="39"/>
+            <line x1="3" y1="41" x2="41" y2="41"/>
+            <circle cx="22" cy="14" r="2.8"/>
+            <circle cx="22" cy="14" r="0.9" fill="rgba(184,154,74,0.50)" stroke="none"/>
+          </svg>
+        </div>
+
+        <h2 class="tg-vname" data-visora-field="venue-name">GLORIA MERAM</h2>
+        <p class="tg-vtype"  data-visora-field="venue-subtitle">DÜĞÜN SALONU</p>
+        <p class="tg-vaddr"  data-visora-field="venue-address">Alaeviye Mah. Yeni Meram Cd. No:169<br>Meram / KONYA</p>
+        <a class="tg-map-link" href="#" id="venueMapBtn" data-visora-mapbtn target="_blank" rel="noopener">Haritada Göster →</a>
+
+      </section>
+
+      <!-- Gold separator -->
+      <div class="tg-sep" aria-hidden="true">
+        <svg viewBox="0 0 240 12" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0"   y1="6" x2="96"  y2="6" stroke="rgba(184,154,74,0.40)" stroke-width="0.5"/>
+          <circle cx="102" cy="6" r="1.8" fill="rgba(184,154,74,0.52)"/>
+          <circle cx="110" cy="6" r="3.2" fill="rgba(184,154,74,0.26)" stroke="rgba(184,154,74,0.52)" stroke-width="0.5"/>
+          <circle cx="118" cy="6" r="1.8" fill="rgba(184,154,74,0.52)"/>
+          <line x1="124" y1="6" x2="240" y2="6" stroke="rgba(184,154,74,0.40)" stroke-width="0.5"/>
+        </svg>
+      </div>
+
+      <!-- ── 5. ACTION BUTTONS ── -->
+      <section class="tg-actions" data-visora-section="contact">
+        <div class="tg-action-row">
+
+          <a class="tg-action-item" id="mapsBtn" href="#" target="_blank" rel="noopener">
+            <div class="tg-action-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C8.7 2 6 4.7 6 8c0 5.8 6 13.5 6 13.5S18 13.8 18 8c0-3.3-2.7-6-6-6z"/>
+                <circle cx="12" cy="8" r="2.2"/>
+              </svg>
+            </div>
+            <span class="tg-action-label">KONUM</span>
+            <small class="tg-action-sub">Haritada görüntülemek için tıklayın.</small>
+          </a>
+
+          <div class="tg-vsep" aria-hidden="true"></div>
+
+          <a class="tg-action-item" id="whatsappBtn" href="https://wa.me/905372395824" target="_blank" rel="noopener">
+            <div class="tg-action-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21l1.65-4.95A8.5 8.5 0 1 1 12 20.5a8.45 8.45 0 0 1-4.05-1.03L3 21z"/>
+                <path d="M9.3 9.7c0-.4.32-.7.7-.7.14 0 .3.06.42.17l.7.98c.07.1.07.28-.06.4l-.3.3c.32.6.82 1.1 1.42 1.42l.3-.3c.12-.13.3-.13.4-.06l.98.7c.11.13.16.3.16.43 0 .36-.3.7-.7.7-1.7 0-4.2-2.5-4.2-4.2z"/>
+              </svg>
+            </div>
+            <span class="tg-action-label">WHATSAPP</span>
+            <small class="tg-action-sub">İletişim için tıklayın.</small>
+          </a>
+
+          <div class="tg-vsep" aria-hidden="true"></div>
+
+          <button class="tg-action-item" id="calBtn" type="button">
+            <div class="tg-action-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="17" rx="2"/>
+                <line x1="3"  y1="9" x2="21" y2="9"/>
+                <line x1="8"  y1="2" x2="8"  y2="6"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="12" y1="13" x2="12" y2="17"/>
+                <line x1="10" y1="15" x2="14" y2="15"/>
+              </svg>
+            </div>
+            <span class="tg-action-label">TAKVİME EKLE</span>
+            <small class="tg-action-sub">Hatırlatıcı eklemek için tıklayın.</small>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- Small separator -->
+      <div class="tg-sep tg-sep--sm" aria-hidden="true">
+        <svg viewBox="0 0 180 10" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0"   y1="5" x2="82"  y2="5" stroke="rgba(184,154,74,0.36)" stroke-width="0.5"/>
+          <circle cx="90" cy="5" r="2" fill="rgba(184,154,74,0.48)"/>
+          <line x1="98"  y1="5" x2="180" y2="5" stroke="rgba(184,154,74,0.36)" stroke-width="0.5"/>
+        </svg>
+      </div>
+
+      <!-- ── 6. POLAROID GALLERY (horizontal row) ── -->
+      <section class="tg-gallery" data-visora-section="gallery">
+        <div class="tg-polaroid-row" data-visora-gallery-container>
+
+          <div class="tg-pol tg-pol--a">
+            <div class="tg-pol-frame">
+              <img src="../wedding/images/slider1.jpg" alt="Fotoğraf 1" class="tg-pol-img">
+            </div>
+            <span class="tg-pol-heart">&#9825;</span>
+          </div>
+
+          <div class="tg-pol tg-pol--b">
+            <div class="tg-pol-frame">
+              <img src="../wedding/images/slider2.jpg" alt="Fotoğraf 2" class="tg-pol-img">
+            </div>
+            <span class="tg-pol-heart">&#9825;</span>
+          </div>
+
+          <div class="tg-pol tg-pol--c">
+            <div class="tg-pol-frame">
+              <img src="../wedding/images/slider3.jpg" alt="Fotoğraf 3" class="tg-pol-img">
+            </div>
+            <span class="tg-pol-heart">&#9825;</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── 7. INSTAGRAM ── -->
+      <section class="tg-instagram">
+        <p class="tg-insta-copy">Instagram hesabımızı takip edebilirsiniz</p>
+        <a class="tg-insta-link" id="instaLink" href="https://instagram.com/davetiye_visora" target="_blank" rel="noopener">
+          <svg class="tg-insta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+            <circle cx="12" cy="12" r="4.5"/>
+            <circle cx="17.8" cy="6.2" r="1.3" fill="currentColor" stroke="none"/>
+          </svg>
+          <span data-visora-field="instagram-handle">davetiye_visora</span>
+        </a>
+      </section>
+
+      <!-- ── 8. VISORA WEBSITE ── -->
+      <section class="tg-instagram">
+        <p class="tg-insta-copy">Davetiyenizi VISORA ile oluşturun</p>
+        <a class="tg-insta-link" id="visoraWebLink" href="https://visoraapp.net" target="_blank" rel="noopener">
+          <svg class="tg-insta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9.5"/>
+            <line x1="2.5" y1="12" x2="21.5" y2="12"/>
+            <path d="M12 2.5a14.3 14.3 0 0 1 3.8 9.5 14.3 14.3 0 0 1-3.8 9.5 14.3 14.3 0 0 1-3.8-9.5A14.3 14.3 0 0 1 12 2.5z"/>
+          </svg>
+          <span>visoraapp.net</span>
+        </a>
+      </section>
+
+    </div><!-- .tg-col -->
+
+  </div><!-- .tg-page -->
+
+  <script src="../../js/visora-api.js"></script>
+  <script src="../../js/visora-rsvp.js"></script>
+  <script src="script.js"></script>
+  <script src="../../visora-bridge.js"></script>
+  <style>html{scrollbar-width:none}::-webkit-scrollbar{display:none}</style>
+  <script>
+  if(window.self !== window.top){
+    document.querySelectorAll('audio').forEach(function(a){ a.muted = true; a.pause(); });
+    HTMLMediaElement.prototype.play = function(){ this.muted = true; return Promise.resolve(); };
+  }
+  window.addEventListener('message', function(e){
+    if(e.data === 'visora:autoscroll'){
+      window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+    }
+  });
+  </script>
+</body>
+</html>

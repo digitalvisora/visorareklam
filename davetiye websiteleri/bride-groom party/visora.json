@@ -1,0 +1,78 @@
+{
+  "id": "bride-groom-party",
+  "demo": "index.html",
+  "nameTR": "Bachelorette",
+  "nameEN": "Bachelorette",
+  "catTR": "Bekârlığa Veda",
+  "catEN": "Bachelor Party",
+  "descTR": "Neon temalı Bride to Be ve Groom Night aynı sayfada. Canlı geri sayım ve program akışı.",
+  "descEN": "Neon-themed Bride to Be and Groom Night party. Live countdown and event timeline.",
+  "preview": "images/bride-hero-bg-clean.png",
+  "features": ["countdown", "music", "timeline"],
+  "badge": null,
+  "featured": true,
+  "order": 3,
+  "cardStyle": {
+    "bg": "images/bride-hero-bg-clean.png",
+    "theme": "neon-party",
+    "invLabel": "Bride to Be",
+    "name1Field": "bride-name",
+    "dateField": "event-date-bride"
+  },
+  "segments": [
+    {
+      "id": "bride",
+      "tabLabel": "BRIDE",
+      "labelTR": "Gelin",
+      "labelEN": "Bride",
+      "scrollTarget": "bride-hero",
+      "tabKey": "bride",
+      "timelineFormat": "party-bride",
+      "timelineItems": [
+        { "time": "17:00", "title": "Toplanma Saati",      "icon": "images/bride-team-neon.png",    "desc": "Kızlar hazır, enerji yüksek." },
+        { "time": "18:00", "title": "Etkinlik Başlangıcı", "icon": "images/groom-mic-neon.png",     "desc": "Oyunlar, sorular ve tatlı kaos." },
+        { "time": "19:00", "title": "Tatlı & Sohbet",      "icon": "images/bride-glasses-neon.png", "desc": "Bol kahkaha, bol anı." },
+        { "time": "20:30", "title": "Party Time",           "icon": "images/bride-mic-neon.png",     "desc": "Mikrofon sende, gece bizim." }
+      ],
+      "sectionGroups": [
+        { "id": "bride",       "labelTR": "Gelin Tarafı", "labelEN": "Bride Side",  "scrollTarget": "bride-hero" },
+        { "id": "bride-venue", "labelTR": "Gelin Mekanı", "labelEN": "Bride Venue", "scrollTarget": "bride-hero" }
+      ],
+      "fieldMap": [
+        { "id": "bride-name",       "section": "bride",       "type": "text", "labelTR": "Gelin Adı",           "labelEN": "Bride Name", "placeholder": "Güzide",          "defaultValue": "Güzide" },
+        { "id": "event-date-bride", "section": "bride",       "type": "text", "labelTR": "Gelin Gecesi Tarihi", "labelEN": "Bride Date", "placeholder": "21 HAZİRAN 2026", "defaultValue": "21 HAZİRAN 2026" },
+        { "id": "event-time-bride", "section": "bride",       "type": "text", "labelTR": "Saat",                "labelEN": "Time",       "placeholder": "20.30",           "defaultValue": "20.30" },
+        { "id": "venue-bride",      "section": "bride-venue", "type": "text", "labelTR": "Mekan Adı",           "labelEN": "Venue Name", "placeholder": "Garden Terrace",  "defaultValue": "GARDEN TERRACE" },
+        { "id": "venue-city-bride", "section": "bride-venue", "type": "text", "labelTR": "Şehir",               "labelEN": "City",       "placeholder": "Konya",           "defaultValue": "Konya" },
+        { "id": "map-link",         "section": "bride-venue", "type": "url",  "labelTR": "Harita URL",           "labelEN": "Map URL",    "placeholder": "https://maps.google.com/...", "defaultValue": "" }
+      ]
+    },
+    {
+      "id": "groom",
+      "tabLabel": "GROOM",
+      "labelTR": "Damat",
+      "labelEN": "Groom",
+      "scrollTarget": "groom-hero",
+      "tabKey": "groom",
+      "timelineFormat": "party-groom",
+      "timelineItems": [
+        { "time": "17:00", "title": "Toplanma Saati",      "icon": "images/groom-team-neon.png",    "desc": "Ekip tamam, gece başlıyor." },
+        { "time": "18:00", "title": "Etkinlik Başlangıcı", "icon": "images/groom-dice-neon.png",    "desc": "Oyunlar, iddialar ve kahkaha." },
+        { "time": "19:00", "title": "Tatlı & Sohbet",      "icon": "images/groom-glasses-neon.png", "desc": "Cool masa, sağlam muhabbet." },
+        { "time": "20:30", "title": "Party Time",           "icon": "images/bride-dice-neon.png",    "desc": "Sahne damat ekibinin." }
+      ],
+      "sectionGroups": [
+        { "id": "groom",       "labelTR": "Damat Tarafı", "labelEN": "Groom Side",  "scrollTarget": "groom-hero" },
+        { "id": "groom-venue", "labelTR": "Damat Mekanı", "labelEN": "Groom Venue", "scrollTarget": "groom-hero" }
+      ],
+      "fieldMap": [
+        { "id": "groom-name",       "section": "groom",       "type": "text", "labelTR": "Damat Adı",           "labelEN": "Groom Name", "placeholder": "Abdullah",              "defaultValue": "Abdullah" },
+        { "id": "event-date-groom", "section": "groom",       "type": "text", "labelTR": "Damat Gecesi Tarihi", "labelEN": "Groom Date", "placeholder": "21 HAZİRAN 2026",       "defaultValue": "21 HAZİRAN 2026" },
+        { "id": "event-time-groom", "section": "groom",       "type": "text", "labelTR": "Saat",                "labelEN": "Time",       "placeholder": "20.30",                 "defaultValue": "20.30" },
+        { "id": "venue-groom",      "section": "groom-venue", "type": "text", "labelTR": "Mekan Adı",           "labelEN": "Venue Name", "placeholder": "City Garden Rooftop",   "defaultValue": "CITY GARDEN ROOFTOP" },
+        { "id": "venue-city-groom", "section": "groom-venue", "type": "text", "labelTR": "Şehir",               "labelEN": "City",       "placeholder": "Konya",                 "defaultValue": "Konya" },
+        { "id": "map-link",         "section": "groom-venue", "type": "url",  "labelTR": "Harita URL",           "labelEN": "Map URL",    "placeholder": "https://maps.google.com/...", "defaultValue": "" }
+      ]
+    }
+  ]
+}

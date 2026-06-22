@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timeless Cinematic — VISORA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="fs-layout">
+
+    <!-- ═══════════════════════════════════════════════
+         LEFT — Vertical Film Strip
+    ════════════════════════════════════════════════ -->
+    <div class="fs-strip-panel" id="stripPanel">
+
+      <!-- Film edge perforations (left column) -->
+      <div class="fs-perforations fs-perforations--left" aria-hidden="true">
+        <div class="fs-perf-track" id="perfLeft"></div>
+      </div>
+
+      <!-- Center photo strip -->
+      <div class="fs-strip-viewport">
+        <div class="fs-strip-track" id="stripTrack">
+          <!-- Photos injected by JS; duplicated for infinite loop -->
+        </div>
+      </div>
+
+      <!-- Film edge perforations (right column) -->
+      <div class="fs-perforations fs-perforations--right" aria-hidden="true">
+        <div class="fs-perf-track" id="perfRight"></div>
+      </div>
+
+      <!-- Vignette overlays -->
+      <div class="fs-vignette-top"    aria-hidden="true"></div>
+      <div class="fs-vignette-bottom" aria-hidden="true"></div>
+
+      <!-- Strip label -->
+      <div class="fs-strip-label" aria-hidden="true">
+        <span>VISORA · CINEMATIC MEMORIES</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         RIGHT — Wedding Invitation
+    ════════════════════════════════════════════════ -->
+    <div class="fs-invitation" id="invitation" data-visora-section="invitation">
+
+      <!-- Soyut arka plan: kullanıcı fotoğrafları bulanık slayt olarak döner;
+           fotoğraf yoksa CSS animasyon ambient ışık etkisi verir -->
+      <div class="fs-bg-slides" id="fsBgSlides" aria-hidden="true"></div>
+
+      <!-- Spiral film şeridi arka plan — çapraz döngü şeritleri -->
+      <div class="fs-spiral-bg" id="fsSpiralBg" aria-hidden="true">
+        <div class="fs-spiral-rail fs-spiral-rail--left">
+          <div class="fs-spiral-track" id="spiralTrackL"></div>
+        </div>
+        <div class="fs-spiral-rail fs-spiral-rail--right">
+          <div class="fs-spiral-track" id="spiralTrackR"></div>
+        </div>
+      </div>
+
+      <!-- Grain texture overlay -->
+      <div class="fs-grain" aria-hidden="true"></div>
+
+      <!-- Botanical corner decorations -->
+      <div class="fs-botanical fs-botanical--tl" aria-hidden="true">
+        <svg viewBox="0 0 170 210" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <path d="M3,3 C18,22 22,55 38,78 C52,98 48,132 42,162" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.55"/>
+          <path d="M3,3 C22,12 52,18 82,22 C112,26 142,34 162,48" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.45"/>
+          <path d="M22,52 C44,42 68,34 92,24" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.42"/>
+          <path d="M36,88 C58,78 82,72 108,68" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.40"/>
+          <g transform="translate(42,105)">
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(0)"   opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(72)"  opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(144)" opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(216)" opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(288)" opacity="0.72"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(36)"  opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(108)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(180)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(252)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(324)" opacity="0.88"/>
+            <circle r="7"/>
+          </g>
+          <g transform="translate(112,30)">
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(0)"   opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(72)"  opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(144)" opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(216)" opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(288)" opacity="0.70"/>
+            <circle r="5.5" opacity="0.95"/>
+          </g>
+          <g transform="translate(18,32)">
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(0)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(90)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(180)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(270)"/>
+            <circle r="3.5"/>
+          </g>
+          <g transform="translate(22,52) rotate(-52)">
+            <path d="M0,2 Q-11,-12 0,-36 Q11,-12 0,2Z" opacity="0.80"/>
+            <line x1="0" y1="2" x2="0" y2="-36" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.45"/>
+          </g>
+          <g transform="translate(52,40) rotate(-72)">
+            <path d="M0,2 Q-9,-10 0,-30 Q9,-10 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(82,25) rotate(-40)">
+            <path d="M0,2 Q-10,-14 0,-42 Q10,-14 0,2Z" opacity="0.78"/>
+            <line x1="0" y1="2" x2="0" y2="-42" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.40"/>
+          </g>
+          <g transform="translate(16,112) rotate(28)">
+            <path d="M0,2 Q-12,-10 0,-32 Q12,-10 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(70,88) rotate(-18)">
+            <path d="M0,2 Q-10,-9 0,-30 Q10,-9 0,2Z" opacity="0.75"/>
+          </g>
+          <g transform="translate(24,148) rotate(18)">
+            <path d="M0,2 Q-10,-10 0,-32 Q10,-10 0,2Z" opacity="0.70"/>
+          </g>
+          <g transform="translate(58,140) rotate(-28)">
+            <path d="M0,2 Q-8,-8 0,-26 Q8,-8 0,2Z" opacity="0.70"/>
+          </g>
+          <g transform="translate(142,50) rotate(-62)">
+            <path d="M0,2 Q-8,-8 0,-25 Q8,-8 0,2Z" opacity="0.65"/>
+          </g>
+          <circle cx="100" cy="64" r="3.5" opacity="0.78"/>
+          <circle cx="115" cy="70" r="2.5" opacity="0.70"/>
+          <circle cx="125" cy="62" r="2"   opacity="0.62"/>
+          <circle cx="155" cy="48" r="2.8" opacity="0.65"/>
+          <circle cx="8"   cy="15" r="2.5" opacity="0.72"/>
+          <circle cx="28"  cy="165" r="2.5" opacity="0.65"/>
+          <circle cx="62"  cy="158" r="2"   opacity="0.60"/>
+        </svg>
+      </div>
+      <div class="fs-botanical fs-botanical--tr" aria-hidden="true">
+        <svg viewBox="0 0 170 210" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <path d="M3,3 C18,22 22,55 38,78 C52,98 48,132 42,162" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.55"/>
+          <path d="M3,3 C22,12 52,18 82,22 C112,26 142,34 162,48" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.45"/>
+          <path d="M22,52 C44,42 68,34 92,24" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.42"/>
+          <path d="M36,88 C58,78 82,72 108,68" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.40"/>
+          <g transform="translate(42,105)">
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(0)"   opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(72)"  opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(144)" opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(216)" opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(288)" opacity="0.72"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(36)"  opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(108)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(180)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(252)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(324)" opacity="0.88"/>
+            <circle r="7"/>
+          </g>
+          <g transform="translate(112,30)">
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(0)"   opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(72)"  opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(144)" opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(216)" opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(288)" opacity="0.70"/>
+            <circle r="5.5" opacity="0.95"/>
+          </g>
+          <g transform="translate(18,32)">
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(0)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(90)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(180)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(270)"/>
+            <circle r="3.5"/>
+          </g>
+          <g transform="translate(22,52) rotate(-52)">
+            <path d="M0,2 Q-11,-12 0,-36 Q11,-12 0,2Z" opacity="0.80"/>
+            <line x1="0" y1="2" x2="0" y2="-36" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.45"/>
+          </g>
+          <g transform="translate(52,40) rotate(-72)">
+            <path d="M0,2 Q-9,-10 0,-30 Q9,-10 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(82,25) rotate(-40)">
+            <path d="M0,2 Q-10,-14 0,-42 Q10,-14 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(16,112) rotate(28)">
+            <path d="M0,2 Q-12,-10 0,-32 Q12,-10 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(70,88) rotate(-18)">
+            <path d="M0,2 Q-10,-9 0,-30 Q10,-9 0,2Z" opacity="0.75"/>
+          </g>
+          <g transform="translate(24,148) rotate(18)">
+            <path d="M0,2 Q-10,-10 0,-32 Q10,-10 0,2Z" opacity="0.70"/>
+          </g>
+          <g transform="translate(58,140) rotate(-28)">
+            <path d="M0,2 Q-8,-8 0,-26 Q8,-8 0,2Z" opacity="0.70"/>
+          </g>
+          <g transform="translate(142,50) rotate(-62)">
+            <path d="M0,2 Q-8,-8 0,-25 Q8,-8 0,2Z" opacity="0.65"/>
+          </g>
+          <circle cx="100" cy="64" r="3.5" opacity="0.78"/>
+          <circle cx="115" cy="70" r="2.5" opacity="0.70"/>
+          <circle cx="155" cy="48" r="2.8" opacity="0.65"/>
+          <circle cx="8"   cy="15" r="2.5" opacity="0.72"/>
+          <circle cx="28"  cy="165" r="2.5" opacity="0.65"/>
+        </svg>
+      </div>
+      <div class="fs-botanical fs-botanical--bl" aria-hidden="true">
+        <svg viewBox="0 0 170 210" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <path d="M3,3 C18,22 22,55 38,78 C52,98 48,132 42,162" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.55"/>
+          <path d="M3,3 C22,12 52,18 82,22 C112,26 142,34 162,48" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.45"/>
+          <path d="M22,52 C44,42 68,34 92,24" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.42"/>
+          <g transform="translate(42,105)">
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(0)"   opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(72)"  opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(144)" opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(216)" opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(288)" opacity="0.72"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(36)"  opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(108)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(180)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(252)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(324)" opacity="0.88"/>
+            <circle r="7"/>
+          </g>
+          <g transform="translate(112,30)">
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(0)"   opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(72)"  opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(144)" opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(216)" opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(288)" opacity="0.70"/>
+            <circle r="5.5" opacity="0.95"/>
+          </g>
+          <g transform="translate(18,32)">
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(0)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(90)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(180)"/>
+            <path d="M0,0 C-5,-3 -6,-12 0,-18 C6,-12 5,-3 0,0Z" transform="rotate(270)"/>
+            <circle r="3.5"/>
+          </g>
+          <g transform="translate(22,52) rotate(-52)">
+            <path d="M0,2 Q-11,-12 0,-36 Q11,-12 0,2Z" opacity="0.80"/>
+          </g>
+          <g transform="translate(52,40) rotate(-72)">
+            <path d="M0,2 Q-9,-10 0,-30 Q9,-10 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(82,25) rotate(-40)">
+            <path d="M0,2 Q-10,-14 0,-42 Q10,-14 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(16,112) rotate(28)">
+            <path d="M0,2 Q-12,-10 0,-32 Q12,-10 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(70,88) rotate(-18)">
+            <path d="M0,2 Q-10,-9 0,-30 Q10,-9 0,2Z" opacity="0.75"/>
+          </g>
+          <g transform="translate(24,148) rotate(18)">
+            <path d="M0,2 Q-10,-10 0,-32 Q10,-10 0,2Z" opacity="0.70"/>
+          </g>
+          <g transform="translate(58,140) rotate(-28)">
+            <path d="M0,2 Q-8,-8 0,-26 Q8,-8 0,2Z" opacity="0.70"/>
+          </g>
+          <circle cx="100" cy="64" r="3.5" opacity="0.78"/>
+          <circle cx="115" cy="70" r="2.5" opacity="0.70"/>
+          <circle cx="8"   cy="15" r="2.5" opacity="0.72"/>
+          <circle cx="28"  cy="165" r="2.5" opacity="0.65"/>
+          <circle cx="62"  cy="158" r="2"   opacity="0.60"/>
+        </svg>
+      </div>
+      <div class="fs-botanical fs-botanical--br" aria-hidden="true">
+        <svg viewBox="0 0 170 210" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <path d="M3,3 C18,22 22,55 38,78 C52,98 48,132 42,162" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.55"/>
+          <path d="M3,3 C22,12 52,18 82,22 C112,26 142,34 162,48" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.45"/>
+          <g transform="translate(42,105)">
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(0)"   opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(72)"  opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(144)" opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(216)" opacity="0.72"/>
+            <path d="M0,0 C-10,-5 -12,-22 0,-35 C12,-22 10,-5 0,0Z" transform="rotate(288)" opacity="0.72"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(36)"  opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(108)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(180)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(252)" opacity="0.88"/>
+            <path d="M0,0 C-7,-4 -8,-15 0,-24 C8,-15 7,-4 0,0Z"    transform="rotate(324)" opacity="0.88"/>
+            <circle r="7"/>
+          </g>
+          <g transform="translate(112,30)">
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(0)"   opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(72)"  opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(144)" opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(216)" opacity="0.70"/>
+            <path d="M0,0 C-8,-4 -9,-18 0,-28 C9,-18 8,-4 0,0Z" transform="rotate(288)" opacity="0.70"/>
+            <circle r="5.5" opacity="0.95"/>
+          </g>
+          <g transform="translate(16,112) rotate(28)">
+            <path d="M0,2 Q-12,-10 0,-32 Q12,-10 0,2Z" opacity="0.78"/>
+          </g>
+          <g transform="translate(70,88) rotate(-18)">
+            <path d="M0,2 Q-10,-9 0,-30 Q10,-9 0,2Z" opacity="0.75"/>
+          </g>
+          <g transform="translate(24,148) rotate(18)">
+            <path d="M0,2 Q-10,-10 0,-32 Q10,-10 0,2Z" opacity="0.70"/>
+          </g>
+          <g transform="translate(58,140) rotate(-28)">
+            <path d="M0,2 Q-8,-8 0,-26 Q8,-8 0,2Z" opacity="0.70"/>
+          </g>
+          <circle cx="100" cy="64" r="3.5" opacity="0.78"/>
+          <circle cx="28"  cy="165" r="2.5" opacity="0.65"/>
+          <circle cx="62"  cy="158" r="2"   opacity="0.60"/>
+        </svg>
+      </div>
+
+      <div class="fs-inv-inner">
+
+        <!-- Monogram / logo mark -->
+        <div class="fs-monogram" data-visora-field="monogram">
+          <div class="fs-monogram-circle">
+            <span class="fs-mono-amp">&</span>
+          </div>
+        </div>
+
+        <!-- Names -->
+        <div class="fs-names">
+          <h1 class="fs-bride" data-visora-field="bride-name">AYŞE</h1>
+          <div class="fs-amp-divider">
+            <span class="fs-amp-line"></span>
+            <span class="fs-amp-symbol">and</span>
+            <span class="fs-amp-line"></span>
+          </div>
+          <h1 class="fs-groom" data-visora-field="groom-name">MEHMET</h1>
+        </div>
+
+        <!-- Date -->
+        <div class="fs-date-block">
+          <p class="fs-date-text" data-visora-field="event-date">23 AĞUSTOS 2026</p>
+          <p class="fs-day-label" id="fsDayLabel">CUMARTESİ</p>
+        </div>
+
+        <!-- Family names -->
+        <div class="fs-families">
+          <div class="fs-family-col">
+            <p class="fs-family-label">DAMAT TARAFI</p>
+            <p class="fs-family-name" data-visora-field="groom-family">Kara Ailesi</p>
+          </div>
+          <div class="fs-family-divider" aria-hidden="true"></div>
+          <div class="fs-family-col">
+            <p class="fs-family-label">GELİN TARAFI</p>
+            <p class="fs-family-name" data-visora-field="bride-family">Yılmaz Ailesi</p>
+          </div>
+        </div>
+
+        <!-- Gold rule -->
+        <div class="fs-gold-rule" aria-hidden="true"></div>
+
+        <!-- Invite message -->
+        <p class="fs-message" data-visora-field="invite-message">
+          Bu mutlu günümüzde sizleri de aramızda görmekten mutluluk duyarız.
+        </p>
+
+        <!-- Gold rule -->
+        <div class="fs-gold-rule" aria-hidden="true"></div>
+
+        <!-- Countdown -->
+        <div class="fs-countdown" id="fsCountdown">
+          <div class="fs-cd-cell"><span class="fs-cd-num" id="cdDays">00</span><span class="fs-cd-lbl">GÜN</span></div>
+          <div class="fs-cd-sep">·</div>
+          <div class="fs-cd-cell"><span class="fs-cd-num" id="cdHours">00</span><span class="fs-cd-lbl">SAAT</span></div>
+          <div class="fs-cd-sep">·</div>
+          <div class="fs-cd-cell"><span class="fs-cd-num" id="cdMins">00</span><span class="fs-cd-lbl">DAKİKA</span></div>
+        </div>
+
+        <!-- Calendar button -->
+        <button class="fs-btn fs-btn--ghost calendar-btn"
+          data-title="Ayşe & Mehmet"
+          data-start="2026-08-23T18:00:00"
+          data-end="2026-08-23T23:00:00">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="14" rx="2"/><path d="M3 8h14M7 2v4M13 2v4"/></svg>
+          TAKVİME EKLE
+        </button>
+
+        <!-- Venue section -->
+        <div class="fs-venue-section" data-visora-section="venue">
+          <p class="fs-section-kicker">DÜĞÜN MEKANI</p>
+          <h2 class="fs-venue-name" data-visora-field="venue">FOUR SEASONS HOTEL</h2>
+          <p class="fs-venue-city" data-visora-field="venue-city">İstanbul</p>
+          <p class="fs-venue-address" data-visora-field="address"></p>
+          <a class="fs-btn fs-btn--solid" href="#" id="fsMapBtn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M10 2C7 2 4 4.7 4 8c0 4.7 6 10 6 10s6-5.3 6-10c0-3.3-2.7-6-6-6z"/><circle cx="10" cy="8" r="2.5"/></svg>
+            YOL TARİF AL
+          </a>
+        </div>
+
+        <!-- Film frame decoration at bottom -->
+        <div class="fs-film-deco" aria-hidden="true">
+          <div class="fs-film-deco-frame"></div>
+          <div class="fs-film-deco-frame"></div>
+          <div class="fs-film-deco-frame"></div>
+        </div>
+
+        <!-- Music player -->
+        <div class="fs-music-player" id="fsMusicPlayer">
+          <button id="fsMusicBtn" aria-label="Müzik">
+            <svg id="fsPlayIcon" viewBox="0 0 20 20" fill="currentColor"><path d="M6 4l12 6-12 6V4z"/></svg>
+            <svg id="fsPauseIcon" viewBox="0 0 20 20" fill="currentColor" style="display:none"><rect x="4" y="3" width="4" height="14" rx="1"/><rect x="12" y="3" width="4" height="14" rx="1"/></svg>
+          </button>
+        </div>
+
+      </div><!-- .fs-inv-inner -->
+
+      <!-- Contact: WhatsApp + Instagram — fs-inv-inner dışında, panel sonunda -->
+      <div class="fs-contact-section">
+        <span data-visora-field="whatsapp-number" style="display:none">905372395824</span>
+        <div class="fs-contact-row">
+          <a class="fs-contact-btn" id="fsWhatsappBtn" href="https://wa.me/905372395824" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21l1.65-4.95A8.5 8.5 0 1 1 12 20.5a8.45 8.45 0 0 1-4.05-1.03L3 21z"/>
+              <path d="M9.3 9.7c0-.4.32-.7.7-.7.14 0 .3.06.42.17l.7.98c.07.1.07.28-.06.4l-.3.3c.32.6.82 1.1 1.42 1.42l.3-.3c.12-.13.3-.13.4-.06l.98.7c.11.13.16.3.16.43 0 .36-.3.7-.7.7-1.7 0-4.2-2.5-4.2-4.2z"/>
+            </svg>
+            WHATSAPP
+          </a>
+          <a class="fs-contact-btn" id="fsInstaBtn" href="https://instagram.com/davetiye_visora" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+              <circle cx="12" cy="12" r="4.5"/>
+              <circle cx="17.8" cy="6.2" r="1.3" fill="currentColor" stroke="none"/>
+            </svg>
+            <span data-visora-field="instagram-handle">davetiye_visora</span>
+          </a>
+          <a class="fs-contact-btn" id="fsWebBtn" href="https://visoraapp.net" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9.5"/>
+              <line x1="2.5" y1="12" x2="21.5" y2="12"/>
+              <path d="M12 2.5a14.3 14.3 0 0 1 3.8 9.5 14.3 14.3 0 0 1-3.8 9.5 14.3 14.3 0 0 1-3.8-9.5A14.3 14.3 0 0 1 12 2.5z"/>
+            </svg>
+            visoraapp.net
+          </a>
+        </div>
+      </div>
+
+    </div><!-- .fs-invitation -->
+
+  </div><!-- .fs-layout -->
+
+  <audio id="fsAudio" loop></audio>
+  <script src="../../js/visora-api.js"></script>
+  <script src="../../visora-bridge.js"></script>
+  <script src="script.js"></script>
+  <style>html{scrollbar-width:none}::-webkit-scrollbar{display:none}</style>
+  <script>
+  if(window.self !== window.top){
+    document.querySelectorAll('audio').forEach(function(a){ a.muted = true; a.pause(); });
+    HTMLMediaElement.prototype.play = function(){ this.muted = true; return Promise.resolve(); };
+  }
+  window.addEventListener('message', function(e){
+    if(e.data === 'visora:autoscroll'){
+      window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+    }
+    if(e.data === 'visora:switch-tab'){
+      var tabs = document.querySelectorAll('.tab-btn');
+      if(tabs.length > 1) tabs[1].click();
+    }
+  });
+  </script>
+</body>
+</html>

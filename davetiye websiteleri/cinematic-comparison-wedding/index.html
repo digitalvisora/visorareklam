@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Timeless Flow — VISORA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="cc-layout">
+
+  <!-- ══════════════════════════════
+       LEFT — 3D Spiral Film Strip
+  ═════════════════════════════════ -->
+  <div class="cc-spiral-scene" id="ccSpiralScene" aria-hidden="true">
+
+    <div class="cc-spiral-world" id="ccSpiralWorld"></div>
+    <div class="cc-spiral-fade cc-spiral-fade--top"></div>
+    <div class="cc-spiral-fade cc-spiral-fade--bottom"></div>
+    <span class="cc-spiral-brand">VISORA · MEMORIES</span>
+  </div>
+
+  <!-- ══════════════════════════════
+       RIGHT — Invitation (dark)
+  ═════════════════════════════════ -->
+  <main class="cc-main" id="ccMain">
+
+    <!-- HERO comparison banner -->
+    <div class="cc-hero" id="ccHero" data-visora-section="hero">
+
+      <div class="cc-hero-bg" aria-hidden="true">
+        <div class="cc-hero-noise"></div>
+        <div class="cc-hero-vig"></div>
+      </div>
+
+      <!-- Names panel (left half) -->
+      <div class="cc-panel cc-panel--L" id="ccPanelL">
+
+        <!-- Botanical floral — sol şerit deseniyle görsel devamlılık -->
+        <div class="cc-hero-floral" aria-hidden="true">
+          <img src="../../img/model 2.png" alt="" draggable="false"/>
+        </div>
+
+        <div class="cc-panel-body">
+          <p class="cc-eyebrow" data-visora-field="subtitle">Düğün Davetiyesi</p>
+          <h1 class="cc-name-bride" data-visora-field="bride-name">TOPRAK</h1>
+          <div class="cc-amp-row">
+            <span class="cc-amp-rule"></span>
+            <span class="cc-amp-char">&amp;</span>
+            <span class="cc-amp-rule"></span>
+          </div>
+          <h1 class="cc-name-groom" data-visora-field="groom-name">DENİZ</h1>
+        </div>
+      </div>
+
+      <!-- Date panel (right half) -->
+      <div class="cc-panel cc-panel--R" id="ccPanelR">
+
+        <!-- Botanical floral — sağ kenarda -->
+        <div class="cc-hero-floral cc-hero-floral--right" aria-hidden="true">
+          <img src="../../img/model 2.png" alt="" draggable="false"/>
+        </div>
+
+        <div class="cc-panel-body">
+          <p class="cc-date-main" data-visora-field="event-date" id="ccDateMain">23 AĞUSTOS 2026</p>
+          <p class="cc-date-day"  id="ccDateDay">CUMARTESİ</p>
+          <p class="cc-date-time" data-visora-field="event-time" id="ccDateTime">SAAT 20.00</p>
+          <div class="cc-date-rule" aria-hidden="true"></div>
+          <div class="cc-cd-row" id="ccCountdown">
+            <div class="cc-cd-unit"><b id="cdDays">00</b><small>GÜN</small></div>
+            <span class="cc-cd-sep">·</span>
+            <div class="cc-cd-unit"><b id="cdHours">00</b><small>SAAT</small></div>
+            <span class="cc-cd-sep">·</span>
+            <div class="cc-cd-unit"><b id="cdMins">00</b><small>DAK</small></div>
+            <span class="cc-cd-sep">·</span>
+            <div class="cc-cd-unit"><b id="cdSecs">00</b><small>SAN</small></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider handle -->
+      <div class="cc-divider" id="ccDivider"
+           role="slider" tabindex="0"
+           aria-label="Slider" aria-valuenow="50" aria-valuemin="8" aria-valuemax="92">
+        <div class="cc-divider-line"></div>
+        <div class="cc-divider-knob" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+            <path d="M7 5l-4 6 4 6M15 5l4 6-4 6"/>
+          </svg>
+        </div>
+      </div>
+
+      <p class="cc-hero-hint" id="ccHeroHint" aria-live="polite">Kaydırın</p>
+
+    </div><!-- /.cc-hero -->
+
+    <!-- ══ Invitation body ══ -->
+    <div class="cc-body" id="ccBody" data-visora-section="invitation">
+
+      <div class="cc-orn" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <p class="cc-msg" data-visora-field="invite-message">
+        Bu mutlu günümüzde sizleri de aramızda görmekten mutluluk duyarız.
+      </p>
+
+      <!-- Families -->
+      <div class="cc-families" data-visora-section="families">
+        <div class="cc-fam">
+          <p class="cc-fam-role">GELİN AİLESİ</p>
+          <p class="cc-fam-name" data-visora-field="bride-family">Yılmaz Ailesi</p>
+        </div>
+        <div class="cc-fam-sep" aria-hidden="true"></div>
+        <div class="cc-fam">
+          <p class="cc-fam-role">DAMAT AİLESİ</p>
+          <p class="cc-fam-name" data-visora-field="groom-family">Kara Ailesi</p>
+        </div>
+      </div>
+
+      <div class="cc-orn" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <!-- Venue -->
+      <section class="cc-sec" data-visora-section="venue">
+        <p class="cc-kicker">DÜĞÜN MEKANI</p>
+        <h2 class="cc-venue-name" data-visora-field="venue">GRAND HOTEL İSTANBUL</h2>
+        <p class="cc-venue-city"  data-visora-field="venue-city">İstanbul</p>
+        <p class="cc-venue-addr"  data-visora-field="address"></p>
+        <div class="cc-btn-row">
+          <a class="cc-btn" href="#" id="ccMapBtn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 2C6.2 2 4 4.2 4 7c0 4 5 9 5 9s5-5 5-9c0-2.8-2.2-5-5-5z"/><circle cx="9" cy="7" r="2.2"/></svg>
+            Yol Tarif Al
+          </a>
+          <button class="cc-btn cc-btn--alt calendar-btn"
+            data-title="Toprak &amp; Deniz"
+            data-start="2026-08-23T20:00:00"
+            data-end="2026-08-24T00:00:00">
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3" width="14" height="13" rx="2"/><path d="M2 7h14M6 1v4M12 1v4"/></svg>
+            Takvime Ekle
+          </button>
+        </div>
+      </section>
+
+      <div class="cc-orn" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <!-- Program -->
+      <section class="cc-sec" id="ccProgram" data-visora-section="timeline">
+        <p class="cc-kicker">PROGRAM</p>
+        <h2 class="cc-sec-title">Düğün Akışı</h2>
+        <div class="cc-tl" id="ccTimeline">
+          <div class="cc-tl-row">
+            <img class="cc-tl-ico" src="images/icon-car.svg"   alt="" onerror="this.style.visibility='hidden'">
+            <time class="cc-tl-time" data-visora-field="tl-time-0">16:00</time>
+            <div class="cc-tl-text"><strong data-visora-field="tl-title-0">Konvoy</strong><p data-visora-field="tl-desc-0"></p></div>
+          </div>
+          <div class="cc-tl-row">
+            <img class="cc-tl-ico" src="images/icon-rings.svg" alt="" onerror="this.style.visibility='hidden'">
+            <time class="cc-tl-time" data-visora-field="tl-time-1">19:00</time>
+            <div class="cc-tl-text"><strong data-visora-field="tl-title-1">Nikâh &amp; Karşılama</strong><p data-visora-field="tl-desc-1"></p></div>
+          </div>
+          <div class="cc-tl-row">
+            <img class="cc-tl-ico" src="images/icon-dance.svg" alt="" onerror="this.style.visibility='hidden'">
+            <time class="cc-tl-time" data-visora-field="tl-time-2">20:00</time>
+            <div class="cc-tl-text"><strong data-visora-field="tl-title-2">İlk Dans &amp; Kutlama</strong><p data-visora-field="tl-desc-2"></p></div>
+          </div>
+          <div class="cc-tl-row">
+            <img class="cc-tl-ico" src="images/icon-cake.svg"  alt="" onerror="this.style.visibility='hidden'">
+            <time class="cc-tl-time" data-visora-field="tl-time-3">21:00</time>
+            <div class="cc-tl-text"><strong data-visora-field="tl-title-3">Pasta &amp; Takı</strong><p data-visora-field="tl-desc-3"></p></div>
+          </div>
+        </div>
+      </section>
+
+      <div style="display:none">
+        <div id="ccGalGrid"></div>
+        <span id="ccGalCount"></span>
+      </div>
+
+      <div class="cc-orn" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <!-- RSVP -->
+      <section class="cc-sec" data-visora-section="rsvp">
+        <p class="cc-kicker">KATILIM</p>
+        <h2 class="cc-sec-title">Aramızda Olacak mısınız?</h2>
+        <div class="cc-rsvp-row">
+          <button class="cc-rsvp-btn cc-rsvp-btn--yes" id="rsvpYes">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8l3.5 3.5L13 5"/></svg>
+            Katılıyorum
+          </button>
+          <button class="cc-rsvp-btn cc-rsvp-btn--no" id="rsvpNo">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+            Katılamıyorum
+          </button>
+        </div>
+        <p class="cc-rsvp-msg" id="rsvpMsg"></p>
+      </section>
+
+      <div class="cc-orn" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <!-- Footer -->
+      <footer class="cc-footer" data-visora-section="contact">
+        <div class="cc-footer-links">
+          <a class="cc-footer-link" href="https://wa.me/905372395824" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;color:#c8a96e"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+          <a class="cc-footer-link" href="https://instagram.com/davetiye_visora" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;color:#c8a96e"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+            @davetiye_visora
+          </a>
+          <a class="cc-footer-link" href="https://visoraapp.net" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;color:#c8a96e"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a13 13 0 0 1 3.6 9 13 13 0 0 1-3.6 9 13 13 0 0 1-3.6-9A13 13 0 0 1 12 3z"/></svg>
+            visoraapp.net
+          </a>
+        </div>
+        <p class="cc-footer-brand">VISORA · Premium Dijital Davetiye</p>
+      </footer>
+
+    </div><!-- /.cc-body -->
+  </main>
+</div><!-- /.cc-layout -->
+
+<!-- Floating music FAB -->
+<div class="cc-fab" id="ccFab">
+  <button id="ccMusicBtn" aria-label="Müzik">
+    <svg id="ccPlayIco"  viewBox="0 0 18 18" fill="currentColor"><path d="M5 3l12 6-12 6V3z"/></svg>
+    <svg id="ccPauseIco" viewBox="0 0 18 18" fill="currentColor" style="display:none"><rect x="3" y="2" width="4" height="14" rx="1"/><rect x="11" y="2" width="4" height="14" rx="1"/></svg>
+  </button>
+</div>
+
+<audio id="ccAudio" loop></audio>
+<script src="../../js/visora-api.js"></script>
+<script src="../../visora-bridge.js"></script>
+<script src="script.js"></script>
+<style>html{scrollbar-width:none}::-webkit-scrollbar{display:none}</style>
+<script>
+if(window.self !== window.top){
+  document.querySelectorAll('audio').forEach(function(a){ a.muted = true; a.pause(); });
+  HTMLMediaElement.prototype.play = function(){ this.muted = true; return Promise.resolve(); };
+}
+window.addEventListener('message', function(e){
+  if(e.data === 'visora:autoscroll'){
+    window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+  }
+  if(e.data === 'visora:switch-tab'){
+    var tabs = document.querySelectorAll('.tab-btn');
+    if(tabs.length > 1) tabs[1].click();
+  }
+  if(e.data === 'visora:swipe-flow'){
+    var divider = document.getElementById('ccDivider');
+    var panelL  = document.getElementById('ccPanelL');
+    var panelR  = document.getElementById('ccPanelR');
+    if(!divider || !panelL || !panelR) return;
+    function setPct(p){
+      p = Math.max(8, Math.min(92, p));
+      divider.style.left = p + '%';
+      panelL.style.clipPath = 'inset(0 ' + (100 - p).toFixed(2) + '% 0 0)';
+      panelR.style.clipPath = 'inset(0 0 0 ' + p.toFixed(2) + '%)';
+    }
+    var keyframes = [
+      { t:0,    p:50 },
+      { t:1400, p:18 },
+      { t:2800, p:82 },
+      { t:4000, p:50 }
+    ];
+    var start = performance.now();
+    function tick(){
+      var elapsed = performance.now() - start;
+      var total = keyframes[keyframes.length - 1].t;
+      if(elapsed >= total){ setPct(keyframes[keyframes.length - 1].p); return; }
+      var seg = keyframes[0];
+      for(var i = 0; i < keyframes.length - 1; i++){
+        if(elapsed >= keyframes[i].t && elapsed <= keyframes[i+1].t){
+          var a = keyframes[i], b = keyframes[i+1];
+          var f = (elapsed - a.t) / (b.t - a.t);
+          var ease = f < 0.5 ? 2*f*f : 1 - Math.pow(-2*f+2, 2)/2;
+          setPct(a.p + (b.p - a.p) * ease);
+          break;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }
+});
+</script>
+</body>
+</html>

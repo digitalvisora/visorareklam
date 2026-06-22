@@ -1,0 +1,835 @@
+/* ================================================================
+   VISORA — Sinematik Anılar (Film Strip)
+   Premium wedding invitation with vertical cinematic photo strip
+   ================================================================ */
+
+:root {
+  /* Film strip */
+  --fs-film-bg:    #080604;
+  --fs-film-edge:  #0d0b08;
+  --fs-film-perf:  rgba(255,255,255,0.055);
+  --fs-frame-border: rgba(198,167,125,0.18);
+
+  /* Invitation */
+  --fs-inv-bg:     #faf8f3;
+  --fs-inv-bg2:    #f5f1ea;
+  --fs-gold:       #c8a96e;
+  --fs-gold-dim:   rgba(200,169,110,0.25);
+  --fs-gold-line:  rgba(200,169,110,0.35);
+  --fs-text:       #1a1208;
+  --fs-text-dim:   rgba(26,18,8,0.55);
+  --fs-text-light: rgba(26,18,8,0.38);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--fs-film-bg);
+}
+
+/* ════════════════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════════════════ */
+.fs-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+/* ════════════════════════════════════════════════════
+   LEFT — FILM STRIP PANEL
+════════════════════════════════════════════════════ */
+.fs-strip-panel {
+  position: relative;
+  flex: 0 0 42%;
+  max-width: 42%;
+  height: 100%;
+  background: var(--fs-film-bg);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+/* Perforations column */
+.fs-perforations {
+  flex: 0 0 22px;
+  display: flex;
+  flex-direction: column;
+  background: var(--fs-film-edge);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.fs-perf-track {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px 0;
+  animation: perfScroll 4s linear infinite;
+}
+@keyframes perfScroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+/* Individual perforation holes */
+.fs-perf-hole {
+  width: 12px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--fs-film-perf);
+  border: 1px solid rgba(255,255,255,0.04);
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+/* Center strip viewport */
+.fs-strip-viewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* The scrolling track — twice the content for infinite loop */
+.fs-strip-track {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 6px;
+  will-change: transform;
+  animation: stripScroll 28s linear infinite;
+}
+.fs-strip-track:hover { animation-play-state: paused; }
+
+@keyframes stripScroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Individual photo frame */
+.fs-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--fs-frame-border);
+  background: #0e0c09;
+}
+
+.fs-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(0.08) contrast(1.04) brightness(0.96);
+  transition: transform 0.6s ease;
+}
+.fs-strip-track:hover .fs-frame img {
+  transform: scale(1.03);
+}
+
+/* Subtle film grain on each frame */
+.fs-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+/* Frame counter label */
+.fs-frame-num {
+  position: absolute;
+  bottom: 5px;
+  left: 7px;
+  font-family: 'Inter', monospace;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.20);
+  pointer-events: none;
+}
+
+/* Top/bottom vignette fades */
+.fs-vignette-top,
+.fs-vignette-bottom {
+  position: absolute;
+  left: 0; right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 3;
+}
+.fs-vignette-top {
+  top: 0;
+  background: linear-gradient(to bottom, var(--fs-film-bg) 0%, transparent 100%);
+}
+.fs-vignette-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, var(--fs-film-bg) 0%, transparent 100%);
+}
+
+/* Vertical VISORA label */
+.fs-strip-label {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  pointer-events: none;
+}
+.fs-strip-label span {
+  font-family: 'Inter', sans-serif;
+  font-size: 7px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: rgba(198,167,125,0.28);
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════════════════════════
+   RIGHT — INVITATION PANEL
+════════════════════════════════════════════════════ */
+.fs-invitation {
+  flex: 1;
+  background: var(--fs-inv-bg);
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.fs-invitation::-webkit-scrollbar { display: none; }
+
+/* Subtle grain overlay on invitation */
+.fs-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+}
+
+.fs-inv-inner {
+  position: relative;
+  z-index: 3;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 52px 36px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  min-height: 100%;
+}
+
+/* ── Monogram ── */
+.fs-monogram {
+  margin-bottom: 28px;
+}
+.fs-monogram-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--fs-gold-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fs-mono-amp {
+  font-family: 'Great Vibes', cursive;
+  font-size: 26px;
+  color: var(--fs-gold);
+  line-height: 1;
+}
+
+/* ── Names ── */
+.fs-names {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.fs-bride,
+.fs-groom {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--fs-text);
+  line-height: 1.1;
+  margin: 0;
+}
+.fs-amp-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+}
+.fs-amp-line {
+  flex: 1;
+  height: 1px;
+  background: var(--fs-gold-line);
+}
+.fs-amp-symbol {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--fs-gold);
+  letter-spacing: 0.08em;
+}
+
+/* ── Date ── */
+.fs-date-block {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.fs-date-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  color: var(--fs-text);
+  margin: 0 0 4px;
+}
+.fs-day-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--fs-text-light);
+  margin: 0;
+}
+
+/* ── Gold Rule ── */
+.fs-gold-rule {
+  width: 48px;
+  height: 1px;
+  background: var(--fs-gold-line);
+  margin: 0 auto 20px;
+}
+
+/* ── Message ── */
+.fs-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--fs-text-dim);
+  text-align: center;
+  line-height: 1.65;
+  margin: 0 0 20px;
+}
+
+/* ── Countdown ── */
+.fs-countdown {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.fs-cd-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.fs-cd-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--fs-text);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.fs-cd-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fs-text-light);
+}
+.fs-cd-sep {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--fs-gold);
+  opacity: 0.45;
+  margin-bottom: 16px;
+}
+
+/* ── Buttons ── */
+.fs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background 0.28s, color 0.28s, transform 0.22s;
+  margin-bottom: 16px;
+}
+.fs-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.fs-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--fs-gold-line);
+  color: var(--fs-text);
+}
+.fs-btn--ghost:hover {
+  background: var(--fs-gold-dim);
+  border-color: var(--fs-gold);
+  transform: translateY(-1px);
+}
+.fs-btn--solid {
+  background: var(--fs-gold-dim);
+  border: 1px solid var(--fs-gold-line);
+  color: var(--fs-text);
+}
+.fs-btn--solid:hover {
+  background: var(--fs-gold);
+  color: #faf8f3;
+  transform: translateY(-1px);
+}
+
+/* ── Venue ── */
+.fs-venue-section {
+  text-align: center;
+  width: 100%;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--fs-gold-line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4px;
+}
+.fs-section-kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.30em;
+  color: var(--fs-gold);
+  margin: 0 0 10px;
+}
+.fs-venue-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--fs-text);
+  margin: 0 0 4px;
+}
+.fs-venue-city {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--fs-text-dim);
+  margin: 0 0 6px;
+}
+.fs-venue-address {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--fs-text-light);
+  line-height: 1.55;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+/* ── Contact: WhatsApp + Instagram ── */
+.fs-contact-section {
+  padding: 28px 32px 48px;
+  border-top: 1px solid rgba(200,169,110,0.15);
+  text-align: center;
+  position: relative;
+  z-index: 3;
+}
+.fs-contact-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.fs-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: 1px solid rgba(200,169,110,0.32);
+  border-radius: 50px;
+  font: 500 10px/1 'Inter', sans-serif;
+  letter-spacing: 0.14em;
+  color: rgba(200,169,110,0.80);
+  text-decoration: none;
+  transition: border-color 0.22s, color 0.22s, background 0.22s;
+  text-transform: uppercase;
+}
+.fs-contact-btn:hover {
+  border-color: rgba(200,169,110,0.62);
+  color: var(--fs-gold);
+  background: rgba(200,169,110,0.06);
+}
+.fs-contact-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ── Film frame decoration ── */
+.fs-film-deco {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 32px;
+  opacity: 0.22;
+}
+.fs-film-deco-frame {
+  width: 28px;
+  height: 20px;
+  border: 1px solid var(--fs-gold);
+  border-radius: 1px;
+}
+
+/* ── Music player (fixed bottom-right) ── */
+.fs-music-player {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+}
+#fsMusicBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(26,18,8,0.72);
+  border: 1px solid var(--fs-gold-line);
+  color: var(--fs-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.28);
+  transition: transform 0.22s, background 0.22s;
+}
+#fsMusicBtn:hover { transform: scale(1.08); background: rgba(26,18,8,0.90); }
+#fsMusicBtn svg { width: 16px; height: 16px; }
+
+/* ════════════════════════════════════════════════════
+   RESPONSIVE — Mobile
+════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  html, body { overflow-y: auto; overflow-x: hidden; }
+
+  .fs-layout {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* Film strip becomes a horizontal band at top */
+  .fs-strip-panel {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    height: 200px;
+    flex-direction: row;
+  }
+
+  .fs-strip-viewport { overflow: hidden; }
+
+  .fs-strip-track {
+    flex-direction: row;
+    animation: stripScrollH 22s linear infinite;
+  }
+  @keyframes stripScrollH {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .fs-frame {
+    width: 130px;
+    height: 100%;
+    aspect-ratio: unset;
+    flex-shrink: 0;
+  }
+
+  .fs-perforations { flex: 0 0 18px; }
+
+  .fs-vignette-top, .fs-vignette-bottom { display: none; }
+
+  /* Left/right vignette for horizontal mode */
+  .fs-strip-panel::before,
+  .fs-strip-panel::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 60px;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .fs-strip-panel::before {
+    left: 22px;
+    background: linear-gradient(to right, var(--fs-film-bg), transparent);
+  }
+  .fs-strip-panel::after {
+    right: 22px;
+    background: linear-gradient(to left, var(--fs-film-bg), transparent);
+  }
+
+  .fs-strip-label { display: none; }
+
+  .fs-invitation {
+    overflow-y: visible;
+    overflow-x: hidden;
+  }
+
+  .fs-inv-inner { padding: 40px 24px 60px; }
+
+  .fs-bride, .fs-groom { font-size: 2rem; }
+  .fs-cd-num { font-size: 1.8rem; }
+  .fs-families { gap: 0; }
+  .fs-family-divider { height: 36px; }
+}
+
+/* ════════════════════════════════════════════════════
+   SOYUT ARKA PLAN — fotoğrafsız ortam ışığı animasyonu
+════════════════════════════════════════════════════ */
+.fs-invitation::before {
+  content: '';
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  background:
+    radial-gradient(ellipse 70% 75% at 18% 22%, rgba(200,169,110,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 60% at 82% 78%, rgba(185,118,68,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 50% at 50% 88%, rgba(220,195,138,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 35% at 12% 68%, rgba(178,138,88,0.05) 0%, transparent 45%);
+  animation: fsAmbient 22s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes fsAmbient {
+  0%   { transform: translate(0%,   0%)   scale(1);    opacity: 1;    }
+  20%  { transform: translate(-2%,  1.5%) scale(1.04); opacity: 0.88; }
+  40%  { transform: translate(1.5%,-1%)   scale(1.02); opacity: 0.96; }
+  60%  { transform: translate(-1%,  2.5%) scale(1.06); opacity: 0.82; }
+  80%  { transform: translate(2%, -0.5%)  scale(1.03); opacity: 0.92; }
+  100% { transform: translate(-1.5%, 2%)  scale(1);    opacity: 0.86; }
+}
+
+/* ════════════════════════════════════════════════════
+   KULLANICI FOTOĞRAFI ARKA PLAN SLAYTİ
+════════════════════════════════════════════════════ */
+.fs-bg-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fs-bg-photo {
+  position: absolute;
+  inset: -32px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px) brightness(0.40) saturate(0.45);
+  opacity: 0;
+  transition: opacity 2.5s ease-in-out;
+  will-change: opacity;
+}
+.fs-bg-photo.visible { opacity: 0.42; }
+
+/* ════════════════════════════════════════════════════
+   AİLE İSİMLERİ
+════════════════════════════════════════════════════ */
+.fs-families {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 20px;
+}
+.fs-family-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0 14px;
+}
+.fs-family-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--fs-gold);
+  text-transform: uppercase;
+  margin: 0;
+}
+.fs-family-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  color: var(--fs-text);
+  text-align: center;
+  margin: 0;
+  line-height: 1.3;
+}
+.fs-family-divider {
+  width: 1px;
+  height: 48px;
+  background: var(--fs-gold-line);
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════════
+   SPİRAL FİLM ŞERİDİ ARKA PLAN
+════════════════════════════════════════════════════ */
+.fs-spiral-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fs-spiral-rail {
+  position: absolute;
+  width: 82px;
+  top: -20%;
+  height: 220%;
+  overflow: hidden;
+}
+
+.fs-spiral-rail--left {
+  left: -6px;
+  transform: rotate(-6deg);
+  transform-origin: top center;
+}
+
+.fs-spiral-rail--right {
+  right: -6px;
+  transform: rotate(6deg);
+  transform-origin: top center;
+}
+
+/* Thin dark film-edge bars */
+.fs-spiral-rail::before,
+.fs-spiral-rail::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 5px;
+  background: rgba(8,6,4,0.80);
+  z-index: 2;
+  pointer-events: none;
+}
+.fs-spiral-rail::before { left: 0; }
+.fs-spiral-rail::after  { right: 0; }
+
+.fs-spiral-track {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 6px 5px;
+  animation: spiralDown 22s linear infinite;
+}
+
+.fs-spiral-rail--right .fs-spiral-track {
+  animation-name: spiralUp;
+}
+
+@keyframes spiralDown {
+  from { transform: translateY(0);    }
+  to   { transform: translateY(-50%); }
+}
+@keyframes spiralUp {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0);    }
+}
+
+.fs-spiral-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(12,8,4,0.35);
+  border: 1px solid rgba(200,169,110,0.12);
+}
+
+.fs-spiral-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  filter: sepia(0.20) brightness(0.52) saturate(0.55) contrast(0.92);
+  opacity: 0.48;
+}
+
+@media (max-width: 640px) {
+  .fs-spiral-rail { width: 66px; }
+  .fs-spiral-rail--left  { left:  -4px; }
+  .fs-spiral-rail--right { right: -4px; }
+}
+
+/* ════════════════════════════════════════════════════
+   BOTANICAL CORNER DECORATIONS
+════════════════════════════════════════════════════ */
+.fs-botanical {
+  position: absolute;
+  width: 170px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.30;
+  color: #c8a96e;
+  overflow: visible;
+}
+.fs-botanical svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.fs-botanical--tl {
+  top: 0;
+  left: 0;
+}
+.fs-botanical--tr {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+.fs-botanical--bl {
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1);
+}
+.fs-botanical--br {
+  bottom: 0;
+  right: 0;
+  transform: scale(-1, -1);
+}
+
+@media (max-width: 640px) {
+  .fs-botanical { width: 130px; opacity: 0.16; }
+}
