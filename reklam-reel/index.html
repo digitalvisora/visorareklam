@@ -137,32 +137,6 @@
   #preloadPool{ position:fixed; left:-9999px; top:0; width:390px; height:844px; opacity:0.01; pointer-events:none; }
   #preloadPool iframe{ width:390px; height:844px; border:0; }
 
-  /* ===== Montaj sahnesi: hızlı kesitler arası beyaz flaş geçişi — SADECE mockup ekranı içinde ===== */
-  .device{ overflow:hidden; }
-  .montage-flash{
-    position:absolute; inset:14px; z-index:6; border-radius:34px;
-    background:#fff; opacity:0; pointer-events:none;
-  }
-  .montage-flash.fire{ animation:flashPop 0.16s ease-out; }
-  @keyframes flashPop{
-    0%{ opacity:0; }
-    25%{ opacity:0.95; }
-    100%{ opacity:0; }
-  }
-  .montage-cut-label{
-    position:absolute; bottom:7%; left:0; right:0; z-index:21;
-    text-align:center;
-    font-family:'Playfair Display', serif; font-style:italic; font-weight:500;
-    font-size:42px; color:#fff;
-    text-shadow:0 2px 18px rgba(0,0,0,0.8);
-    opacity:0;
-    transition:opacity 0.2s ease;
-  }
-  .montage-cut-label.show{ opacity:1; }
-  .montage-counter{
-    position:absolute; top:6%; left:0; right:0; z-index:21; text-align:center;
-    font-size:14px; letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.55);
-  }
 
   .label-wrap{
     position:absolute; bottom:7%; left:0; right:0;
@@ -284,18 +258,6 @@ const slides = [
     narration:[
       { l:'tr', t:'Düğün ve kına, aynı davetiyede iki ayrı sekmede.' },
     ]},
-  { type:'montage', tag:'Her Detay Düşünüldü', holdMs:780, slideMs:5800,
-    narration:[
-      { l:'tr', t:'Kına programından ankete, anı bırakmadan film şeridine — her detay özenle tasarlandı.' },
-    ],
-    shots:[
-      { src:'../davetiye websiteleri/DÜĞÜN-KINA WEBSİTE/index.html',  tab:'henna', selector:'[data-visora-section="henna-timeline"]', label:'Kına Programı' },
-      { src:'../davetiye websiteleri/bride-groom party/index.html',   tab:'groom', selector:'.survey-form',                              label:'Anket' },
-      { src:'../davetiye websiteleri/bride-groom party/index.html',   tab:null,    selector:'.memory-section',                            label:'Anı Bırak' },
-      { src:'../davetiye websiteleri/film-strip/index.html',          tab:null,    selector:'#stripPanel',                                label:'Film Şeridi' },
-      { src:'../davetiye websiteleri/wedding/index.html',             tab:null,    selector:'[data-visora-section="gallery"]',            label:'Kaydırmalı Galeri' },
-      { src:'../davetiye websiteleri/bride-groom party/index.html',   tab:'bride', selector:'[data-visora-section="timeline-bride"]',      label:'Gelin & Damat Programı' },
-    ]},
   { type:'outro', narration:[
     { l:'tr', t:'Hayalinizdeki davetiyeyi şimdi VİSORA\'da yaratın.' },
   ]},
@@ -323,20 +285,6 @@ function buildSlideEl(s){
     el.innerHTML = `
       <img class="logo-img" src="../img/visora logo.png" alt="VISORA">
       <button class="cta-btn">visora.com</button>`;
-  } else if(s.type === 'montage'){
-    el.innerHTML = `
-      <div class="montage-counter"></div>
-      <div class="device-wrap">
-        <div class="device">
-          <div class="notch"></div>
-          <div class="screen"><div class="loading-spin"></div></div>
-          <div class="montage-flash"></div>
-        </div>
-      </div>
-      <div class="montage-cut-label"></div>
-      <div class="label-wrap">
-        <div class="label-tag">${s.tag}</div>
-      </div>`;
   } else {
     let hint = 'Davetiyeyi Kaydırın';
     if(s.seq === TAB_SWITCH_SEQ)  hint = 'Sekme Değişimini İzleyin';
@@ -428,86 +376,6 @@ function speak(segments){
   });
 }
 
-// ===== Montaj sahnesi: flash geçişli hızlı detay kesitleri =====
-// Aynı davetiyeden ardışık kareler geldiğinde iframe'i yeniden yüklemeden
-// sadece sekme/scroll komutu gönderir — farklı davetiyeye geçişte taze iframe açar
-// (bu noktada zaten tur sırasında bir kere yüklendiği için tarayıcı önbelleğinden hızlı gelir).
-function playMontage(el, s){
-  const device   = el.querySelector('.device');
-  const screen   = el.querySelector('.screen');
-  const flash    = el.querySelector('.montage-flash');
-  const labelEl  = el.querySelector('.montage-cut-label');
-  const counterEl = el.querySelector('.montage-counter');
-  const shots = s.shots;
-  const hold = s.holdMs || 750;
-  let curIframe = null, curSrc = null;
-
-  // Davetiye sekme/scroll konuma getirilene kadar tamamen gizli kalır (opacity:0).
-  // Doğru kareye oturduktan SONRA flaşla birlikte aniden belirir — sanki fotoğraf
-  // zaten hazır elindeymiş gibi; sayfanın kayarak/açılarak geldiği hiç görünmez.
-  function fireCut(shot){
-    flash.classList.remove('fire');
-    void flash.offsetWidth; // animasyonu yeniden başlatmak için reflow
-    flash.classList.add('fire');
-    labelEl.textContent = shot.label;
-    labelEl.classList.add('show');
-    device.classList.add('is-loaded');
-  }
-
-  function applyAndReveal(ifr, shot){
-    const reveal = () => {
-      actionTimers.push(setTimeout(() => {
-        ifr.style.opacity = '1';
-        fireCut(shot);
-      }, shot.selector ? 70 : 20));
-    };
-    if(shot.selector){
-      try{ ifr.contentWindow.postMessage('visora:scroll-to::' + shot.selector, '*'); }catch(err){}
-    }
-    reveal();
-  }
-
-  function showShot(k){
-    if(k >= shots.length) return;
-    const shot = shots[k];
-    counterEl.textContent = (k + 1) + ' / ' + shots.length;
-
-    if(curSrc !== shot.src){
-      curSrc = shot.src;
-      device.classList.remove('is-loaded');
-      const ifr = document.createElement('iframe');
-      ifr.style.opacity = '0';
-      ifr.addEventListener('load', () => {
-        if(shot.tab){
-          try{ ifr.contentWindow.postMessage('visora:show-tab::' + shot.tab, '*'); }catch(err){}
-          actionTimers.push(setTimeout(() => applyAndReveal(ifr, shot), 180));
-        } else {
-          applyAndReveal(ifr, shot);
-        }
-      }, { once:true });
-      ifr.src = shot.src;
-      if(curIframe) curIframe.remove(); // flash öğesi .screen dışında olduğu için silinmiyor
-      screen.appendChild(ifr);
-      curIframe = ifr;
-    } else {
-      curIframe.style.opacity = '0';
-      if(shot.tab){
-        try{ curIframe.contentWindow.postMessage('visora:show-tab::' + shot.tab, '*'); }catch(err){}
-        actionTimers.push(setTimeout(() => applyAndReveal(curIframe, shot), 180));
-      } else {
-        applyAndReveal(curIframe, shot);
-      }
-    }
-
-    actionTimers.push(setTimeout(() => {
-      labelEl.classList.remove('show');
-      showShot(k + 1);
-    }, hold));
-  }
-
-  showShot(0);
-}
-
 function goTo(i){
   if(i >= slides.length) i = 0;
   current = i;
@@ -541,8 +409,6 @@ function goTo(i){
         }, step.at));
       });
     }
-  } else if(s.type === 'montage'){
-    playMontage(el, s);
   }
 
   const dur = durationFor(s);
