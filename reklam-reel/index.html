@@ -388,6 +388,11 @@ function goTo(i){
 
   actionTimers.forEach(clearTimeout);
   actionTimers = [];
+  // İki sahne ileriye kadar önden yükle — sahne tipi (intro/outro dahil) ne olursa olsun
+  // her zaman çalışır, böylece intro'dan sonraki ilk davetiye de baştan beri indirilir.
+  preloadSlide((i + 1) % slides.length);
+  preloadSlide((i + 2) % slides.length);
+
   if(s.type === 'invite'){
     const device = el.querySelector('.device');
     const screen = el.querySelector('.screen');
@@ -398,9 +403,6 @@ function goTo(i){
       iframe.addEventListener('load', () => device.classList.add('is-loaded'), { once:true });
     }
     screen.appendChild(iframe);
-    // İki sahne ileriye kadar önden yükle — ağır davetiyelerde tek sahnelik pencere yetmiyordu
-    preloadSlide((i + 1) % slides.length);
-    preloadSlide((i + 2) % slides.length);
 
     if(s.seq){
       s.seq.forEach(step => {
@@ -448,6 +450,7 @@ bgm.volume = 0.16; // narration'ın üstüne binmeyecek kadar kısık arka plan 
 document.getElementById('startBtn').addEventListener('click', () => {
   const gate = document.getElementById('startGate');
   gate.querySelector('#startBtn').remove(); // buton kaybolsun, 1 saniye düz siyah ekran kalsın
+  preloadSlide(1); // ilk davetiyeyi siyah ekran beklerken bile indirmeye başla
   setTimeout(() => {
     gate.remove();
     bgm.play().catch(()=>{});
