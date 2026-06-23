@@ -1,0 +1,582 @@
+/* ============================================================
+   VISORA — collections-ui.css
+   Premium Portrait Card + Drag Slider System
+   Shared by: index.html & koleksiyonlar.html
+   ============================================================ */
+
+/* ── Section wrapper ── */
+.vs-cols-section {
+  background: var(--bg);
+  padding: 0 0 64px;
+}
+
+.vs-home-slider-row { margin-top: 44px; }
+
+/* ── Category row (collections page) ── */
+.vs-cat-row { padding-bottom: 56px; }
+
+.vs-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 48px;
+  margin-bottom: 22px;
+}
+
+.vs-cat-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.vs-cat-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.vs-cat-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Slider container ── */
+.vs-slider {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 8px 48px 20px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.vs-slider::-webkit-scrollbar { display: none; }
+.vs-slider.vs-dragging { cursor: grabbing; user-select: none; }
+
+/* ── Card ── */
+.vs-card {
+  flex-shrink: 0;
+  width: 240px;
+  aspect-ratio: 2 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+  cursor: pointer;
+  background: var(--bg-card);
+  transition:
+    width      0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform  0.52s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity    0.42s ease,
+    filter     0.42s ease;
+}
+
+/* ── Focus/expand effect: hovered card stands out, others dim ──
+   (uses opacity/filter only — changing width here would shift card
+   positions under the cursor and cause a hover-feedback jitter loop) */
+.vs-slider:has(.vs-card:hover) .vs-card:not(:hover) {
+  opacity: 0.65;
+  filter: brightness(0.8) blur(0.4px);
+}
+
+.vs-card:hover {
+  transform: translateY(-10px) scale(1.025);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(198, 167, 125, 0.22),
+    0 0 40px rgba(198, 167, 125, 0.07);
+  z-index: 2;
+}
+
+/* Gold top edge glow on hover */
+.vs-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 1.5px 0 rgba(198, 167, 125, 0.5);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.vs-card:hover::after { opacity: 1; }
+
+/* Cover image */
+.vs-card-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vs-card:hover .vs-card-img { transform: scale(1.07); }
+
+/* Gradient overlay */
+.vs-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0)     0%,
+    rgba(0, 0, 0, 0.04)  28%,
+    rgba(0, 0, 0, 0.56)  62%,
+    rgba(0, 0, 0, 0.93)  100%
+  );
+  transition: background 0.45s ease;
+}
+
+.vs-card:hover .vs-card-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0)     0%,
+    rgba(0, 0, 0, 0.09)  26%,
+    rgba(0, 0, 0, 0.68)  58%,
+    rgba(0, 0, 0, 0.97)  100%
+  );
+}
+
+/* Gold diagonal shine */
+.vs-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    148deg,
+    rgba(198, 167, 125, 0.12) 0%,
+    transparent               48%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.vs-card:hover .vs-card-shine { opacity: 1; }
+
+/* Badge */
+.vs-card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1C1208;
+  background: var(--gold);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+/* Card body */
+.vs-card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 22px 18px 18px;
+  z-index: 3;
+}
+
+.vs-card-cat {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+}
+
+.vs-card-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 0;
+  transition: margin-bottom 0.35s ease;
+}
+
+.vs-card:hover .vs-card-name { margin-bottom: 8px; }
+
+/* Description — hidden, revealed on hover */
+.vs-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.56);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-bottom: 0;
+  transition:
+    max-height    0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity       0.35s ease,
+    margin-bottom 0.35s ease;
+}
+
+.vs-card:hover .vs-card-desc {
+  max-height: 52px;
+  opacity: 1;
+  margin-bottom: 12px;
+}
+
+/* Action buttons — hidden, revealed on hover */
+.vs-card-actions {
+  display: flex;
+  gap: 7px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity   0.32s ease 0.07s,
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) 0.07s;
+}
+
+.vs-card:hover .vs-card-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vs-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 7px 13px;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.vs-btn-demo {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.vs-btn-demo:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.36);
+  color: #fff;
+}
+
+.vs-btn-create {
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: #0D0904;
+  font-weight: 700;
+}
+
+.vs-btn-create:hover {
+  background: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+
+/* ── CTA row ── */
+.vs-cta-row {
+  text-align: center;
+  padding: 40px 0 8px;
+}
+
+/* ── Empty state ── */
+.vs-empty {
+  text-align: center;
+  padding: 80px 0;
+}
+
+.vs-empty-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--text-tertiary);
+}
+
+/* ── Skeleton ── */
+.vs-skel {
+  flex-shrink: 0;
+  width: 240px;
+  aspect-ratio: 2 / 3;
+  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  animation: vsSkPulse 1.7s ease-in-out infinite;
+}
+
+@keyframes vsSkPulse {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.7; }
+}
+
+/* ======================== COLLECTIONS PAGE ======================== */
+
+.vs-cols-page {
+  padding: 48px 0 80px;
+  background: var(--bg-secondary);
+  min-height: 50vh;
+}
+
+/* ======================== RESPONSIVE ======================== */
+
+@media (max-width: 768px) {
+  .vs-slider    { padding: 6px 24px 14px; gap: 14px; cursor: default; }
+  .vs-cat-header { padding: 0 24px; }
+  .vs-card { width: 200px; }
+  .vs-card-name { font-size: 19px; }
+
+  /* No CSS hover on mobile — use .vs-active class toggled by JS */
+  .vs-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .vs-card:hover::after { opacity: 0; }
+  .vs-card:hover .vs-card-img { transform: none; }
+  .vs-card:hover .vs-card-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.04) 28%, rgba(0,0,0,0.56) 62%, rgba(0,0,0,0.93) 100%);
+  }
+  .vs-card:hover .vs-card-shine { opacity: 0; }
+  .vs-card:hover .vs-card-name { margin-bottom: 0; }
+  .vs-card:hover .vs-card-desc { max-height: 0; opacity: 0; margin-bottom: 0; }
+  .vs-card:hover .vs-card-actions { opacity: 0; transform: translateY(8px); }
+
+  /* Mobile focus effect — opacity/filter only, no width change (see desktop note above) */
+  .vs-slider:has(.vs-card.vs-active) .vs-card:not(.vs-active) {
+    opacity: 0.65;
+    filter: brightness(0.8);
+  }
+
+  .vs-card.vs-active {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.52);
+    z-index: 2;
+  }
+  .vs-card.vs-active::after          { opacity: 1; }
+  .vs-card.vs-active .vs-card-img    { transform: scale(1.06); }
+  .vs-card.vs-active .vs-card-shine  { opacity: 1; }
+  .vs-card.vs-active .vs-card-name   { margin-bottom: 8px; }
+  .vs-card.vs-active .vs-card-desc   { max-height: 52px; opacity: 1; margin-bottom: 12px; }
+  .vs-card.vs-active .vs-card-actions{ opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .vs-slider    { padding: 6px 16px 12px; gap: 12px; }
+  .vs-card { width: 175px; }
+  .vs-cat-header { padding: 0 16px; }
+  .vs-cat-name { font-size: 17px; }
+  .vs-home-slider-row { margin-top: 32px; }
+}
+
+/* ======================== INVITATION PREVIEW OVERLAY ======================== */
+
+.vs-inv-preview {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 108px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 14px 16px;
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* ── Shared label ── */
+.vs-inv-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(198, 167, 125, 0.85);
+  margin-bottom: 7px;
+}
+
+/* ── SVG ornament (cinematic) ── */
+.vs-inv-ornament {
+  width: 96px;
+  height: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* ── Names row ── */
+.vs-inv-names {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 7px;
+}
+
+/* ── Cinematic theme ── */
+.vs-inv--cinematic .vs-inv-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+.vs-inv--cinematic .vs-inv-amp {
+  font-family: 'Great Vibes', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(198, 167, 125, 0.85);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.vs-inv--cinematic .vs-inv-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Kına-split theme ── */
+.vs-inv--kina-split .vs-inv-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+.vs-inv--kina-split .vs-inv-amp {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: rgba(198, 167, 125, 0.9);
+}
+
+.vs-inv-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+}
+
+.vs-inv-date-label {
+  display: inline;
+  font-family: 'Inter', sans-serif;
+  font-size: 6.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(198, 167, 125, 0.7);
+  margin-right: 5px;
+}
+
+.vs-inv-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.58);
+  text-transform: uppercase;
+}
+
+.vs-inv-date--henna {
+  color: rgba(255, 190, 130, 0.65);
+}
+
+/* ── Neon party theme ── */
+.vs-inv--neon-party {
+  bottom: 92px;
+}
+
+.vs-inv-neon-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow:
+    0 0 16px rgba(255, 50, 150, 0.95),
+    0 0 40px rgba(255, 50, 150, 0.55),
+    0 0 80px rgba(255, 50, 150, 0.28);
+  margin-bottom: 5px;
+}
+
+.vs-inv-name--neon {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.vs-inv--neon-party .vs-inv-date {
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  color: rgba(255, 185, 215, 0.65);
+  text-transform: uppercase;
+}
+
+/* ── Timeless Romance theme ── */
+.vs-inv--timeless .vs-inv-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  color: #f5ede0;
+  line-height: 1;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+}
+
+.vs-inv--timeless .vs-inv-amp {
+  font-family: 'Great Vibes', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(198, 167, 125, 0.9);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.vs-inv--timeless .vs-inv-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 237, 224, 0.52);
+}
+
+.vs-inv--timeless .vs-inv-label {
+  color: rgba(198, 167, 125, 0.8);
+  letter-spacing: 0.3em;
+}

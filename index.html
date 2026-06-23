@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VISORA — Düğün, nişan ve özel günleriniz için premium dijital davetiye deneyimi.">
+  <title>VISORA — Premium Dijital Davetiye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Great+Vibes&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/collections-ui.css">
+  <link rel="stylesheet" href="css/auth-modal.css">
+</head>
+<body>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <span class="logo-mark">VS</span>
+        <span class="logo-text">VISORA</span>
+      </a>
+      <nav class="nav-center-links" aria-label="Ana navigasyon">
+        <a href="index.html"          class="nav-center-link active" data-i18n="nav.home">Ana Sayfa</a>
+        <a href="koleksiyonlar.html"  class="nav-center-link" data-i18n="nav.collections">Koleksiyonlar</a>
+        <a href="#nasil-calisir"      class="nav-center-link" data-i18n="nav.how">Nasıl Çalışır</a>
+        <a href="#hakkimizda"         class="nav-center-link" data-i18n="nav.about">Hakkımızda</a>
+        <a href="iletisim.html"       class="nav-center-link" data-i18n="nav.contact">İletişim</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="nav-btn theme-toggle" id="themeToggle"
+                data-i18n-aria="aria.themeToggle" aria-label="Tema değiştir">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="nav-btn lang-btn" id="langSwitch"
+                data-i18n-aria="aria.langSwitch" aria-label="Dil değiştir">
+          <span class="lang-active">TR</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-other">EN</span>
+        </button>
+        <div class="nav-search-wrap">
+          <input type="text" class="nav-search-input"
+                 data-i18n-placeholder="nav.search"
+                 data-i18n-aria="aria.searchLabel"
+                 placeholder="Koleksiyon ara..."
+                 aria-label="Koleksiyon ara">
+          <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <button class="nav-btn hamburger" id="menuToggle"
+                data-i18n-aria="aria.menuOpen" aria-label="Menüyü aç">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================== MOBILE MENU ======================== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <button class="menu-close" id="menuClose"
+            data-i18n-aria="aria.menuClose" aria-label="Menüyü kapat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <nav class="menu-nav">
+      <a href="index.html"               class="menu-link" data-i18n="menu.home">Ana Sayfa</a>
+      <a href="koleksiyonlar.html"        class="menu-link" data-i18n="menu.collections">Koleksiyonlar</a>
+      <a href="#nasil-calisir"            class="menu-link" data-i18n="menu.how">Nasıl Çalışır</a>
+      <a href="#hakkimizda"              class="menu-link" data-i18n="menu.about">Hakkımızda</a>
+      <a href="iletisim.html"            class="menu-link" data-i18n="menu.contact">İletişim</a>
+      <a href="#sss"                     class="menu-link" data-i18n="menu.faq">Sıkça Sorulan Sorular</a>
+      <a href="#"                        class="menu-link" data-i18n="menu.campaigns">Kampanyalarımız</a>
+    </nav>
+    <div class="menu-bottom">
+      <span class="menu-logo-mark">VS</span>
+    </div>
+  </aside>
+
+  <!-- ======================== HERO ======================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img class="hero-img hero-img--dark"  src="img/karanlikmod-gece.png"   alt="VISORA — Gece Düğün Atmosferi" loading="eager">
+      <img class="hero-img hero-img--light" src="img/aydinlikmod-gunduz.png" alt="VISORA — Gündüz Düğün Atmosferi" loading="eager">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-overlay-bottom"></div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="hero-label reveal" data-i18n="hero.label">Premium Dijital Davetiye</span>
+        <h1 class="hero-title reveal">
+          <span data-i18n="hero.title.line1">Düğününüzü Bir</span><br>
+          <em class="gold-text" data-i18n="hero.title.accent">Sanat Eserine</em><br>
+          <span data-i18n="hero.title.line2">Dönüştürün</span>
+        </h1>
+        <p class="hero-subtitle reveal" data-i18n="hero.subtitle">
+          Modern, zarif ve etkileyici dijital davetiyelerle en özel anlarınızı paylaşın.
+        </p>
+        <a href="#koleksiyonlar" class="btn btn-primary reveal">
+          <span data-i18n="hero.cta">Koleksiyonları Keşfet</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator">
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+      <span class="scroll-text" data-i18n="hero.scroll">Keşfet</span>
+    </div>
+  </section>
+
+  <!-- ======================== COLLECTIONS ======================== -->
+  <section class="vs-cols-section" id="koleksiyonlar">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label" data-i18n="sec.collections.label">Koleksiyonlar</span>
+        <h2 class="section-title">
+          <span data-i18n="sec.collections.title.l1">Zarif Davetiye</span><br>
+          <span data-i18n="sec.collections.title.l2">Koleksiyonlarımız</span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Dynamic slider filled by collections-ui.js from VISORA_TEMPLATES -->
+    <div id="homeSliderMount" class="vs-home-slider-row" aria-live="polite">
+      <!-- Skeletons shown until JS loads -->
+      <div class="vs-slider" aria-hidden="true">
+        <div class="vs-skel"></div>
+        <div class="vs-skel"></div>
+        <div class="vs-skel"></div>
+        <div class="vs-skel"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="vs-cta-row reveal">
+        <a href="koleksiyonlar.html" class="btn btn-ghost" data-i18n="sec.collections.cta">Tüm Koleksiyonları Gör</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== ADVANTAGES ======================== -->
+  <section class="advantages-section" id="avantajlar">
+    <div class="container">
+      <div class="section-header section-header--center reveal">
+        <span class="section-label" data-i18n="sec.adv.label">Neden Dijital?</span>
+        <h2 class="section-title">
+          <span data-i18n="sec.adv.title.l1">Dijital Davetiyenin</span><br>
+          <span data-i18n="sec.adv.title.l2">Avantajları</span>
+        </h2>
+      </div>
+      <div class="advantages-grid">
+
+        <div class="advantage-card reveal">
+          <div class="adv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3 class="adv-title" data-i18n="adv.1.title">Hızlı ve Pratik</h3>
+          <p  class="adv-text"  data-i18n="adv.1.desc">Dakikalar içinde hazırlanan ve anında paylaşılabilen dijital davetiyeniz her zaman güncel kalır.</p>
+        </div>
+
+        <div class="advantage-card reveal">
+          <div class="adv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="adv-title" data-i18n="adv.2.title">Çevre Dostu</h3>
+          <p  class="adv-text"  data-i18n="adv.2.desc">Kağıt israfı olmadan özel gününüzü dijital bir şölenle kutlayın. Hem şık hem de sorumlu bir tercih.</p>
+        </div>
+
+        <div class="advantage-card reveal">
+          <div class="adv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+          </div>
+          <h3 class="adv-title" data-i18n="adv.3.title">Her An Yanınızda</h3>
+          <p  class="adv-text"  data-i18n="adv.3.desc">Misafirleriniz telefon, tablet veya bilgisayardan kolayca ulaşabilir. Kaybolma endişesi yok.</p>
+        </div>
+
+        <div class="advantage-card reveal">
+          <div class="adv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+            </svg>
+          </div>
+          <h3 class="adv-title" data-i18n="adv.4.title">Etkileşimli Deneyim</h3>
+          <p  class="adv-text"  data-i18n="adv.4.desc">Müzik, video, harita ve RSVP sistemiyle misafirlerinize unutulmaz bir davetiye deneyimi sunun.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== HOW IT WORKS ======================== -->
+  <section class="how-section" id="nasil-calisir">
+    <div class="container">
+      <div class="section-header section-header--center reveal">
+        <span class="section-label"   data-i18n="sec.how.label">Süreç</span>
+        <h2  class="section-title"    data-i18n="sec.how.title">Nasıl Çalışır?</h2>
+        <p   class="section-subtitle" data-i18n="sec.how.subtitle">Dört adımda hayalinizdeki dijital davetiyeye ulaşın.</p>
+      </div>
+      <div class="steps">
+
+        <div class="step reveal">
+          <div class="step-number">01</div>
+          <div class="step-rule"></div>
+          <h3 class="step-title" data-i18n="step.1.title">Koleksiyon Seçin</h3>
+          <p  class="step-text"  data-i18n="step.1.desc">Size en uygun tasarım koleksiyonunu seçin ve demo ile inceleyin.</p>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-number">02</div>
+          <div class="step-rule"></div>
+          <h3 class="step-title" data-i18n="step.2.title">Bilgileri Ekleyin</h3>
+          <p  class="step-text"  data-i18n="step.2.desc">Çift isimleri, tarih, mekan ve özel detaylarınızı kolayca girin.</p>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-number">03</div>
+          <div class="step-rule"></div>
+          <h3 class="step-title" data-i18n="step.3.title">Özelleştirin</h3>
+          <p  class="step-text"  data-i18n="step.3.desc">Müzik, galeri, RSVP ve daha fazlasını ekleyerek davetiyenizi kişiselleştirin.</p>
+        </div>
+
+        <div class="step reveal">
+          <div class="step-number">04</div>
+          <div class="step-rule"></div>
+          <h3 class="step-title" data-i18n="step.4.title">Siparişi Tamamlayın</h3>
+          <p  class="step-text"  data-i18n="step.4.desc">Ödemenizi tamamlayın ve davetiyenizi anında paylaşmaya başlayın.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== MEMORIES ======================== -->
+  <section class="memories-section">
+    <div class="memories-bg">
+      <img class="memories-img memories-img--light" src="img/aydinlik-mod-cift.png"  alt="VISORA — Mutlu Çift" loading="lazy">
+      <img class="memories-img memories-img--dark"  src="img/karanlik mod-cift.png" alt="VISORA — Gece Çift"   loading="lazy">
+    </div>
+    <div class="memories-overlay"></div>
+    <div class="container memories-content">
+      <span class="section-label section-label--light reveal" data-i18n="sec.memories.label">Özel Anlar</span>
+      <h2 class="memories-title reveal">
+        <span data-i18n="sec.memories.title.l1">Anılarınız Daima</span><br>
+        <span data-i18n="sec.memories.title.l2">Özel Kalsın</span>
+      </h2>
+      <p class="memories-text reveal" data-i18n="sec.memories.body">Her hikâye benzersizdir. Sizin hikayeniz de özel bir davetiyeyi hak ediyor.</p>
+      <div class="memories-btns reveal">
+        <a href="iletisim.html" class="btn btn-memories-primary" data-i18n="sec.memories.cta1">İletişime Geç</a>
+        <a href="koleksiyonlar.html" class="btn btn-memories-ghost"  data-i18n="sec.memories.cta2">Davetiyeni Oluştur</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FAQ ======================== -->
+  <section class="faq-section" id="sss">
+    <div class="container">
+      <div class="section-header section-header--center reveal">
+        <span class="section-label" data-i18n="sec.faq.label">SSS</span>
+        <h2 class="section-title">
+          <span data-i18n="sec.faq.title.l1">Sıkça Sorulan</span><br>
+          <span data-i18n="sec.faq.title.l2">Sorular</span>
+        </h2>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.1.q">Davetiye ne kadar sürede hazırlanır?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.1.a">Davetiyenizi oluşturduktan ve ödemenizi tamamladıktan sonra birkaç dakika içinde dijital davetiyeniz hazır hale gelir ve paylaşılabilir olur.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.2.q">Mobil uyumlu mu?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.2.a">Evet. Tüm VISORA davetiyeleri mobil, tablet ve masaüstü cihazlara tam uyumlu şekilde tasarlanmıştır. Misafirleriniz her cihazdan mükemmel bir deneyim yaşar.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.3.q">Müzik ekleyebilir miyim?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.3.a">Evet. Davetiyenize kendi seçtiğiniz bir müziği ekleyebilirsiniz. Misafirleriniz davetiyeyi açtığında otomatik olarak çalmaya başlar.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.4.q">QR kod eklenebilir mi?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.4.a">Evet. Her davetiyeye otomatik bir QR kod oluşturulur. Bu QR kodu basılı materyallere ekleyerek misafirlerinizin kolayca davetiyeye ulaşmasını sağlayabilirsiniz.</p></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.5.q">Sonradan düzenleme yapılabilir mi?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.5.a">Evet. Satın aldıktan sonra kullanıcı panelinizden davetiyenizi istediğiniz zaman güncelleyebilirsiniz. Değişiklikler anında tüm misafirlere yansır.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-mark">VS</span>
+            <span class="logo-text">VISORA</span>
+          </a>
+          <p class="footer-tagline" data-i18n="footer.tagline">Premium dijital davetiye deneyimi. Düğün, nişan ve özel günleriniz için zarif, sinematik çözümler.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <rect width="20" height="20" x="2" y="2" rx="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.col.collections">Koleksiyonlar</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-i18n="footer.link.wedding">Düğün Davetiyeleri</a></li>
+            <li><a href="#" data-i18n="footer.link.engagement">Nişan Davetiyeleri</a></li>
+            <li><a href="#" data-i18n="footer.link.henna">Kına Davetiyeleri</a></li>
+            <li><a href="#" data-i18n="footer.link.saveTheDate">Save the Date</a></li>
+            <li><a href="#" data-i18n="footer.link.brideGroom">Bride &amp; Groom Night</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.col.corporate">Kurumsal</h4>
+          <ul class="footer-links">
+            <li><a href="#hakkimizda" data-i18n="footer.link.about">Hakkımızda</a></li>
+            <li><a href="#nasil-calisir" data-i18n="footer.link.howItWorks">Nasıl Çalışır</a></li>
+            <li><a href="#" data-i18n="footer.link.campaigns">Kampanyalar</a></li>
+            <li><a href="#sss" data-i18n="footer.link.faq">SSS</a></li>
+            <li><a href="iletisim.html" data-i18n="footer.link.contact">İletişim</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.col.contact">İletişim</h4>
+          <ul class="footer-contact">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+              <a href="https://wa.me/905372395824" target="_blank" rel="noopener" data-i18n="footer.link.whatsapp">WhatsApp ile Ulaşın</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <rect width="20" height="20" x="2" y="2" rx="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+              <a href="https://instagram.com/davetiye_visora" target="_blank" rel="noopener" data-i18n="footer.link.instagram">@davetiye_visora</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy" data-i18n="footer.copy">© 2025 VISORA. Tüm hakları saklıdır.</p>
+        <div class="footer-legal">
+          <a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a>
+          <a href="mesafeli-satis-sozlesmesi.html" data-i18n="footer.terms">Kullanım Şartları</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== FLOATING BUTTONS ======================== -->
+  <div class="floating-btns">
+    <a href="https://instagram.com/davetiye_visora" target="_blank" rel="noopener" class="floating-btn floating-ig" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    </a>
+    <a href="https://wa.me/905372395824" target="_blank" rel="noopener" class="floating-btn floating-wa" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+    <a href="https://visoraapp.net" target="_blank" rel="noopener" class="floating-btn floating-web" aria-label="VISORA Web Sitesi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </a>
+  </div>
+
+  <script src="js/templates.js"></script>
+  <script src="js/collections-ui.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/visora-auth.js"></script>
+  <script src="js/security.js"></script>
+  <style>html{scrollbar-width:none}::-webkit-scrollbar{display:none}</style>
+  <script>
+  if(window.self !== window.top){
+    document.querySelectorAll('audio,video').forEach(function(a){ a.muted = true; a.pause(); a.removeAttribute('autoplay'); a.preload = 'none'; try{ a.src=''; a.load(); }catch(err){} });
+  }
+  window.addEventListener('message', function(e){
+    if(e.data === 'visora:autoscroll'){
+      window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+    }
+    if(typeof e.data === 'string' && e.data.indexOf('visora:scroll-to::') === 0){
+      var sel = e.data.slice('visora:scroll-to::'.length);
+      var target = document.querySelector(sel);
+      if(target) target.scrollIntoView({ block:'start', behavior:'smooth' });
+    }
+  });
+  </script>
+</body>
+</html>
