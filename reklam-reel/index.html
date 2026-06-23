@@ -335,6 +335,10 @@ function getOrCreateIframe(i){
   return ifr;
 }
 
+// Sayfa açılır açılmaz (kullanıcı "Reels'i Oynat"a basmadan önce dahi) ilk davetiyeyi
+// indirmeye başla — buton bekleme süresi de tamamen kazanç olsun.
+preloadSlide(1);
+
 // ===== Çift dilli sesli anlatım (Web Speech API) — OBS "Masaüstü Ses" kaynağı bunu otomatik kaydeder.
 // Her segment kendi dilinin native sesiyle okunur (tr parçaları Türkçe ses, en parçaları İngilizce ses).
 // Genç/enerjik bir kadın tonu için kadın seslere öncelik + hafif yüksek pitch/rate kullanılır.
