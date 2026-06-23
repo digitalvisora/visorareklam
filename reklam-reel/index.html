@@ -184,14 +184,9 @@
   #progress-wrap{ position:absolute; bottom:0; left:0; right:0; height:6px; background:rgba(255,255,255,0.08); z-index:60; }
   #progress-bar{ height:100%; width:0%; background:var(--gold); }
 
-  #skipHint{
-    position:fixed; top:18px; right:24px; z-index:200;
-    color:rgba(255,255,255,0.5); font-size:13px; letter-spacing:0.1em;
-  }
-
   #startGate{
     position:fixed; inset:0; z-index:300;
-    background:rgba(0,0,0,0.92);
+    background:#000;
     display:flex; align-items:center; justify-content:center;
   }
   #startBtn{
@@ -210,7 +205,6 @@
 </head>
 <body>
 
-<div id="skipHint">SPACE = duraklat / devam</div>
 <div id="startGate">
   <button id="startBtn">▶ Reels'i Oynat (sesli anlatımla)</button>
 </div>
@@ -566,9 +560,13 @@ document.addEventListener('keydown', (e) => {
 const bgm = document.getElementById('bgm');
 bgm.volume = 0.16; // narration'ın üstüne binmeyecek kadar kısık arka plan müziği
 document.getElementById('startBtn').addEventListener('click', () => {
-  document.getElementById('startGate').remove();
-  bgm.play().catch(()=>{});
-  goTo(0);
+  const gate = document.getElementById('startGate');
+  gate.querySelector('#startBtn').remove(); // buton kaybolsun, 1 saniye düz siyah ekran kalsın
+  setTimeout(() => {
+    gate.remove();
+    bgm.play().catch(()=>{});
+    goTo(0);
+  }, 1000);
 });
 </script>
 </body>
