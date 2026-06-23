@@ -308,7 +308,7 @@
 <style>html{scrollbar-width:none}::-webkit-scrollbar{display:none}</style>
 <script>
 if(window.self !== window.top){
-  document.querySelectorAll('audio').forEach(function(a){ a.muted = true; a.pause(); });
+  document.querySelectorAll('audio,video').forEach(function(a){ a.muted = true; a.pause(); a.removeAttribute('autoplay'); a.preload = 'none'; try{ a.src=''; a.load(); }catch(err){} });
   HTMLMediaElement.prototype.play = function(){ this.muted = true; return Promise.resolve(); };
 }
 window.addEventListener('message', function(e){

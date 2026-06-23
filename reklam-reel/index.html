@@ -530,7 +530,9 @@ function goTo(i){
       iframe.addEventListener('load', () => device.classList.add('is-loaded'), { once:true });
     }
     screen.appendChild(iframe);
-    preloadSlide((i + 1) % slides.length); // bir sonraki davetiyeyi şimdiden indirmeye başla
+    // İki sahne ileriye kadar önden yükle — ağır davetiyelerde tek sahnelik pencere yetmiyordu
+    preloadSlide((i + 1) % slides.length);
+    preloadSlide((i + 2) % slides.length);
 
     if(s.seq){
       s.seq.forEach(step => {
