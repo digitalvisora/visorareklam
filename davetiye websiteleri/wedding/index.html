@@ -315,6 +315,11 @@ window.addEventListener('message', function(e){
   if(e.data === 'visora:autoscroll'){
     window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
   }
+  if(typeof e.data === 'string' && e.data.indexOf('visora:scroll-to::') === 0){
+    var sel = e.data.slice('visora:scroll-to::'.length);
+    var target = document.querySelector(sel);
+    if(target) target.scrollIntoView({ block:'center', behavior:'auto' });
+  }
 });
 </script>
 </body>

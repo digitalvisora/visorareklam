@@ -177,6 +177,16 @@
       var tabs = document.querySelectorAll('.tab-btn');
       if(tabs.length > 1) tabs[1].click();
     }
+    if(typeof e.data === 'string' && e.data.indexOf('visora:show-tab::') === 0){
+      var tabVal = e.data.slice('visora:show-tab::'.length);
+      var tBtn = document.querySelector('.tab-btn[data-tab="' + tabVal + '"]');
+      if(tBtn) tBtn.click();
+    }
+    if(typeof e.data === 'string' && e.data.indexOf('visora:scroll-to::') === 0){
+      var sel = e.data.slice('visora:scroll-to::'.length);
+      var target = document.querySelector(sel);
+      if(target) target.scrollIntoView({ block:'center', behavior:'auto' });
+    }
   });
   </script>
 </body>
