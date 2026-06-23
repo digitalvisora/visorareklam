@@ -284,7 +284,7 @@ const slides = [
     narration:[
       { l:'tr', t:'Düğün ve kına, aynı davetiyede iki ayrı sekmede.' },
     ]},
-  { type:'montage', tag:'Her Detay Düşünüldü', holdMs:650, slideMs:5200,
+  { type:'montage', tag:'Her Detay Düşünüldü', holdMs:780, slideMs:5800,
     narration:[
       { l:'tr', t:'Kına programından ankete, anı bırakmadan film şeridine — her detay özenle tasarlandı.' },
     ],
@@ -439,19 +439,32 @@ function playMontage(el, s){
   const labelEl  = el.querySelector('.montage-cut-label');
   const counterEl = el.querySelector('.montage-counter');
   const shots = s.shots;
-  const hold = s.holdMs || 700;
+  const hold = s.holdMs || 750;
   let curIframe = null, curSrc = null;
 
+  // Davetiye sekme/scroll konuma getirilene kadar tamamen gizli kalır (opacity:0).
+  // Doğru kareye oturduktan SONRA flaşla birlikte aniden belirir — sanki fotoğraf
+  // zaten hazır elindeymiş gibi; sayfanın kayarak/açılarak geldiği hiç görünmez.
   function fireCut(shot){
-    if(shot.selector){
-      try{ curIframe.contentWindow.postMessage('visora:scroll-to::' + shot.selector, '*'); }catch(err){}
-    }
     flash.classList.remove('fire');
     void flash.offsetWidth; // animasyonu yeniden başlatmak için reflow
     flash.classList.add('fire');
     labelEl.textContent = shot.label;
     labelEl.classList.add('show');
     device.classList.add('is-loaded');
+  }
+
+  function applyAndReveal(ifr, shot){
+    const reveal = () => {
+      actionTimers.push(setTimeout(() => {
+        ifr.style.opacity = '1';
+        fireCut(shot);
+      }, shot.selector ? 70 : 20));
+    };
+    if(shot.selector){
+      try{ ifr.contentWindow.postMessage('visora:scroll-to::' + shot.selector, '*'); }catch(err){}
+    }
+    reveal();
   }
 
   function showShot(k){
@@ -463,23 +476,27 @@ function playMontage(el, s){
       curSrc = shot.src;
       device.classList.remove('is-loaded');
       const ifr = document.createElement('iframe');
+      ifr.style.opacity = '0';
       ifr.addEventListener('load', () => {
         if(shot.tab){
           try{ ifr.contentWindow.postMessage('visora:show-tab::' + shot.tab, '*'); }catch(err){}
-          actionTimers.push(setTimeout(() => fireCut(shot), 150));
+          actionTimers.push(setTimeout(() => applyAndReveal(ifr, shot), 180));
         } else {
-          fireCut(shot);
+          applyAndReveal(ifr, shot);
         }
       }, { once:true });
       ifr.src = shot.src;
       if(curIframe) curIframe.remove(); // flash öğesi .screen dışında olduğu için silinmiyor
       screen.appendChild(ifr);
       curIframe = ifr;
-    } else if(shot.tab){
-      try{ curIframe.contentWindow.postMessage('visora:show-tab::' + shot.tab, '*'); }catch(err){}
-      actionTimers.push(setTimeout(() => fireCut(shot), 150));
     } else {
-      fireCut(shot);
+      curIframe.style.opacity = '0';
+      if(shot.tab){
+        try{ curIframe.contentWindow.postMessage('visora:show-tab::' + shot.tab, '*'); }catch(err){}
+        actionTimers.push(setTimeout(() => applyAndReveal(curIframe, shot), 180));
+      } else {
+        applyAndReveal(curIframe, shot);
+      }
     }
 
     actionTimers.push(setTimeout(() => {
