@@ -137,15 +137,16 @@
   #preloadPool{ position:fixed; left:-9999px; top:0; width:390px; height:844px; opacity:0.01; pointer-events:none; }
   #preloadPool iframe{ width:390px; height:844px; border:0; }
 
-  /* ===== Montaj sahnesi: hızlı kesitler arası beyaz flaş geçişi ===== */
+  /* ===== Montaj sahnesi: hızlı kesitler arası beyaz flaş geçişi — SADECE mockup ekranı içinde ===== */
+  .device{ overflow:hidden; }
   .montage-flash{
-    position:absolute; inset:0; z-index:20;
+    position:absolute; inset:14px; z-index:6; border-radius:34px;
     background:#fff; opacity:0; pointer-events:none;
   }
-  .montage-flash.fire{ animation:flashPop 0.32s ease-out; }
+  .montage-flash.fire{ animation:flashPop 0.16s ease-out; }
   @keyframes flashPop{
     0%{ opacity:0; }
-    18%{ opacity:0.95; }
+    25%{ opacity:0.95; }
     100%{ opacity:0; }
   }
   .montage-cut-label{
@@ -283,7 +284,7 @@ const slides = [
     narration:[
       { l:'tr', t:'Düğün ve kına, aynı davetiyede iki ayrı sekmede.' },
     ]},
-  { type:'montage', tag:'Her Detay Düşünüldü', holdMs:1300, slideMs:9200,
+  { type:'montage', tag:'Her Detay Düşünüldü', holdMs:650, slideMs:5200,
     narration:[
       { l:'tr', t:'Kına programından ankete, anı bırakmadan film şeridine — her detay özenle tasarlandı.' },
     ],
@@ -329,9 +330,9 @@ function buildSlideEl(s){
         <div class="device">
           <div class="notch"></div>
           <div class="screen"><div class="loading-spin"></div></div>
+          <div class="montage-flash"></div>
         </div>
       </div>
-      <div class="montage-flash"></div>
       <div class="montage-cut-label"></div>
       <div class="label-wrap">
         <div class="label-tag">${s.tag}</div>
@@ -438,7 +439,7 @@ function playMontage(el, s){
   const labelEl  = el.querySelector('.montage-cut-label');
   const counterEl = el.querySelector('.montage-counter');
   const shots = s.shots;
-  const hold = s.holdMs || 1100;
+  const hold = s.holdMs || 700;
   let curIframe = null, curSrc = null;
 
   function fireCut(shot){
@@ -465,18 +466,18 @@ function playMontage(el, s){
       ifr.addEventListener('load', () => {
         if(shot.tab){
           try{ ifr.contentWindow.postMessage('visora:show-tab::' + shot.tab, '*'); }catch(err){}
-          actionTimers.push(setTimeout(() => fireCut(shot), 220));
+          actionTimers.push(setTimeout(() => fireCut(shot), 150));
         } else {
           fireCut(shot);
         }
       }, { once:true });
       ifr.src = shot.src;
-      screen.innerHTML = '';
+      if(curIframe) curIframe.remove(); // flash öğesi .screen dışında olduğu için silinmiyor
       screen.appendChild(ifr);
       curIframe = ifr;
     } else if(shot.tab){
       try{ curIframe.contentWindow.postMessage('visora:show-tab::' + shot.tab, '*'); }catch(err){}
-      actionTimers.push(setTimeout(() => fireCut(shot), 220));
+      actionTimers.push(setTimeout(() => fireCut(shot), 150));
     } else {
       fireCut(shot);
     }
