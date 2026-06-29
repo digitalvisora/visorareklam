@@ -1,0 +1,89 @@
+{
+  "id": "saray-kina",
+  "demo": "index.html",
+  "hidden": true,
+  "nameTR": "Saray",
+  "nameEN": "Saray",
+  "catTR": "Düğün & Kına",
+  "catEN": "Wedding & Henna Night",
+  "descTR": "Lacivert ve altın tonlarıyla saray kapısından içeri davet eden, kına gecesine özel zarif bir koleksiyon.",
+  "descEN": "An elegant henna-night collection in navy and gold that welcomes guests through a palace gate.",
+  "preview": "images/bg-kina.png",
+  "features": ["countdown", "music", "gallery", "rsvp", "timeline", "upload"],
+  "badge": "YENİ",
+  "featured": true,
+  "order": 5,
+  "cardStyle": {
+    "bg": "images/bg-kina.png",
+    "theme": "saray-navy",
+    "invLabel": "KINA GECESİ",
+    "name1Field": "henna-name",
+    "dateField": "event-date-henna"
+  },
+  "segments": [
+    {
+      "id": "henna",
+      "tabLabel": "KINA",
+      "labelTR": "Kına",
+      "labelEN": "Henna Night",
+      "scrollTarget": "henna-cover",
+      "tabKey": "henna",
+      "timelineFormat": "dugun-kina-henna",
+      "timelineItems": [
+        { "time": "19:00", "title": "Açılış",               "icon": "images/icon-acilis.png" },
+        { "time": "19:30", "title": "Davul Eşliğinde Giriş", "icon": "images/icon-davul.png" },
+        { "time": "20:00", "title": "Kına Yakılışı",         "icon": "images/icon-kina.png" },
+        { "time": "20:30", "title": "Testi Kırılışı",        "icon": "images/icon-testi.png" },
+        { "time": "22:00", "title": "After Party",           "icon": "images/icon-afterparty.png" }
+      ],
+      "sectionGroups": [
+        { "id": "henna",       "labelTR": "Kına Bilgileri", "labelEN": "Henna Info",   "scrollTarget": "henna-cover" },
+        { "id": "family",      "labelTR": "Aile İsimleri",  "labelEN": "Family Names", "scrollTarget": "henna-family" },
+        { "id": "henna-venue", "labelTR": "Kına Mekanı",    "labelEN": "Henna Venue",  "scrollTarget": "henna-venue" }
+      ],
+      "fieldMap": [
+        { "id": "henna-name",           "section": "henna",       "type": "text",     "labelTR": "Kına Adı",            "labelEN": "Henna Name",        "placeholder": "Defne'nin",               "defaultValue": "Defne'nin" },
+        { "id": "event-date-henna",    "section": "henna",       "type": "text",     "labelTR": "Kına Tarihi & Saati", "labelEN": "Henna Date & Time", "placeholder": "21 AĞUSTOS 2026 · 19.00", "defaultValue": "21 AĞUSTOS 2026 · 19.00" },
+        { "id": "invite-message-henna","section": "henna",       "type": "textarea", "labelTR": "Kına Davet Metni",    "labelEN": "Henna Invitation Text", "placeholder": "Bu özel gecemizde...", "defaultValue": "Bu özel gecemizde siz değerli dostlarımızı aramızda görmekten mutluluk duyarız." },
+        { "id": "bride-family",        "section": "family",      "type": "text",     "labelTR": "Gelin Ailesi",        "labelEN": "Bride Family",      "placeholder": "YILMAZ AİLESİ",           "defaultValue": "YILMAZ AİLESİ" },
+        { "id": "groom-family",        "section": "family",      "type": "text",     "labelTR": "Damat Ailesi",        "labelEN": "Groom Family",      "placeholder": "KARA AİLESİ",             "defaultValue": "KARA AİLESİ" },
+        { "id": "venue-name-henna",    "section": "henna-venue", "type": "text",     "labelTR": "Kına Mekanı",         "labelEN": "Henna Venue",       "placeholder": "Saray Davet Salonu",      "defaultValue": "SARAY DAVET SALONU" },
+        { "id": "venue-address-henna", "section": "henna-venue", "type": "text",     "labelTR": "Açık Adres",          "labelEN": "Address",           "placeholder": "Selçuklu / Konya",        "defaultValue": "Selçuklu / Konya" },
+        { "id": "map-link",            "section": "henna-venue", "type": "url",      "labelTR": "Harita URL",          "labelEN": "Map URL",           "placeholder": "https://maps.google.com/...", "defaultValue": "" }
+      ]
+    },
+    {
+      "id": "wedding",
+      "tabLabel": "DÜĞÜN",
+      "labelTR": "Düğün",
+      "labelEN": "Wedding",
+      "scrollTarget": "wedding-cover",
+      "tabKey": "wedding",
+      "timelineFormat": "dugun-kina",
+      "timelineItems": [
+        { "time": "16:00", "title": "Konvoy",             "icon": "images/car.png" },
+        { "time": "19:00", "title": "Nikâh & Karşılama",  "icon": "images/arch.png" },
+        { "time": "20:00", "title": "İlk Dans & Kutlama",  "icon": "images/couple.png" },
+        { "time": "21:00", "title": "Pasta & Takı",        "icon": "images/cake.png" },
+        { "time": "22:00", "title": "After Party",         "icon": "images/party.png" }
+      ],
+      "sectionGroups": [
+        { "id": "wedding",       "labelTR": "Düğün Bilgileri", "labelEN": "Wedding Info",  "scrollTarget": "wedding-cover" },
+        { "id": "family-w",      "labelTR": "Aile İsimleri",   "labelEN": "Family Names",  "scrollTarget": "wedding-family" },
+        { "id": "wedding-venue", "labelTR": "Düğün Mekanı",    "labelEN": "Wedding Venue", "scrollTarget": "wedding-venue" }
+      ],
+      "fieldMap": [
+        { "id": "bride-name",             "section": "wedding",       "type": "text",     "labelTR": "Gelin Adı",          "labelEN": "Bride Name",         "placeholder": "Elif",  "defaultValue": "ELİF" },
+        { "id": "groom-name",             "section": "wedding",       "type": "text",     "labelTR": "Damat Adı",          "labelEN": "Groom Name",         "placeholder": "Arda",  "defaultValue": "ARDA" },
+        { "id": "event-date-wedding",     "section": "wedding",       "type": "text",     "labelTR": "Düğün Tarihi & Saati", "labelEN": "Wedding Date & Time", "placeholder": "14 EYLÜL 2026", "defaultValue": "14 EYLÜL 2026" },
+        { "id": "invite-message-wedding", "section": "wedding",       "type": "textarea", "labelTR": "Düğün Davet Metni",  "labelEN": "Wedding Text",       "placeholder": "Bu mutlu günümüzde...", "defaultValue": "Bu mutlu günümüzde sizleri de aramızda görmekten mutluluk duyarız." },
+        { "id": "bride-family-wedding",   "section": "family-w",      "type": "text",     "labelTR": "Gelin Ailesi",       "labelEN": "Bride Family",       "placeholder": "DEMİR AİLESİ", "defaultValue": "DEMİR AİLESİ" },
+        { "id": "groom-family-wedding",   "section": "family-w",      "type": "text",     "labelTR": "Damat Ailesi",       "labelEN": "Groom Family",       "placeholder": "AKSOY AİLESİ", "defaultValue": "AKSOY AİLESİ" },
+        { "id": "venue-name-wedding",     "section": "wedding-venue", "type": "text",     "labelTR": "Düğün Mekanı",       "labelEN": "Wedding Venue",      "placeholder": "Çırağan Palace", "defaultValue": "ÇIRAĞAN PALACE" },
+        { "id": "venue-address-wedding",  "section": "wedding-venue", "type": "text",     "labelTR": "Adres",              "labelEN": "Address",            "placeholder": "İstanbul", "defaultValue": "Beşiktaş / İstanbul" },
+        { "id": "map-link",               "section": "wedding-venue", "type": "url",      "labelTR": "Harita URL",         "labelEN": "Map URL",            "placeholder": "https://maps.google.com/...", "defaultValue": "" }
+      ]
+    }
+  ],
+  "folder": "saray"
+}

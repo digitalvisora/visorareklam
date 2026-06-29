@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saray | Kına Gecesi Davetiyesi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="wedding-slot.css" />
+</head>
+<body>
+  <main class="invite-shell">
+    <nav class="event-tabs">
+      <div class="tabs-track is-henna" id="tabsTrack">
+        <span class="tab-knob" id="tabKnob"></span>
+        <button class="tab-btn" data-tab="wedding" type="button">DÜĞÜN</button>
+        <button class="tab-btn active" data-tab="henna" type="button">KINA</button>
+      </div>
+    </nav>
+
+    <section id="wedding" class="event-page" data-date="2026-09-14T20:00:00">
+      <section class="glass-section bare-section" style="margin-top:18px" data-visora-section="wedding-cover">
+        <div class="ws-slot-hero">
+          <img src="images/slot-hero-wedding-inci.png" class="ws-slot-bg" alt="Save the date slot machine">
+
+          <div class="ws-hero-names">
+            <div data-visora-field="bride-name">ELİF</div>
+            <span>and</span>
+            <div data-visora-field="groom-name">ARDA</div>
+          </div>
+
+          <button class="ws-slot-handle-hit" id="wsSlotStartBtn" type="button" aria-label="Makineyi çalıştır"></button>
+
+          <div class="ws-slot-overlay" id="wsSlotMachinePanel">
+            <div class="ws-sm-arc ws-sm-arc-top"></div>
+            <div class="ws-sm-arc ws-sm-arc-bottom"></div>
+            <div class="ws-sm-edge ws-sm-edge-left"></div>
+            <div class="ws-sm-edge ws-sm-edge-right"></div>
+            <div class="ws-sm-reels">
+              <div class="ws-sm-reel" id="ws-reel-day"></div>
+              <div class="ws-sm-reel" id="ws-reel-month"></div>
+              <div class="ws-sm-reel" id="ws-reel-year"></div>
+            </div>
+          </div>
+
+          <span class="ws-slot-helper" id="wsSlotHelper">Tarihi görmek için<br>makineyi çalıştırın</span>
+
+          <div class="ws-hidden-date" data-visora-field="event-date-wedding">14 EYLÜL 2026</div>
+        </div>
+        <audio id="wsSlotSound" preload="auto"></audio>
+      </section>
+
+      <section class="glass-section countdown-section bare-section">
+        <span class="section-kicker">DÜĞÜNE KALAN SÜRE</span>
+        <div class="countdown-card">
+          <div class="countdown-grid">
+            <div><strong class="days">00</strong><span>Gün</span></div>
+            <div><strong class="hours">00</strong><span>Saat</span></div>
+            <div><strong class="minutes">00</strong><span>Dakika</span></div>
+            <div><strong class="seconds">00</strong><span>Saniye</span></div>
+          </div>
+        </div>
+        <button class="calendar-btn" type="button" data-title="Elif &amp; Arda Düğünü" data-start="2026-09-14T20:00:00" data-end="2026-09-14T23:30:00">Hatırlatıcı Ekle</button>
+      </section>
+
+      <section class="glass-section message-section">
+        <p data-visora-field="invite-message-wedding">Bu mutlu günümüzde sizleri de aramızda görmekten mutluluk duyarız.</p>
+      </section>
+
+      <section class="glass-section family-section bare-section" data-visora-section="wedding-family">
+        <div class="family-card">
+          <div class="family-box bride"><span data-visora-field="bride-family-wedding">DEMİR AİLESİ</span></div>
+          <div class="family-box groom"><span data-visora-field="groom-family-wedding">AKSOY AİLESİ</span></div>
+        </div>
+      </section>
+
+      <section class="glass-section venue-section bare-section" data-visora-section="wedding-venue">
+        <div class="location-card">
+          <div class="location-text">
+            <span class="venue-name" data-visora-field="venue-name-wedding">ÇIRAĞAN PALACE</span>
+            <span class="venue-address" data-visora-field="venue-address-wedding">Beşiktaş / İstanbul</span>
+          </div>
+          <a class="map-btn" href="https://maps.google.com/?q=Çırağan+Palace+İstanbul" data-visora-mapbtn target="_blank" rel="noopener">Konuma Git</a>
+        </div>
+      </section>
+
+      <section class="glass-section timeline-section bare-section">
+        <h2 style="margin-bottom:14px">Düğün Programı</h2>
+        <div class="ws-timeline-list" data-visora-timeline-container data-visora-timeline-format="dugun-kina">
+          <article class="ws-timeline-item"><img src="../wedding/images/car.png" alt=""><time>16:00</time><div><strong>Konvoy</strong></div></article>
+          <article class="ws-timeline-item"><img src="../wedding/images/arch.png" alt=""><time>19:00</time><div><strong>Nikâh &amp; Karşılama</strong></div></article>
+          <article class="ws-timeline-item"><img src="../wedding/images/couple.png" alt=""><time>20:00</time><div><strong>İlk Dans &amp; Kutlama</strong></div></article>
+          <article class="ws-timeline-item"><img src="../wedding/images/cake.png" alt=""><time>21:00</time><div><strong>Pasta &amp; Takı</strong></div></article>
+          <article class="ws-timeline-item"><img src="../wedding/images/party.png" alt=""><time>22:00</time><div><strong>After Party</strong></div></article>
+        </div>
+      </section>
+    </section>
+
+    <section id="henna" class="event-page active" data-date="2026-08-21T19:00:00">
+      <section class="cover-henna" data-visora-section="henna-cover">
+        <div class="henna-frame-content">
+          <h1 class="script-title" data-visora-field="henna-name">Defne'nin</h1>
+          <p class="event-date" data-visora-field="event-date-henna">21 AĞUSTOS 2026 · 19.00</p>
+          <button class="calendar-btn" type="button" data-title="Defne'nin Kına Gecesi" data-start="2026-08-21T19:00:00" data-end="2026-08-21T23:00:00">Hatırlatıcı Ekle</button>
+        </div>
+        <button class="scroll-down" type="button" aria-label="Aşağı kaydır">⌄</button>
+      </section>
+
+      <section class="glass-section countdown-section bare-section">
+        <span class="section-kicker">KINAYA KALAN SÜRE</span>
+        <div class="countdown-card">
+          <div class="countdown-grid">
+            <div><strong class="days">00</strong><span>Gün</span></div>
+            <div><strong class="hours">00</strong><span>Saat</span></div>
+            <div><strong class="minutes">00</strong><span>Dakika</span></div>
+            <div><strong class="seconds">00</strong><span>Saniye</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass-section message-section">
+        <p data-visora-field="invite-message-henna">Bu özel gecemizde siz değerli dostlarımızı aramızda görmekten mutluluk duyarız.</p>
+      </section>
+
+      <section class="glass-section family-section bare-section" data-visora-section="henna-family">
+        <div class="family-card">
+          <div class="family-box bride"><span data-visora-field="bride-family">YILMAZ AİLESİ</span></div>
+          <div class="family-box groom"><span data-visora-field="groom-family">KARA AİLESİ</span></div>
+        </div>
+      </section>
+
+      <section class="glass-section venue-section bare-section" data-visora-section="henna-venue">
+        <div class="location-card">
+          <div class="location-text">
+            <span class="venue-name" data-visora-field="venue-name-henna">SARAY DAVET SALONU</span>
+            <span class="venue-address" data-visora-field="venue-address-henna">Selçuklu / Konya</span>
+          </div>
+          <a class="map-btn" href="https://maps.google.com/?q=Saray+Davet+Salonu+Selçuklu+Konya" data-visora-mapbtn target="_blank" rel="noopener">Konuma Git</a>
+        </div>
+      </section>
+
+      <section class="glass-section timeline-section bare-section">
+        <div class="program-card">
+          <div class="henna-flow" data-visora-timeline-container data-visora-timeline-format="dugun-kina-henna">
+            <article><img src="images/icon-acilis.png" alt=""><time>19:00</time><div><strong>Açılış</strong></div></article>
+            <article><img src="images/icon-davul.png" alt=""><time>19:30</time><div><strong>Davul Eşliğinde Giriş</strong></div></article>
+            <article><img src="images/icon-kina.png" alt=""><time>20:00</time><div><strong>Kına Yakılışı</strong></div></article>
+            <article><img src="images/icon-testi.png" alt=""><time>20:30</time><div><strong>Testi Kırılışı</strong></div></article>
+            <article><img src="images/icon-afterparty.png" alt=""><time>22:00</time><div><strong>After Party</strong></div></article>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- Galeri / Anı Alanı / İletişim — her iki sekmede de görünür (paylaşılan) -->
+    <section class="glass-section gallery-section bare-section" data-visora-section="gallery">
+      <div class="gallery-frame">
+        <div class="gallery-window">
+          <button class="gallery-nav prev" id="prevSlide" type="button">‹</button>
+          <div class="gallery-track" id="galleryTrack" data-visora-gallery-container></div>
+          <button class="gallery-nav next" id="nextSlide" type="button">›</button>
+        </div>
+        <div class="dots" id="galleryDots"></div>
+      </div>
+    </section>
+
+    <section class="glass-section memory-section">
+      <span class="section-kicker">MİSAFİR ANI ALANI</span>
+      <h2>Anılarınızı Bırakın</h2>
+      <p>Fotoğraf, video, ses ve not gönderin.</p>
+      <div class="memory-actions">
+        <label>Fotoğraf<input id="photoInput" type="file" accept="image/*" multiple hidden></label>
+        <label>Video<input id="videoInput" type="file" accept="video/*" multiple hidden></label>
+        <button id="recordBtn" type="button">Sesi Kaydet</button>
+        <button id="pauseRecordBtn" class="record-control hidden" type="button" disabled>Duraklat</button>
+        <button id="stopRecordBtn" class="record-control hidden" type="button" disabled>Kaydı Bitir</button>
+        <button id="noteFocusBtn" type="button">Not Gönder</button>
+      </div>
+      <div id="uploadStatus" class="upload-status hidden">
+        <div class="upload-line">
+          <span id="photoStatus">Fotoğraf: 0 seçildi</span>
+          <span id="photoProgressText">0 / 0 yüklendi</span>
+        </div>
+        <div class="progress"><span id="photoProgressBar"></span></div>
+        <div class="upload-line">
+          <span id="videoStatus">Video: 0 seçildi</span>
+          <span id="videoProgressText">0 / 0 yüklendi</span>
+        </div>
+        <div class="progress"><span id="videoProgressBar"></span></div>
+      </div>
+      <div id="recordStatus" class="record-status hidden"></div>
+      <audio id="audioPreview" controls hidden></audio>
+      <div id="previewArea" class="preview-area"></div>
+      <div class="note-card">
+        <input id="senderName" placeholder="Gönderen adı" />
+        <textarea id="noteText" placeholder="Notunuz"></textarea>
+      </div>
+      <div class="attendance-row">
+        <button class="attend-btn active" data-attendance="Katılacağım" type="button">Katılacağım</button>
+        <button class="attend-btn" data-attendance="Katılamayacağım" type="button">Katılamayacağım</button>
+      </div>
+      <button class="send-btn" type="button">Gönder</button>
+    </section>
+
+    <section class="glass-section contact-section bare-section" data-visora-section="contact">
+      <div class="contact-frame">
+        <div class="contact-row">
+          <a class="whatsapp-link" href="https://wa.me/905372395824" target="_blank">WhatsApp</a>
+          <a class="instagram-link" href="https://instagram.com/davetiye_visora" target="_blank">@davetiye_visora</a>
+          <a class="website-link" href="https://visoraapp.net" target="_blank" rel="noopener">visoraapp.net</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="music-player">
+    <button id="musicBtn" type="button" aria-label="Müziği aç/kapat"><span id="musicIcon">▶</span></button>
+  </div>
+  <audio id="hennaMusic" loop preload="auto" playsinline></audio>
+
+  <script src="../../js/visora-api.js"></script>
+  <script src="script.js"></script>
+  <script src="wedding-slot.js"></script>
+  <script src="../../visora-bridge.js"></script>
+  <style>html{scrollbar-width:none}::-webkit-scrollbar{display:none}</style>
+  <script>
+  if(window.self !== window.top){
+    document.querySelectorAll('audio,video').forEach(function(a){ a.muted = true; a.pause(); a.removeAttribute('autoplay'); a.preload = 'none'; try{ a.src=''; a.load(); }catch(err){} });
+    HTMLMediaElement.prototype.play = function(){ this.muted = true; return Promise.resolve(); };
+  }
+  window.addEventListener('message', function(e){
+    if(e.data === 'visora:autoscroll'){
+      window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+    }
+    if(e.data === 'visora:switch-tab'){
+      var tabs = document.querySelectorAll('.tab-btn');
+      if(tabs.length > 1) tabs[1].click();
+    }
+    if(typeof e.data === 'string' && e.data.indexOf('visora:show-tab::') === 0){
+      var tabVal = e.data.slice('visora:show-tab::'.length);
+      var tBtn = document.querySelector('.tab-btn[data-tab="' + tabVal + '"]');
+      if(tBtn) tBtn.click();
+    }
+    if(typeof e.data === 'string' && e.data.indexOf('visora:scroll-to::') === 0){
+      var sel = e.data.slice('visora:scroll-to::'.length);
+      var target = document.querySelector(sel);
+      if(target) target.scrollIntoView({ block:'center', behavior:'auto' });
+    }
+  });
+  </script>
+</body>
+</html>

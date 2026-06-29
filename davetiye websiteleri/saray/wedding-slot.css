@@ -1,0 +1,166 @@
+/* ============================================================
+   wedding-slot.css — Saray / DÜĞÜN sekmesi
+   "Slot Machine" mekaniğinin Saray'a özel, ayrı bir kopyası.
+   Orijinal "davetiye websiteleri/Slot Machine/" şablonuna
+   dokunmaz — tamamen bağımsız bir dosyadır.
+   ============================================================ */
+
+/* ── DÜĞÜN sekmesi arka planı (inci/krem tema) — sadece .theme-wedding aktifken, kına etkilenmez ── */
+.invite-shell.theme-wedding::before {
+  background-image: url('images/bg-wedding-inci.png');
+}
+
+/* ── HERO: 3D slot makinesi ── */
+.ws-slot-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1400 / 1050;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #1a0e06;
+  border: 1px solid var(--border);
+}
+
+.ws-slot-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ws-hero-names {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  z-index: 5;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+  flex-wrap: nowrap;
+  text-align: center;
+  color: var(--cream);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1rem, 4.2vw, 1.5rem);
+  line-height: 1;
+  letter-spacing: .06em;
+  font-weight: 600;
+  text-shadow: 0 4px 18px rgba(0,0,0,.40);
+}
+
+.ws-hero-names [data-visora-field] {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 38%;
+}
+
+.ws-hero-names span {
+  display: inline-block;
+  margin: 0;
+  flex-shrink: 0;
+  font-family: "Great Vibes", cursive;
+  font-size: .85em;
+  letter-spacing: .02em;
+  font-weight: 400;
+}
+
+.ws-hidden-date { display: none; }
+
+.ws-slot-overlay {
+  position: absolute;
+  left: 19%;
+  top: 40%;
+  width: 57%;
+  height: 28%;
+  z-index: 6;
+  border-radius: 14px;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+
+.ws-sm-reels { position: absolute; inset: 0; display: flex; align-items: stretch; }
+.ws-sm-reel  { flex: 1; position: relative; overflow: hidden; }
+
+.ws-sm-arc { position: absolute; left: 0; right: 0; height: 32%; z-index: 10; pointer-events: none; }
+.ws-sm-arc-top    { top: 0;    background: linear-gradient(180deg, rgba(0,0,0,.95), transparent); }
+.ws-sm-arc-bottom { bottom: 0; background: linear-gradient(0deg, rgba(0,0,0,.95), transparent); }
+
+.ws-sm-edge { position: absolute; top: 0; bottom: 0; width: 16px; z-index: 10; pointer-events: none; }
+.ws-sm-edge-left  { left: 0;  background: linear-gradient(90deg, rgba(0,0,0,.45), transparent); }
+.ws-sm-edge-right { right: 0; background: linear-gradient(270deg, rgba(0,0,0,.45), transparent); }
+
+.ws-slot-handle-hit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 18%;
+  height: 80%;
+  z-index: 20;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.ws-slot-handle-hit:active { transform: translateY(2px); }
+
+.ws-slot-helper {
+  position: absolute;
+  left: 30%;
+  right: 19%;
+  bottom: 1%;
+  z-index: 7;
+  text-align: center;
+  color: #fffaf2;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(.76rem, 3.3vw, 1.05rem);
+  letter-spacing: .08em;
+  line-height: 1.25;
+  text-shadow: 0 4px 14px rgba(0,0,0,.38);
+  pointer-events: none;
+}
+.ws-slot-helper.is-hidden { opacity: 0; transition: opacity .45s ease; }
+
+@keyframes wsConfettiFall {
+  0%   { transform: translateY(-10px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(420px) rotate(280deg); opacity: 0; }
+}
+.ws-gold-confetti {
+  position: absolute;
+  top: -10px;
+  z-index: 30;
+  pointer-events: none;
+  animation: wsConfettiFall ease-in forwards;
+}
+
+/* ── Basit, çerçevesiz zaman çizelgesi (Düğün sekmesine özel) ── */
+.ws-timeline-list { display: grid; gap: 10px; }
+.ws-timeline-item {
+  display: grid;
+  grid-template-columns: 46px 56px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 16px;
+  background: var(--glass2);
+  border: 1px solid var(--border);
+}
+.ws-timeline-item img { width: 40px; height: 40px; object-fit: contain; opacity: .85; }
+.ws-timeline-item time {
+  color: var(--soft-gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.ws-timeline-item strong {
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+}
+
+@media (max-width: 380px) {
+  .ws-hero-names { font-size: clamp(.9rem, 4vw, 1.2rem); }
+}
