@@ -134,7 +134,7 @@
 <body>
 
 <div id="startGate">
-  <button id="startBtn">▶ Reels'i Oynat (sesli anlatımla)</button>
+  <button id="startBtn">▶ Reels'i Oynat</button>
 </div>
 <audio id="bgm" src="../davetiye websiteleri/wedding/music.mp3" loop preload="auto"></audio>
 <div id="preloadPool" style="position:fixed; left:-9999px; top:0; width:430px; height:900px; opacity:0.01; pointer-events:none;"></div>
@@ -263,6 +263,7 @@ if('speechSynthesis' in window){
   speechSynthesis.onvoiceschanged = loadVoices;
 }
 function speak(segments){
+  return; // anlatıcı sesi kapatıldı — dış sesle (örn. ElevenLabs) videoya eklenecek
   if(!segments || !('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
   segments.forEach(seg => {
